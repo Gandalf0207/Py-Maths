@@ -12,15 +12,12 @@ def generate_header(doc, type_exo):
     with header.create(Head("C")): 
         header.append(HugeText(bold(f"{type_exo}")))
     # Create left footer
-
     with header.create(Foot("L")):
         header.append(italic("Théo LUBAN"))
     # Create center footer
-    with header.create(Foot("C")):
-        header.append(italic("Quentin PLADEAU"))
-    # Create right footer
     with header.create(Foot("R")):
-        header.append(italic("Gabriel CADEAU-FLAUJAT"))
+        header.append(italic("Quentin PLADEAU"))
+
 
     doc.preamble.append(header)
     doc.change_document_style("header")

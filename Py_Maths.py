@@ -3,6 +3,7 @@ from pylatex import *
 from pylatex.utils import *
 
 from tkinter import *
+
 #Modules de création, graphe, courbe.....
 import matplotlib.backends.backend_pdf
 import matplotlib
@@ -27,12 +28,25 @@ import Hearder_Footer
 import Contenue_Page_1
 # import Hearder_Footer
 
+fichier = glob.glob('./*.pdf')
+for supprimer in fichier:
+    os.remove(supprimer)
+
+
 fenetre = Tk()
+fenetre.title("Py-Maths : Générateur d'exercices")
+fenetre.geometry("800x400")
+bg = '#B3D1F0'
+text = '#111645'
+fenetre.config(bg = bg)
+
+
+
+Label_TitrePage = Label(fenetre, text="Py-Maths", bg = bg, font=("Times New Roman", 20, "bold"), fg=text)
+Label_textpage = Label(fenetre, text="Générateur d'exercices de mathématiques avec leurs correction !", bg = bg, font=("Times New Roman", 15), fg='black')
+
 
 def activation():
-
-
-    if __name__ == '__main__':
 
         geometry_options = {"head": "40pt",
                             "margin":"1cm",
@@ -48,42 +62,76 @@ def activation():
         doc.preamble.append(pylatex.NoEscape(r'\newunicodechar{β}{\ensuremath{\beta}}'))
 
 
-        # a = int(input('exo poly = 1:'))
-        # nb_exo = int(input("Le nombre d'exo voulu : "))
-        # if a ==1:
-        type_exo = 'Polynome du Second degré'
-        nb_exo = 4
+
+        value_type_exo = CheckVar1.get()
+        type_exo = ''
+        if value_type_exo =='1':
+                type_exo = 'Polynôme du second degré'
         
+        nb_exo = CheckVar2.get()
+            
+
         appel1 = Hearder_Footer.generate_header(doc, type_exo)
         appel2 = Contenue_Page_1.generate_contenue_p1(doc)
         doc.append(NewPage())
-
+        
         for i in range(nb_exo):
-            # if a ==1:
             appel = Polynome_second_degre.write(doc, i)
             doc.append(NewPage())
 
 
 
-        doc.generate_pdf(f"Python-Maths_{type_exo}" , clean_tex=False, compiler="pdfLaTex")
+        doc.generate_pdf(f"Py-Maths_{type_exo}" , clean_tex=False, compiler="pdfLaTex")
 
 
-# fichier = glob.glob('./*.tex')
-# for supprimer in fichier:
-#     os.remove(supprimer)
-
-
-
+        fichier = glob.glob('./*.tex')
+        for supprimer in fichier:
+            os.remove(supprimer)
 
 
 
 
 
 
+Label_infos_nb = Label(fenetre, text="Choisissez le nombre d'exos que vous souhaitez :", borderwidth=0, bg = bg)
+CheckVar2 = IntVar()
+Label_nb = Entry(fenetre, textvariable=CheckVar2, width=5)
 
 
-laveb_bouton = Button(fenetre, text='generation1exo', command=activation) 
-laveb_bouton.pack()
+Label_infos_exos = Label(fenetre, text="Choisissez votre type d'exercices :", borderwidth=0, bg = bg)
+CheckVar1 = StringVar()
+Label_box_exo = Label(fenetre, relief=GROOVE, borderwidth=0, bg = bg)
+
+Label_btn_exo_poly2degre = Radiobutton(Label_box_exo, relief=GROOVE, text='Polynôme du second degré',variable=CheckVar1, value="1", borderwidth=0)
+Label_btn_exo_Pythagore= Radiobutton(Label_box_exo, relief=GROOVE, text='Pythagore',variable=CheckVar1, value="Pythagore", borderwidth=0)
+Label_btn_exo_Thalès = Radiobutton(Label_box_exo, relief=GROOVE, text='Thalès',variable=CheckVar1, value="Thalès", borderwidth=0)
+
+
+Label_btn_valider = Button(fenetre, text='Générer',borderwidth=1, command=activation)
+
+
+
+
+fenetre.columnconfigure(0, weight=1)
+fenetre.columnconfigure(3, weight=1)
+
+Label_TitrePage.grid(column= 1,row=0,columnspan=2, pady=5)
+Label_textpage.grid(column= 1,row=1, columnspan=2, pady=5 )
+
+Label_infos_nb.grid(column=1,row=2, sticky='NE', padx=5, pady=15)
+Label_nb.grid(column=2,row=2,sticky='NW', pady=15)
+
+
+Label_infos_exos.grid(column=1,row=3, sticky='NE' ,padx=5, pady=15)
+
+Label_box_exo.grid(column=2, row=3 , sticky='NW', pady=15)
+Label_btn_exo_poly2degre.grid(pady=2, sticky='W')
+Label_btn_exo_Pythagore.grid(pady=2, sticky='W')
+Label_btn_exo_Thalès.grid(pady=2, sticky='W')
+
+
+
+Label_btn_valider.grid(column=1, columnspan=2 ,pady=25)
 
 fenetre.mainloop()
 
