@@ -4,7 +4,7 @@ from pylatex.utils import *
 
 from tkinter import *
 
-#Modules de création, graphe, courbe.....
+#Modules de création, g raphe, courbe.....
 import matplotlib.backends.backend_pdf
 import matplotlib
 import matplotlib.pyplot as plt
