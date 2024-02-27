@@ -29,6 +29,7 @@ def write(doc, num_exo):
     x = Symbol('x')
 
     # Création des valeurs a, b, c de manière aléatoire 
+    
     value_a = random.randint(0,1)
     if value_a == 0:
         a = random.randint(-25,-1)
@@ -36,7 +37,6 @@ def write(doc, num_exo):
         a = random.randint(1,25)
     b = random.randint(-25,25)
     c = random.randint(-25,25)
-
 
 ## Formation des différents élément nécéssaire au calcul 
 ## et aussi à l'affichage nécéssaire 
@@ -61,6 +61,7 @@ def write(doc, num_exo):
     # Element delta
     @latexify.function(use_math_symbols=True)
     def Delta(a, b, c):
+
         return (b**2)-(4*a*c)
 
     Delta_brute = Delta
@@ -73,22 +74,22 @@ def write(doc, num_exo):
 
     Beta_brute = Beta
     Beta = round(Beta(Delta, a),2)
-
+    
     # Element solution de delta
-    def Solution_Delta():
+    @latexify.expression(use_math_symbols=True)
+    def Solution_Delta_sup0():
         x1 = (-b-sqrt(Delta))/(2*a)
         x2 = (-b+sqrt(Delta))/(2*a)
-    
-        if Delta > 0:
-            return x1 & x2
-        elif Delta ==0:
-            return ('x = α')
-        elif Delta < 0:
-            return("Ø")
-        else:
-            return
+        return ''
 
-    Solution_delta_brute = latexify.get_latex(Solution_Delta, use_math_symbols=True)
+    @latexify.expression(use_math_symbols=True)
+    def Solution_Delta_eg0():
+       return 'x = α'
+
+    @latexify.expression(use_math_symbols=True)
+    def Solution_Delta_inf0():
+        return ("Δ = Ø")
+
 
 
     # Element sommet S
@@ -112,14 +113,14 @@ def write(doc, num_exo):
 
     # Element forme canonique (mise en page)
     @latexify.function(use_math_symbols=True)
-    def forme_canonique_brute(a, alpha, beta):
+    def f(x):
         return (a*(x-alpha)**2 + beta)
 
-    Forme_canonique_brute = forme_canonique_brute
+    Forme_canonique_brute = f
 
     # Element forme canonique
     def Forme_canonique(a, alpha, beta):
-        return f"{a}•(x - {alpha})² + {beta}"
+        return f"{a}(x - ({alpha}))² + ({beta})"
 
     forme_canonique = latex(Forme_canonique(a, Alpha, Beta))
 
@@ -198,24 +199,32 @@ def write(doc, num_exo):
     #On affiche la forme brute des solutions possible de Delta 
     with doc.create(Subsection("",numbering = False)):
         doc.append("Calcules des solutions potentielles de delta")
-    with doc.create(Alignat(numbering = False, escape = False)) as math_eq:
-        math_eq.append(Solution_delta_brute)
 
     #On affiche le(s) solution(s) e Delta
+
     with doc.create(Subsection("",numbering = False)):
         doc.append("Solution(s) : ")
     if Delta > 0:
+        solution_delta_x1x2 = Solution_Delta_sup0
+        with doc.create(Alignat(numbering = False, escape = False)) as math_eq:
+                math_eq.append(solution_delta_x1x2)
         # le roud à 1 dixième est important sinon quand ce n'est pas exact, python calcul pas 
         x1 = round((-b-sqrt(Delta))/(2*a),2)
         x2 = round((-b+sqrt(Delta))/(2*a),2)
         doc.append(f'Les solutions sont : x1 = {x1}; x2 = {x2}')
     elif Delta ==0:
+        solution_delta_eg0 = Solution_Delta_eg0
+        with doc.create(Alignat(numbering = False, escape = False)) as math_eq:
+                math_eq.append(solution_delta_eg0)
         x = Alpha
         doc.append(f'La solution est : x = {x}')
     elif Delta < 0:
+        solution_delta_inf0 = Solution_Delta_inf0
+        with doc.create(Alignat(numbering = False, escape = False)) as math_eq:
+                math_eq.append(solution_delta_inf0)
         doc.append("Cette équation ne possède pas de solution dans R")
 
-
+    
     #On affiche la forme brute et le résultat de la forme canonique du polynôme
     with doc.create(Subsection("",numbering = False)):
         doc.append("Détermination de la forme canonique")
@@ -240,6 +249,7 @@ def write(doc, num_exo):
     with doc.create(Alignat(numbering = False, escape = False)) as math_eq:
             math_eq.append(point_A)
 
+    doc.append(NewPage())
     ## génération de la courbe avec Matplotlib ainsi que les deux points
     def courbe_poly(width, **kwargs):
         with doc.create(Subsection("", numbering=False)):
