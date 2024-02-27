@@ -150,4 +150,4 @@ fenetre.mainloop()
 # https://stackoverflow.com/questions/48898660/mathematics-in-latex-using-python
 
 # import fonction d'un autre fichier
-# print(main.testfunction())
+# print(main .testfunction())
