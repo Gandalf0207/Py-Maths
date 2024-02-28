@@ -230,7 +230,8 @@ def write(doc, num_exo):
         doc.append("Détermination de la forme canonique")
     with doc.create(Alignat(numbering = False, escape = False)) as math_eq:
             math_eq.append(Forme_canonique_brute)
-    with doc.create(Alignat(numbering = False, escape = False)) as math_eq:
+            doc.append(Command('hspace', '2cm'))
+            doc.append("f(x) = ")
             math_eq.append(forme_canonique)
 
     #On affiche la forme brute et le résultat du Sommet S de la courbe
