@@ -82,6 +82,10 @@ def write(doc, num_exo):
         x2 = (-b+sqrt(Delta))/(2*a)
         return ''
 
+     # le roud à 1 dixième est important sinon quand ce n'est pas exact, python calcul pas 
+    x1 = round((-b-sqrt(Delta))/(2*a),2)
+    x2 = round((-b+sqrt(Delta))/(2*a),2)
+
     @latexify.expression(use_math_symbols=True)
     def Solution_Delta_eg0():
        return 'x = α'
@@ -208,9 +212,6 @@ def write(doc, num_exo):
         solution_delta_x1x2 = Solution_Delta_sup0
         with doc.create(Alignat(numbering = False, escape = False)) as math_eq:
                 math_eq.append(solution_delta_x1x2)
-        # le roud à 1 dixième est important sinon quand ce n'est pas exact, python calcul pas 
-        x1 = round((-b-sqrt(Delta))/(2*a),2)
-        x2 = round((-b+sqrt(Delta))/(2*a),2)
         doc.append(f'Les solutions sont : x1 = {x1}; x2 = {x2}')
     elif Delta ==0:
         solution_delta_eg0 = Solution_Delta_eg0
@@ -324,11 +325,18 @@ def write(doc, num_exo):
 
         #Tableau de signes
         doc.append('Tableau de Signes : ')
+        doc.append(Command('hspace', '2cm'))
+        if Delta > 0:
+            doc.append(f"Rappel = x1 = {x1}; x2 = {x2}")
+        elif Delta==0:
+            doc.append(f"Rappel x = α = {Alpha}")
+        elif Delta < 0:
+            doc.append(f"Rappel : Δ n'a pas de solution en R")
+
         doc.append(NewLine())
         with doc.create(TikZ()):
             if a > 0:
                 if Delta < 0:
-                    
                     doc.append(NoEscape("\\tkzTabInit{$x$ / 1, $f (x)$ / 1}{$- ∞$, $+ ∞$}"))
                     doc.append(NoEscape("\\tkzTabLine{, +}"))
 
@@ -337,7 +345,7 @@ def write(doc, num_exo):
                     doc.append(NoEscape("\\tkzTabLine{, +, z, +}"))
                     
                 elif Delta > 0:
-                    doc.append(NoEscape("\\tkzTabInit{$-∞$ / 1, $f (x)$ / 1}{$- ∞$, $x1$, $x2$, $+ ∞$}"))
+                    doc.append(NoEscape("\\tkzTabInit{$x$ / 1, $f (x)$ / 1}{$- ∞$, $x1$, $x2$, $+ ∞$}"))
                     doc.append(NoEscape("\\tkzTabLine{, +, z, -, z, +, }"))
             elif a < 0:
                 if Delta < 0:
@@ -357,6 +365,10 @@ def write(doc, num_exo):
 
         #Tableau de variations
         doc.append('Tableau de Variations : ')
+
+        doc.append(Command('hspace', '2cm'))
+        doc.append(f"Rappel : α = {Alpha}; β = {Beta} ")
+
         doc.append(NewLine())
         with doc.create(TikZ()):
             if a > 0:
