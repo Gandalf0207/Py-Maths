@@ -23,6 +23,7 @@ import os
 import glob
 
 # importation du script pour les polynome du second degré
+import Equation_Inéquation_premier_degre
 import Polynome_second_degre
 import Hearder_Footer
 import Contenue_Page_1
@@ -67,6 +68,8 @@ def activation():
         type_exo = ''
         if value_type_exo =='1':
                 type_exo = 'Polynôme du second degré'
+        if value_type_exo =="2":
+                type_exo = 'Equation Inéquation premier degre'
         
         nb_exo = CheckVar2.get()
             
@@ -76,8 +79,14 @@ def activation():
         doc.append(NewPage())
         
         for i in range(nb_exo):
-            appel = Polynome_second_degre.write(doc, i)
-            doc.append(NewPage())
+            if value_type_exo =='1':
+                appel = Polynome_second_degre.write(doc, i)
+                doc.append(NewPage())
+
+        if value_type_exo =="2":
+                appel = Equation_Inéquation_premier_degre.write(doc, i)
+                doc.append(NewPage())
+            
 
 
 
@@ -103,7 +112,7 @@ CheckVar1 = StringVar()
 Label_box_exo = Label(fenetre, relief=GROOVE, borderwidth=0, bg = bg)
 
 Label_btn_exo_poly2degre = Radiobutton(Label_box_exo, relief=GROOVE, text='Polynôme du second degré',variable=CheckVar1, value="1", borderwidth=0)
-Label_btn_exo_Pythagore= Radiobutton(Label_box_exo, relief=GROOVE, text='Pythagore',variable=CheckVar1, value="Pythagore", borderwidth=0)
+Label_btn_exo_Equation_Inéquation_premier_degre= Radiobutton(Label_box_exo, relief=GROOVE, text='Equation / Inéquation premier degre',variable=CheckVar1, value="2", borderwidth=0)
 Label_btn_exo_Thalès = Radiobutton(Label_box_exo, relief=GROOVE, text='Thalès',variable=CheckVar1, value="Thalès", borderwidth=0)
 
 
@@ -126,7 +135,7 @@ Label_infos_exos.grid(column=1,row=3, sticky='NE' ,padx=5, pady=15)
 
 Label_box_exo.grid(column=2, row=3 , sticky='NW', pady=15)
 Label_btn_exo_poly2degre.grid(pady=2, sticky='W')
-Label_btn_exo_Pythagore.grid(pady=2, sticky='W')
+Label_btn_exo_Equation_Inéquation_premier_degre.grid(pady=2, sticky='W')
 Label_btn_exo_Thalès.grid(pady=2, sticky='W')
 
 
