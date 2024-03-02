@@ -56,8 +56,11 @@ def write(doc, num_exo):
 
     a = '$x^{p-2}\$'
     print(a)
+
+
     nomP = 15
     var = 12
     aab = 5
+    
     with doc.create(Section("Hello")):
         doc.append(NoEscape("\\ Factoriser $%s(%s + 5x)=%s$" % (nomP, var, aab)))
