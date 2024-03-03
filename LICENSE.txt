@@ -1,0 +1,2 @@
+code : libre GPL v3+
+texte :CC By-Sa
