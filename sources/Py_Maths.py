@@ -79,14 +79,14 @@ def activation():
         doc.append(NewPage())
         
         for i in range(nb_exo):
-            if value_type_exo =='1':
-                appel = Polynome_second_degre.write(doc, i)
-                doc.append(NewPage())
+                if value_type_exo =='1':
+                        appel = Polynome_second_degre.write(doc, i)
+                        doc.append(NewPage())
 
-        if value_type_exo =="2":
-                appel = Equation_Inéquation_premier_degre.write(doc, i)
-                doc.append(NewPage())
-            
+                elif value_type_exo =="2":
+                        appel = Equation_Inéquation_premier_degre.write(doc, i)
+                        doc.append(NewPage())
+                        
 
 
 
