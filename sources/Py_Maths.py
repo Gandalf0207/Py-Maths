@@ -23,7 +23,7 @@ import os
 import glob
 
 # importation du script pour les polynome du second degré
-import Equation_Inéquation_premier_degre
+import Equation_Inequation_premier_degre
 import Polynome_second_degre
 import Hearder_Footer
 import Contenue_Page_1
@@ -84,7 +84,7 @@ def activation():
                         doc.append(NewPage())
 
                 elif value_type_exo =="2":
-                        appel = Equation_Inéquation_premier_degre.write(doc, i)
+                        appel = Equation_Inequation_premier_degre.write(doc, i)
                         doc.append(NewPage())
                         
 
