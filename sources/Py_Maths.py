@@ -50,13 +50,14 @@ Label_textpage = Label(fenetre, text="Générateur d'exercices de mathématiques
 def activation():
 
         geometry_options = {"head": "40pt",
-                            "margin":"1cm",
+                            "margin":"5mm",
                             "bottom": "0.6cm",
                             "includeheadfoot": True}
         doc = Document(geometry_options=geometry_options)
 
         doc.preamble.append(pylatex.Command('usepackage', 'newunicodechar'))
         doc.packages.append(NoEscape("\\usepackage{tkz-tab}"))
+        doc.packages.append(NoEscape("\\usepackage{amsmath}"))
         doc.preamble.append(pylatex.NoEscape(r'\newunicodechar{∞}{\ensuremath{\infty}}'))
         doc.preamble.append(pylatex.NoEscape(r'\newunicodechar{Δ}{\ensuremath{\Delta}}'))
         doc.preamble.append(pylatex.NoEscape(r'\newunicodechar{α}{\ensuremath{\alpha}}'))
@@ -93,9 +94,9 @@ def activation():
         doc.generate_pdf(f"Py-Maths_{type_exo}" , clean_tex=False, compiler="pdfLaTex")
 
 
-        fichier = glob.glob('./*.tex')
-        for supprimer in fichier:
-            os.remove(supprimer)
+        # fichier = glob.glob('./*.tex')
+        # for supprimer in fichier:
+        #     os.remove(supprimer)
 
 
 

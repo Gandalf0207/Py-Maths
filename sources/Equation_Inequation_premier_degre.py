@@ -23,6 +23,7 @@ import glob
 
 
 def write(doc, num_exo):
+    doc.packages.append(NoEscape("\\usepackage{amsmath}"))
 
     #Avec sympy, définition du symbole pour le polynôme 
     x = Symbol('x')
@@ -44,7 +45,7 @@ def write(doc, num_exo):
 
 
    # Définitions de la taille de police d'écriture
-    doc.append(pylatex.Command('fontsize', arguments = ['15', '12']))
+    doc.append(pylatex.Command('fontsize', arguments = ['12', '10']))
     doc.append(pylatex.Command('selectfont'))
 
     #Numéro de l'exos
@@ -83,65 +84,56 @@ def write(doc, num_exo):
 #### fonctionne pas 
 ### regarde lib latex : amsmat
 # visualisation convaincante sur overleaf
-        with doc.create(Subsection("Niveau 1 :")):
+        with doc.create(Subsection("bon jour")):
 
-            with doc.create(Center()):
-                # with doc.create(MiniPage()):
-                doc.append("Equations n°1")
-                doc.append(Command('vspace', '10mm'))
-                # doc.append(LineBreak())
-                doc.append(NewLine())
-
-                doc.append(NoEscape("\\ $ \\Leftrightarrow %s - %sx = %s + %s $" % (nb1, nb2, nb3, nb4)))
-                doc.append(Command('vspace', '5mm'))
-                # doc.append(LineBreak())
-                doc.append(NewLine())
-
-                doc.append(NoEscape("\\ $ \\Leftrightarrow %s - %s - %sx = %s + %s -%s $" % (nb1, nb1, nb2, nb3, nb4, nb1 )))
-                doc.append(Command('vspace', '5mm'))
-                # doc.append(LineBreak())
-                doc.append(NewLine())
-
-                newnb_1 = nb3 + nb4 - nb1
-                doc.append(NoEscape("\\ $ \\Leftrightarrow \\frac{-%sx}{-%s} = \\frac{%s}{-%s} $" % (nb2, nb2, newnb_1, nb2)))
-                doc.append(Command('vspace', '5mm'))
-                # doc.append(LineBreak())
-                doc.append(NewLine())
-
-                result_1 = round((newnb_1 / (- nb2)),1)
-                doc.append(NoEscape("\\ $ \\Leftrightarrow  x = %s $" % (result_1)))
-
-
-            # doc.append(Command('hspace', '2cm'))   
-            # doc.append(NewLine())
             
-                
-            with doc.create(Center()):
-                doc.append("Equations n°2")
-                doc.append(Command('vspace', '10mm'))
-                doc.append(LineBreak())
+            # with doc.create(MiniPage()):
+            doc.append("Equations n°1")
 
-                doc.append(NoEscape("\\ $ \\Leftrightarrow %s + %sx  = %s + %s$" % (nb5, nb6, nb7, nb8)))
-                doc.append(Command('vspace', '5mm'))
-                doc.append(LineBreak())
+            doc.append(NoEscape("\\begin{align*}"))
 
-                doc.append(NoEscape("\\ $ \\Leftrightarrow %s - %s + %sx  = %s + %s + %s$" % (nb5, nb5, nb6, nb7, nb8, nb5)))
-                doc.append(Command('vspace', '5mm'))
-                doc.append(LineBreak())
+            # doc.append(NoEscape("\\begin{align*}"))
+            doc.append(Command('vspace', '10mm'))
+            # doc.append(LineBreak())
+            doc.append(NewLine())
 
-                newnb_2 = nb5 + nb7 + nb8
-                doc.append(NoEscape("\\ $ \\Leftrightarrow %sx  = %s $" % (nb6, newnb_2)))
-                doc.append(Command('vspace', '5mm'))
-                doc.append(LineBreak())
+            doc.append(NoEscape("\\  \\Leftrightarrow %s - %sx &= %s + %s     & \\Leftrightarrow %s + %sx  &= %s + %s       & \\Leftrightarrow %s + %s &= %sx - %s\\\\" % (nb1, nb2, nb3, nb4, nb5, nb6, nb7, nb8, nb9, nb10, nb11, nb12)))
+            doc.append(Command('vspace', '5mm'))
+            # doc.append(LineBreak())
+            doc.append(NewLine())
 
-                doc.append(NoEscape("\\ $ \\Leftrightarrow \\frac{%sx}{%s} = \\frac{%s}{%s} $" % (nb6,nb6, newnb_2, nb6)))
-                doc.append(Command('vspace', '5mm'))
-                doc.append(LineBreak())
+            doc.append(NoEscape("\\  \\Leftrightarrow %s - %s - %sx &= %s + %s -%s      & \\Leftrightarrow %s - %s + %sx  &= %s + %s + %s        & \\Leftrightarrow %s + %s + %s &= %sx - %s +%s\\\\" % (nb1, nb1, nb2, nb3, nb4, nb1, nb5, nb5, nb6, nb7, nb8, nb5, nb9, nb10,nb12, nb11, nb12, nb12 )))
+            doc.append(Command('vspace', '5mm'))
+            # doc.append(LineBreak())
+            doc.append(NewLine())
 
-                result_2 = round((newnb_2 / nb6),1)
-                doc.append(NoEscape("\\ $ \\Leftrightarrow  x = %s $" % (result_2)))
+            newnb_1 = nb3 + nb4 - nb1
+            newnb_2 = nb5 + nb7 + nb8
+            newnb_3 = nb9 + nb10 + nb12
+            doc.append(NoEscape("\\  \\Leftrightarrow \\frac{-%sx}{-%s} &= \\frac{%s}{-%s}      & \\Leftrightarrow \\frac{%sx}{%s} &= \\frac{%s}{%s}      & \\Leftrightarrow \\frac{%s}{%s} &= \\frac{%sx}{%s}\\\\" % (nb2, nb2, newnb_1, nb2, nb6,nb6, newnb_2, nb6, newnb_3, nb11, nb11, nb11)))
+            doc.append(Command('vspace', '5mm'))
+            # doc.append(LineBreak())
+            doc.append(NewLine())
+
+            result_1 = round((newnb_1 / (- nb2)),1)
+            result_2 = round((newnb_2 / nb6),1)
+            result_3 = round((newnb_3 / nb11),1)
+            doc.append(NoEscape("\\  \\Leftrightarrow  x &= %s      & \\Leftrightarrow  x &= %s      & \\Leftrightarrow  x &= %s\\\\" % (result_1, result_2, result_3)))
+
+            doc.append(NoEscape("\\end{align*}"))
+
 
 ###EXEMPLE : 
+
+#& \\Leftrightarrow %s + %s &= %sx - %s  " % (nb9, nb10, nb11, nb12)))
+# & \\Leftrightarrow %s + %s + %s &= %sx - %s +%s  " % (nb9, nb10,nb12, nb11, nb12, nb12)))
+#newnb_3 = nb9 + nb10 + nb12
+# & \\Leftrightarrow \frac{%s}{%s} &= \\frac{%sx}{%s} " % (newnb_3, nb11, nb11, nb11)))
+#result_3 = round((newnb_3 / nb11),1)
+#& \\Leftrightarrow  x &= %s %(result_3)
+ 
+
+
 
     # nomP = 15
     # var = 12
