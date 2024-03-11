@@ -111,26 +111,28 @@ def write(doc, num_exo):
 
             doc.append(NoEscape("\\begin{align*}"))
 
-            doc.append(NoEscape("\\  \\Leftrightarrow \\frac{%s}{%s}x + %s &= \\frac{%s}{%s} - %sx \\\\" % (nb1, nb2, nb3, nb4, nb5, nb6)))
+            doc.append(NoEscape("\\  \\Leftrightarrow \\frac{%s}{%s}x + %s &= \\frac{%s}{%s} - %sx       &     \\Leftrightarrow %s + \\frac{%s}{%s}x &= \\frac{%s}{%s} \\\\" % (nb1, nb2, nb3, nb4, nb5, nb6, nb7, nb8, nb9, nb10, nb11)))
             doc.append(Command('vspace', '5mm'))
             doc.append(NewLine())
 
-            doc.append(NoEscape("\\  \\Leftrightarrow \\frac{%s}{%s}x + %s + %sx  &= \\frac{%s}{%s} - %sx +%sx \\\\" % (nb1, nb2, nb3, nb6, nb4, nb5, nb6, nb6)))
+            doc.append(NoEscape("\\  \\Leftrightarrow \\frac{%s}{%s}x + %s + %sx  &= \\frac{%s}{%s} - %sx +%sx    &    \\Leftrightarrow %s - %s + \\frac{%s}{%s}x &= \\frac{%s}{%s} + %s\\\\" % (nb1, nb2, nb3, nb6, nb4, nb5, nb6, nb6, nb7,nb7, nb8, nb9, nb10, nb11, nb7)))
             doc.append(Command('vspace', '5mm'))
             doc.append(NewLine())
 
             newnbx_1 = round(((nb1 / nb2) + nb6),1)
-            doc.append(NoEscape("\\  \\Leftrightarrow %sx + %s - %s &= \\frac{%s}{%s}	- %s \\\\" % (newnbx_1, nb3, nb3, nb4, nb5, nb3)))
+            newnb_5 = round(((nb10/nb11)+ nb7),1)
+            doc.append(NoEscape("\\  \\Leftrightarrow %sx + %s - %s &= \\frac{%s}{%s}	- %s       &      \\Leftrightarrow \\frac{%s}{%s}x &= %s \\\\" % (newnbx_1, nb3, nb3, nb4, nb5, nb3, nb8, nb9, newnb_5)))
             doc.append(Command('vspace', '5mm'))
             doc.append(NewLine())
 
             newnb_4 = round(((nb4/nb5)-nb3),1)
-            doc.append(NoEscape("\\  \\Leftrightarrow \\frac{%sx}{%s} &= \\frac{%s}{%s} \\\\" % (newnbx_1, newnbx_1, newnb_4, newnbx_1)))
+            doc.append(NoEscape("\\  \\Leftrightarrow \\frac{%sx}{%s} &= \\frac{%s}{%s}     &      \\Leftrightarrow \\frac{%s}{%s}x \\times \\frac{%s}{%s} &= %s x \\times \\frac{%s}{%s}\\\\" % (newnbx_1, newnbx_1, newnb_4, newnbx_1, nb8, nb9,nb9, nb8, newnb_5, nb9, nb8)))
             doc.append(Command('vspace', '5mm'))
             doc.append(NewLine())
 
-            result_4 = (newnb_4/newnbx_1)
-            doc.append(NoEscape("\\  \\Leftrightarrow x &= %s \\\\" % (result_4)))
+            result_4 = round((newnb_4/newnbx_1),1)
+            result_5 = round((newnb_5 * (nb9/nb8)),1)
+            doc.append(NoEscape("\\  \\Leftrightarrow x &= %s    &     \\Leftrightarrow x &= %s \\\\" % (result_4, result_5)))
             doc.append(Command('vspace', '5mm'))
             doc.append(NewLine())
 
@@ -138,16 +140,20 @@ def write(doc, num_exo):
 
 
 
+#            \\ \\Leftrightarrow %s + \\frac{%s}{%s}x = \\frac{%s}{%s} \\\\        nb7, nb8, nb9, nb10, nb11
+
+#            \\ \\Leftrightarrow %s - %s + \\frac{%s}{%s}x &= \\frac{%s}{%s} + %s \\\\        nb7,nb7, nb8, nb9, nb10, nb11, nb7
+
+#            newnb_5 = round(((nb10/nb11)+ nb7),1)
+#            \\ \\Leftrightarrow \\frac{%s}{%s}x &= newnb_5 \\\\        nb8, nb9, newnb_5
+#         
+#            \\ \\Leftrightarrow \\frac{%s}{%s}x \times \\frac{%s}{%s} &= %s x \times \\frac{%s}{%s} \\\\        nb8, nb9,nb9, nb8 newnb_5, nb9, nb8
+#             
+#            result_5 = roudn((newnb_5 x (nb9/nb8))1,)
+#            \\  \\Leftrightarrow x &= %s         result_5
+
+
 ###EXEMPLE : 
-
-#& \\Leftrightarrow %s + %s &= %sx - %s  " % (nb9, nb10, nb11, nb12)))
-# & \\Leftrightarrow %s + %s + %s &= %sx - %s +%s  " % (nb9, nb10,nb12, nb11, nb12, nb12)))
-#newnb_3 = nb9 + nb10 + nb12
-# & \\Leftrightarrow \frac{%s}{%s} &= \\frac{%sx}{%s} " % (newnb_3, nb11, nb11, nb11)))
-#result_3 = round((newnb_3 / nb11),1)
-#& \\Leftrightarrow  x &= %s %(result_3)
- 
-
 
 
     # nomP = 15
