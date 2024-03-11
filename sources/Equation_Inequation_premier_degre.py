@@ -81,30 +81,15 @@ def write(doc, num_exo):
         doc.append("Niveau 1 :")
 
 
-#### fonctionne pas 
-### regarde lib latex : amsmat
-# visualisation convaincante sur overleaf
-        with doc.create(Subsection("bon jour")):
-
-            
-            # with doc.create(MiniPage()):
-            doc.append("Equations n°1")
+        with doc.create(Subsection("Equations n°1")):
 
             doc.append(NoEscape("\\begin{align*}"))
-
-            # doc.append(NoEscape("\\begin{align*}"))
-            doc.append(Command('vspace', '10mm'))
-            # doc.append(LineBreak())
-            doc.append(NewLine())
-
             doc.append(NoEscape("\\  \\Leftrightarrow %s - %sx &= %s + %s     & \\Leftrightarrow %s + %sx  &= %s + %s       & \\Leftrightarrow %s + %s &= %sx - %s\\\\" % (nb1, nb2, nb3, nb4, nb5, nb6, nb7, nb8, nb9, nb10, nb11, nb12)))
             doc.append(Command('vspace', '5mm'))
-            # doc.append(LineBreak())
             doc.append(NewLine())
 
             doc.append(NoEscape("\\  \\Leftrightarrow %s - %s - %sx &= %s + %s -%s      & \\Leftrightarrow %s - %s + %sx  &= %s + %s + %s        & \\Leftrightarrow %s + %s + %s &= %sx - %s +%s\\\\" % (nb1, nb1, nb2, nb3, nb4, nb1, nb5, nb5, nb6, nb7, nb8, nb5, nb9, nb10,nb12, nb11, nb12, nb12 )))
             doc.append(Command('vspace', '5mm'))
-            # doc.append(LineBreak())
             doc.append(NewLine())
 
             newnb_1 = nb3 + nb4 - nb1
@@ -112,7 +97,6 @@ def write(doc, num_exo):
             newnb_3 = nb9 + nb10 + nb12
             doc.append(NoEscape("\\  \\Leftrightarrow \\frac{-%sx}{-%s} &= \\frac{%s}{-%s}      & \\Leftrightarrow \\frac{%sx}{%s} &= \\frac{%s}{%s}      & \\Leftrightarrow \\frac{%s}{%s} &= \\frac{%sx}{%s}\\\\" % (nb2, nb2, newnb_1, nb2, nb6,nb6, newnb_2, nb6, newnb_3, nb11, nb11, nb11)))
             doc.append(Command('vspace', '5mm'))
-            # doc.append(LineBreak())
             doc.append(NewLine())
 
             result_1 = round((newnb_1 / (- nb2)),1)
@@ -121,6 +105,37 @@ def write(doc, num_exo):
             doc.append(NoEscape("\\  \\Leftrightarrow  x &= %s      & \\Leftrightarrow  x &= %s      & \\Leftrightarrow  x &= %s\\\\" % (result_1, result_2, result_3)))
 
             doc.append(NoEscape("\\end{align*}"))
+        
+
+        with doc.create(Subsection("Equations n°2")):
+
+            doc.append(NoEscape("\\begin{align*}"))
+
+            doc.append(NoEscape("\\  \\Leftrightarrow \\frac{%s}{%s}x + %s &= \\frac{%s}{%s} - %sx \\\\" % (nb1, nb2, nb3, nb4, nb5, nb6)))
+            doc.append(Command('vspace', '5mm'))
+            doc.append(NewLine())
+
+            doc.append(NoEscape("\\  \\Leftrightarrow \\frac{%s}{%s}x + %s + %sx  &= \\frac{%s}{%s} - %sx +%sx \\\\" % (nb1, nb2, nb3, nb6, nb4, nb5, nb6, nb6)))
+            doc.append(Command('vspace', '5mm'))
+            doc.append(NewLine())
+
+            newnbx_1 = round(((nb1 / nb2) + nb6),1)
+            doc.append(NoEscape("\\  \\Leftrightarrow %sx + %s - %s &= \\frac{%s}{%s}	- %s \\\\" % (newnbx_1, nb3, nb3, nb4, nb5, nb3)))
+            doc.append(Command('vspace', '5mm'))
+            doc.append(NewLine())
+
+            newnb_4 = round(((nb4/nb5)-nb3),1)
+            doc.append(NoEscape("\\  \\Leftrightarrow \\frac{%sx}{%s} &= \\frac{%s}{%s} \\\\" % (newnbx_1, newnbx_1, newnb_4, newnbx_1)))
+            doc.append(Command('vspace', '5mm'))
+            doc.append(NewLine())
+
+            result_4 = (newnb_4/newnbx_1)
+            doc.append(NoEscape("\\  \\Leftrightarrow x &= %s \\\\" % (result_4)))
+            doc.append(Command('vspace', '5mm'))
+            doc.append(NewLine())
+
+            doc.append(NoEscape("\\end{align*}"))
+
 
 
 ###EXEMPLE : 
