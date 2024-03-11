@@ -68,9 +68,9 @@ def activation():
         value_type_exo = CheckVar1.get()
         type_exo = ''
         if value_type_exo =='1':
-                type_exo = 'Polynôme du second degré'
+                type_exo = 'Polynômed_du_second_degre'
         if value_type_exo =="2":
-                type_exo = 'Equation Inéquation premier degre'
+                type_exo = 'Equation_Inequation_premier_degre'
         
         nb_exo = CheckVar2.get()
             
