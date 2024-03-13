@@ -15,10 +15,11 @@ Apres l'instalation, veillez à bien redémarer votre machine.
 
 #### Requirement
 
-Il faut qu'il crée u environement en py 3.11 et install toutes les libs
+Veuillez executer le fihcier requirmeent.txt afin d'interller tout les librairie python nécéssaire au bon fonctionnement du projet.
+A noter que les librairie doivent etre installer sur python 3.11 (l'installation dans un environnement python est recommendé)
 
 #### Les Scripts Python
-Télécharger les scripts pythons et les déposer dans le dossier qui contient l'environnement.
+Télécharger les scripts pythons et les déposer dans le dossier qui contient l'environnement / dans un meme dossier.
 
 
 ### Lancement
