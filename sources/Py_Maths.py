@@ -23,7 +23,7 @@ import os
 import glob
 
 # importation du script pour les polynome du second degré
-import Equation_Inequation_premier_degre
+import Equation_premier_degre
 import Polynome_second_degre
 import Hearder_Footer
 import Contenue_Page_1
@@ -68,9 +68,9 @@ def activation():
         value_type_exo = CheckVar1.get()
         type_exo = ''
         if value_type_exo =='1':
-                type_exo = 'Polynômed_du_second_degre'
+                type_exo = 'Polynômed du second degre'
         if value_type_exo =="2":
-                type_exo = 'Equation_Inequation_premier_degre'
+                type_exo = 'Equation premier degre'
         
         nb_exo = CheckVar2.get()
             
@@ -85,7 +85,7 @@ def activation():
                         doc.append(NewPage())
 
                 elif value_type_exo =="2":
-                        appel = Equation_Inequation_premier_degre.write(doc, i)
+                        appel = Equation_premier_degre.write(doc, i)
                         doc.append(NewPage())
                         
 
@@ -113,8 +113,8 @@ CheckVar1 = StringVar()
 Label_box_exo = Label(fenetre, relief=GROOVE, borderwidth=0, bg = bg)
 
 Label_btn_exo_poly2degre = Radiobutton(Label_box_exo, relief=GROOVE, text='Polynôme du second degré',variable=CheckVar1, value="1", borderwidth=0)
-Label_btn_exo_Equation_Inéquation_premier_degre= Radiobutton(Label_box_exo, relief=GROOVE, text='Equation / Inéquation premier degre',variable=CheckVar1, value="2", borderwidth=0)
-Label_btn_exo_Thalès = Radiobutton(Label_box_exo, relief=GROOVE, text='Thalès',variable=CheckVar1, value="Thalès", borderwidth=0)
+Label_btn_exo_Equation_Inéquation_premier_degre= Radiobutton(Label_box_exo, relief=GROOVE, text='Equation premier degre',variable=CheckVar1, value="2", borderwidth=0)
+Label_btn_exo_Thalès = Radiobutton(Label_box_exo, relief=GROOVE, text='Equation à deux inconnues',variable=CheckVar1, value="3", borderwidth=0)
 
 
 Label_btn_valider = Button(fenetre, text='Générer',borderwidth=1, command=activation)

@@ -49,7 +49,7 @@ def write(doc, num_exo):
     doc.append(pylatex.Command('selectfont'))
 
     #Numéro de l'exos
-    with doc.create(Section(f'Equation du premier degré n°{num_exo + 1}', numbering = False)):
+    with doc.create(Section(f'Exo Equation du premier degré n°{num_exo + 1}', numbering = False)):
         doc.append("Avec les équations du premier degré suivantes : ")
 
         with doc.create(Subsection("Equation niveau 1 : ", numbering = False)):
@@ -77,11 +77,9 @@ def write(doc, num_exo):
     doc.append(NewPage())
 
 #correction des équations
-    with doc.create(Section(f'Correction Equation du premier degré n°{num_exo + 1}', numbering = False)):
-        doc.append("Niveau 1 :")
+    with doc.create(Section(f'Correction Exo Equation du premier degré n°{num_exo + 1}', numbering = False)):
 
-
-        with doc.create(Subsection("Equations n°1")):
+        with doc.create(Subsection("Equations niveau 1", numbering = False)):
 
             doc.append(NoEscape("\\begin{align*}"))
             doc.append(NoEscape("\\  \\Leftrightarrow %s - %sx &= %s + %s     & \\Leftrightarrow %s + %sx  &= %s + %s       & \\Leftrightarrow %s + %s &= %sx - %s\\\\" % (nb1, nb2, nb3, nb4, nb5, nb6, nb7, nb8, nb9, nb10, nb11, nb12)))
@@ -107,7 +105,7 @@ def write(doc, num_exo):
             doc.append(NoEscape("\\end{align*}"))
         
 
-        with doc.create(Subsection("Equations n°2")):
+        with doc.create(Subsection("Equations niveau 2", numbering = False)):
 
             doc.append(NoEscape("\\begin{align*}"))
 
@@ -140,18 +138,6 @@ def write(doc, num_exo):
             doc.append(NewLine())
 
             doc.append(NoEscape("\\end{align*}"))
-
-
-#         
-
-#       
-#      
-
-
-#        
-
-# 
-#       
 
 
 
