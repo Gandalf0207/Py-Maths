@@ -23,12 +23,7 @@ import glob
 
 
 def write(doc, num_exo):
-    doc.packages.append(NoEscape("\\usepackage{amsmath}"))
-
-    #Avec sympy, définition du symbole pour le polynôme 
-    x = Symbol('x')
-
-
+    #on cré de nouvelle valeurs aléatoire
     nb1 = random.randint(1,50)
     nb2 = random.randint(1,50)
     nb3 = random.randint(1,50)
@@ -50,8 +45,13 @@ def write(doc, num_exo):
 
     #Numéro de l'exos
     with doc.create(Section(f'Exo Equation du premier degré n°{num_exo + 1}', numbering = False)):
-        doc.append("Avec les équations du premier degré suivantes : ")
+        doc.append("Pour chaque équation du premier degré suivante : Trouver la valeur de x ")
 
+
+        #Pour chaque niveau, on écrit directement du code Latex brute qui sera inséré dans le document latex
+
+        # les elements ne sont pas dans un environement dcp on met le '$' au début et fin
+# niveau 1
         with doc.create(Subsection("Equation niveau 1 : ", numbering = False)):
             doc.append(NoEscape("\\ $%s - %sx = %s + %s $" % (nb1, nb2, nb3, nb4)))
             doc.append(Command('vspace', '5mm'))
@@ -60,7 +60,7 @@ def write(doc, num_exo):
             doc.append(Command('vspace', '5mm'))
             doc.append(NewLine())
             doc.append(NoEscape("\\ $%s + %s = %sx - %s$" % (nb9, nb10, nb11, nb12)))
-
+# niveau 2
         with doc.create(Subsection("Equation niveau 2 : ", numbering = False)):
             doc.append(NoEscape("$\\frac{%s}{%s}x + %s = \\frac{%s}{%s} - %sx$" % (nb1, nb2, nb3, nb4, nb5, nb6)))
             doc.append(Command('vspace', '5mm'))
@@ -71,7 +71,7 @@ def write(doc, num_exo):
             doc.append(NoEscape("$\\frac{%s}{%s}x - %s = \\frac{%s}{%s} - %sx$" % (nb1, nb3, nb5, nb7, nb9, nb12)))
             doc.append(Command('vspace', '5mm'))
             doc.append(NewLine())
-
+#niveau 3
         with doc.create(Subsection("Equation niveau 3 : ", numbering = False)):
             doc.append(NoEscape("$\\ %s(%sx + %s) + %sx = %s(%sx - %s)$" % (nb1, nb2, nb3, nb4, nb5, nb6, nb7)))
             doc.append(Command('vspace', '5mm'))
@@ -89,7 +89,15 @@ def write(doc, num_exo):
     with doc.create(Section(f'Correction Exo Equation du premier degré n°{num_exo + 1}', numbering = False)):
 
         with doc.create(Subsection("Equations niveau 1", numbering = False)):
+            # pour chauqeu niveau on crée un environement avec la librairie amsmaths (latex)
+            # on ne met donc plus les '$'
+            # \\Leftrightarrow permet de mettre les doubles flêches
+            # \\times pour les signes de multiplication
+            # pour aligner tout les element entre eux (signes égales) et au pour les séparer on utilise '&' de la lib amsmath 
+            # pour résoudre chaque équation on développe chaque étape
+            # sur une meme ligne on retrouve 3 ligne d'équation : à chaque fois celle de chaque équation... 
 
+# correction niveau 1
             doc.append(NoEscape("\\begin{align*}"))
             doc.append(NoEscape("\\  \\Leftrightarrow %s - %sx &= %s + %s     & \\Leftrightarrow %s + %sx  &= %s + %s       & \\Leftrightarrow %s + %s &= %sx - %s\\\\" % (nb1, nb2, nb3, nb4, nb5, nb6, nb7, nb8, nb9, nb10, nb11, nb12)))
             doc.append(Command('vspace', '5mm'))
@@ -113,7 +121,7 @@ def write(doc, num_exo):
 
             doc.append(NoEscape("\\end{align*}"))
         
-
+# correction niveau 2
         with doc.create(Subsection("Equations niveau 2", numbering = False)):
 
             doc.append(NoEscape("\\begin{align*}"))
@@ -148,16 +156,16 @@ def write(doc, num_exo):
 
             doc.append(NoEscape("\\end{align*}"))
 
-
+# correction niveau 3
         with doc.create(Subsection("Equations niveau 3", numbering = False)):
 
             doc.append(NoEscape("\\begin{align*}"))
 
-            doc.append(NoEscape("\\ %s(%sx + %s) + %sx &= %s(%sx - %s)  \\\\" % (nb1, nb2, nb3, nb4, nb5, nb6, nb7)))
+            doc.append(NoEscape("\\ \\Leftrightarrow %s(%sx + %s) + %sx &= %s(%sx - %s)     &    \\Leftrightarrow \\frac{-%s}{%sx + %s} &= \\frac{%s}{%s} \\\\" % (nb1, nb2, nb3, nb4, nb5, nb6, nb7,nb8, nb9, nb10, nb11, nb12)))
             doc.append(Command('vspace', '5mm'))
             doc.append(NewLine())
 
-            doc.append(NoEscape("\\ %s \\times %sx + %s \\times %s + %sx     &=      %s \\times %sx - %s \\times %s \\\\" % (nb1, nb2, nb1, nb3, nb4, nb5, nb6, nb5, nb7)))
+            doc.append(NoEscape("\\ \\Leftrightarrow %s \\times %sx + %s \\times %s + %sx     &=      \\Leftrightarrow %s \\times %sx - %s \\times %s        &      \\Leftrightarrow \\frac{-%s}{%sx + %s} \\times( %sx + %s) \\times %s &= \\frac{%s}{%s} \\times %s \\times (%sx + %s)\\\\" % (nb1, nb2, nb1, nb3, nb4, nb5, nb6, nb5, nb7, nb8, nb9, nb10,nb9, nb10,nb12, nb11, nb12, nb12, nb9, nb10)))
             doc.append(Command('vspace', '5mm'))
             doc.append(NewLine())
 
@@ -165,43 +173,30 @@ def write(doc, num_exo):
             nv3_newnb_2 = nb1 * nb3
             nv3_newnb_3 = nb5*nb6
             nv3_newnb_4 = nb5*nb7
-            doc.append(NoEscape("\\ %sx + %s   &= %sx - %s \\\\" % (nv3_newnb_1, nv3_newnb_2, nv3_newnb_3, nv3_newnb_4)))
+            doc.append(NoEscape("\\ \\Leftrightarrow %sx + %s   &= %sx - %s    &    \\Leftrightarrow -%s \\times %s &= %s \\times (%sx + %s) \\\\" % (nv3_newnb_1, nv3_newnb_2, nv3_newnb_3, nv3_newnb_4, nb8, nb12, nb11, nb9, nb10)))
             doc.append(Command('vspace', '5mm'))
             doc.append(NewLine())
 
 
-            doc.append(NoEscape("\\ %sx -%sx + %s - %s   &=  %sx - %sx + %s - %s \\\\" % (nv3_newnb_1, nv3_newnb_3, nv3_newnb_2, nv3_newnb_2, nv3_newnb_3, nv3_newnb_3, nv3_newnb_4, nv3_newnb_2)))
+            nv3_newnb_5 = ((-nb8)*nb12)
+            nv3_newnb_6 = (nb11*nb9)
+            nv3_newnb_7 = (nb11*nb10)
+            doc.append(NoEscape("\\ \\Leftrightarrow %sx -%sx + %s - %s   &=  %sx - %sx + %s - %s    &      \\Leftrightarrow \\ %s - %s &= %sx + %s - %s\\\\" % (nv3_newnb_1, nv3_newnb_3, nv3_newnb_2, nv3_newnb_2, nv3_newnb_3, nv3_newnb_3, nv3_newnb_4, nv3_newnb_2, nv3_newnb_5,nv3_newnb_7, nv3_newnb_6, nv3_newnb_7, nv3_newnb_7)))
             doc.append(Command('vspace', '5mm'))
             doc.append(NewLine())
 
             nv3_new2nb_1 = nv3_newnb_1 - nv3_newnb_3
             nv3_new2nb_2 = nv3_newnb_4 - nv3_newnb_2
-            doc.append(NoEscape("\\ \\frac{%sx}{%s}   &= \\frac{%s}{%s}\\\\" % (nv3_new2nb_1, nv3_new2nb_1, nv3_new2nb_2, nv3_new2nb_1)))
+            nv3_new2nb_3 = nv3_newnb_5 - nv3_newnb_7
+            doc.append(NoEscape("\\ \\Leftrightarrow \\frac{%sx}{%s}   &= \\frac{%s}{%s}     &     \\Leftrightarrow \\frac{%s}{%s} &= \\frac{%sx}{%s}\\\\" % (nv3_new2nb_1, nv3_new2nb_1, nv3_new2nb_2, nv3_new2nb_1, nv3_new2nb_3,nv3_newnb_6,  nv3_newnb_6, nv3_newnb_6)))
             doc.append(Command('vspace', '5mm'))
             doc.append(NewLine())
 
             result_nv3 = round((nv3_new2nb_2/nv3_new2nb_1),1)
-            doc.append(NoEscape("\\ x  &= %s\\\\" % (result_nv3)))
+            result_nv3_2 = round((nv3_new2nb_3/nv3_newnb_6),1)
+            doc.append(NoEscape("\\ \\Leftrightarrow x  &= %s       &      \\Leftrightarrow x &= %s\\\\" % (result_nv3, result_nv3_2)))
             doc.append(Command('vspace', '5mm'))
             doc.append(NewLine())
 
             doc.append(NoEscape("\\end{align*}"))
 
-
-
-###EXEMPLE : 
-
- #             doc.append(NoEscape("$\\ %s(%sx + %s) + %sx = %s(%sx - %s)$" % (nb1, nb2, nb3, nb4, nb5, nb6, nb7)))
-
-
-
-
-
-
-    # nomP = 15
-    # var = 12
-    # aab = 5
-
-    # #On donne l'équation du premier degré à résoudre 
-    # with doc.create(Section("Hello")):
-    #     doc.append(NoEscape("\\ $%s(%s + 5x)=%s$" % (nomP, var, aab)))
