@@ -72,6 +72,15 @@ def write(doc, num_exo):
             doc.append(Command('vspace', '5mm'))
             doc.append(NewLine())
 
+        with doc.create(Subsection("Equation niveau 3 : ", numbering = False)):
+            doc.append(NoEscape("$\\ %s(%sx + %s) + %sx = %s(%sx - %s)$" % (nb1, nb2, nb3, nb4, nb5, nb6, nb7)))
+            doc.append(Command('vspace', '5mm'))
+            doc.append(NewLine())
+            doc.append(NoEscape("$\\ \\frac{-%s}{%sx + %s} = \\frac{%s}{%s}$" % (nb8, nb9, nb10, nb11, nb12)))
+            doc.append(Command('vspace', '5mm'))
+            doc.append(NewLine())
+
+
 
 # On ajoute une page entre les consignes et la correction
     doc.append(NewPage())
@@ -140,8 +149,53 @@ def write(doc, num_exo):
             doc.append(NoEscape("\\end{align*}"))
 
 
+        with doc.create(Subsection("Equations niveau 3", numbering = False)):
+
+            doc.append(NoEscape("\\begin{align*}"))
+
+            doc.append(NoEscape("\\ %s(%sx + %s) + %sx &= %s(%sx - %s)  \\\\" % (nb1, nb2, nb3, nb4, nb5, nb6, nb7)))
+            doc.append(Command('vspace', '5mm'))
+            doc.append(NewLine())
+
+            doc.append(NoEscape("\\ %s \\times %sx + %s \\times %s + %sx     &=      %s \\times %sx - %s \\times %s \\\\" % (nb1, nb2, nb1, nb3, nb4, nb5, nb6, nb5, nb7)))
+            doc.append(Command('vspace', '5mm'))
+            doc.append(NewLine())
+
+            nv3_newnb_1 = (nb1 * nb2) + nb4
+            nv3_newnb_2 = nb1 * nb3
+            nv3_newnb_3 = nb5*nb6
+            nv3_newnb_4 = nb5*nb7
+            doc.append(NoEscape("\\ %sx + %s   &= %sx - %s \\\\" % (nv3_newnb_1, nv3_newnb_2, nv3_newnb_3, nv3_newnb_4)))
+            doc.append(Command('vspace', '5mm'))
+            doc.append(NewLine())
+
+
+            doc.append(NoEscape("\\ %sx -%sx + %s - %s   &=  %sx - %sx + %s - %s \\\\" % (nv3_newnb_1, nv3_newnb_3, nv3_newnb_2, nv3_newnb_2, nv3_newnb_3, nv3_newnb_3, nv3_newnb_4, nv3_newnb_2)))
+            doc.append(Command('vspace', '5mm'))
+            doc.append(NewLine())
+
+            nv3_new2nb_1 = nv3_newnb_1 - nv3_newnb_3
+            nv3_new2nb_2 = nv3_newnb_4 - nv3_newnb_2
+            doc.append(NoEscape("\\ \\frac{%sx}{%s}   &= \\frac{%s}{%s}\\\\" % (nv3_new2nb_1, nv3_new2nb_1, nv3_new2nb_2, nv3_new2nb_1)))
+            doc.append(Command('vspace', '5mm'))
+            doc.append(NewLine())
+
+            result_nv3 = round((nv3_new2nb_2/nv3_new2nb_1),1)
+            doc.append(NoEscape("\\ x  &= %s\\\\" % (result_nv3)))
+            doc.append(Command('vspace', '5mm'))
+            doc.append(NewLine())
+
+            doc.append(NoEscape("\\end{align*}"))
+
+
 
 ###EXEMPLE : 
+
+ #             doc.append(NoEscape("$\\ %s(%sx + %s) + %sx = %s(%sx - %s)$" % (nb1, nb2, nb3, nb4, nb5, nb6, nb7)))
+
+
+
+
 
 
     # nomP = 15
