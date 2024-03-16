@@ -12,7 +12,7 @@ def generate_contenue_p1(doc):
         doc.append(pylatex.Command('fontsize', arguments = ['50', '36']))
         doc.append(pylatex.Command('selectfont'))
 
-        doc.append(bold('Python-Maths'))
+        doc.append(bold('Py-Maths'))
         doc.append(LineBreak())
         doc.append(pylatex.Command('fontsize', arguments = ['30', '24']))
         doc.append(pylatex.Command('selectfont'))

@@ -44,7 +44,7 @@ fenetre.config(bg = bg)
 
 
 Label_TitrePage = Label(fenetre, text="Py-Maths", bg = bg, font=("Times New Roman", 20, "bold"), fg=text)
-Label_textpage = Label(fenetre, text="Générateur d'exercices de mathématiques avec leurs correction !", bg = bg, font=("Times New Roman", 15), fg='black')
+Label_textpage = Label(fenetre, text="Générateur d'exercices de mathématiques avec leurs corrections !", bg = bg, font=("Times New Roman", 15), fg='black')
 
 
 def activation():
@@ -68,7 +68,7 @@ def activation():
         value_type_exo = CheckVar1.get()
         type_exo = ''
         if value_type_exo =='1':
-                type_exo = 'Polynômed du second degre'
+                type_exo = 'Polynôme du second degre'
         if value_type_exo =="2":
                 type_exo = 'Equation premier degre'
         
@@ -108,7 +108,7 @@ CheckVar2 = IntVar()
 Label_nb = Entry(fenetre, textvariable=CheckVar2, width=5)
 
 
-Label_infos_exos = Label(fenetre, text="Choisissez votre type d'exercices :", borderwidth=0, bg = bg)
+Label_infos_exos = Label(fenetre, text="Choisissez votre type d'exos :", borderwidth=0, bg = bg)
 CheckVar1 = StringVar()
 Label_box_exo = Label(fenetre, relief=GROOVE, borderwidth=0, bg = bg)
 
@@ -119,6 +119,7 @@ Label_btn_exo_Thalès = Radiobutton(Label_box_exo, relief=GROOVE, text='Equation
 
 Label_btn_valider = Button(fenetre, text='Générer',borderwidth=1, command=activation)
 
+Label_Credits = Label(fenetre, text="by Théo LUBAN & Quentin PLADEAU", bg = bg, borderwidth=0, font=("Times New Roman", 9,'italic'))
 
 
 
@@ -142,6 +143,7 @@ Label_btn_exo_Thalès.grid(pady=2, sticky='W')
 
 
 Label_btn_valider.grid(column=1, columnspan=2 ,pady=25)
+Label_Credits.grid( column=2, sticky='S', pady=15)
 
 fenetre.mainloop()
 
