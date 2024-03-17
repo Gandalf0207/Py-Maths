@@ -54,30 +54,30 @@ def write(doc, num_exo):
 # niveau 1
         with doc.create(Subsection("Equation niveau 1 : ", numbering = False)):
             doc.append(NoEscape("\\ $%s - %sx = %s + %s $" % (nb1, nb2, nb3, nb4)))
-            doc.append(Command('vspace', '5mm'))
+            doc.append(Command('vspace', '3mm'))
             doc.append(NewLine())
             doc.append(NoEscape("\\ $%s + %sx  = %s + %s$" % (nb5, nb6, nb7, nb8)))
-            doc.append(Command('vspace', '5mm'))
+            doc.append(Command('vspace', '3mm'))
             doc.append(NewLine())
             doc.append(NoEscape("\\ $%s + %s = %sx - %s$" % (nb9, nb10, nb11, nb12)))
 # niveau 2
         with doc.create(Subsection("Equation niveau 2 : ", numbering = False)):
             doc.append(NoEscape("$\\frac{%s}{%s}x + %s = \\frac{%s}{%s} - %sx$" % (nb1, nb2, nb3, nb4, nb5, nb6)))
-            doc.append(Command('vspace', '5mm'))
+            doc.append(Command('vspace', '3mm'))
             doc.append(NewLine())
             doc.append(NoEscape("$\\ %s + \\frac{%s}{%s}x = \\frac{%s}{%s}$" % (nb7, nb8, nb9, nb10, nb11)))
-            doc.append(Command('vspace', '5mm'))
+            doc.append(Command('vspace', '3mm'))
             doc.append(NewLine())
             doc.append(NoEscape("$\\frac{%s}{%s}x - %s = \\frac{%s}{%s} - %sx$" % (nb1, nb3, nb5, nb7, nb9, nb12)))
-            doc.append(Command('vspace', '5mm'))
+            doc.append(Command('vspace', '3mm'))
             doc.append(NewLine())
 #niveau 3
         with doc.create(Subsection("Equation niveau 3 : ", numbering = False)):
             doc.append(NoEscape("$\\ %s(%sx + %s) + %sx = %s(%sx - %s)$" % (nb1, nb2, nb3, nb4, nb5, nb6, nb7)))
-            doc.append(Command('vspace', '5mm'))
+            doc.append(Command('vspace', '3mm'))
             doc.append(NewLine())
             doc.append(NoEscape("$\\ \\frac{-%s}{%sx + %s} = \\frac{%s}{%s}$" % (nb8, nb9, nb10, nb11, nb12)))
-            doc.append(Command('vspace', '5mm'))
+            doc.append(Command('vspace', '3mm'))
             doc.append(NewLine())
 
 
@@ -100,18 +100,18 @@ def write(doc, num_exo):
 # correction niveau 1
             doc.append(NoEscape("\\begin{align*}"))
             doc.append(NoEscape("\\  \\Leftrightarrow %s - %sx &= %s + %s     & \\Leftrightarrow %s + %sx  &= %s + %s       & \\Leftrightarrow %s + %s &= %sx - %s\\\\" % (nb1, nb2, nb3, nb4, nb5, nb6, nb7, nb8, nb9, nb10, nb11, nb12)))
-            doc.append(Command('vspace', '5mm'))
+            doc.append(Command('vspace', '3mm'))
             doc.append(NewLine())
 
             doc.append(NoEscape("\\  \\Leftrightarrow %s - %s - %sx &= %s + %s -%s      & \\Leftrightarrow %s - %s + %sx  &= %s + %s + %s        & \\Leftrightarrow %s + %s + %s &= %sx - %s +%s\\\\" % (nb1, nb1, nb2, nb3, nb4, nb1, nb5, nb5, nb6, nb7, nb8, nb5, nb9, nb10,nb12, nb11, nb12, nb12 )))
-            doc.append(Command('vspace', '5mm'))
+            doc.append(Command('vspace', '3mm'))
             doc.append(NewLine())
 
             newnb_1 = nb3 + nb4 - nb1
             newnb_2 = nb5 + nb7 + nb8
             newnb_3 = nb9 + nb10 + nb12
             doc.append(NoEscape("\\  \\Leftrightarrow \\frac{-%sx}{-%s} &= \\frac{%s}{-%s}      & \\Leftrightarrow \\frac{%sx}{%s} &= \\frac{%s}{%s}      & \\Leftrightarrow \\frac{%s}{%s} &= \\frac{%sx}{%s}\\\\" % (nb2, nb2, newnb_1, nb2, nb6,nb6, newnb_2, nb6, newnb_3, nb11, nb11, nb11)))
-            doc.append(Command('vspace', '5mm'))
+            doc.append(Command('vspace', '3mm'))
             doc.append(NewLine())
 
             result_1 = round((newnb_1 / (- nb2)),1)
@@ -127,31 +127,31 @@ def write(doc, num_exo):
             doc.append(NoEscape("\\begin{align*}"))
 
             doc.append(NoEscape("\\  \\Leftrightarrow \\frac{%s}{%s}x + %s &= \\frac{%s}{%s} - %sx       &     \\Leftrightarrow %s + \\frac{%s}{%s}x &= \\frac{%s}{%s}     &     \\Leftrightarrow  \\frac{%s}{%s}x - %s &= \\frac{%s}{%s} - %sx\\\\" % (nb1, nb2, nb3, nb4, nb5, nb6, nb7, nb8, nb9, nb10, nb11, nb1, nb3, nb5, nb7, nb9, nb12)))
-            doc.append(Command('vspace', '5mm'))
+            doc.append(Command('vspace', '3mm'))
             doc.append(NewLine())
 
             doc.append(NoEscape("\\  \\Leftrightarrow \\frac{%s}{%s}x + %s + %sx  &= \\frac{%s}{%s} - %sx +%sx    &    \\Leftrightarrow %s - %s + \\frac{%s}{%s}x &= \\frac{%s}{%s} + %s      &     \\Leftrightarrow  \\frac{%s}{%s}x +%sx - %s &= \\frac{%s}{%s} - %sx  + %sx\\\\" % (nb1, nb2, nb3, nb6, nb4, nb5, nb6, nb6, nb7,nb7, nb8, nb9, nb10, nb11, nb7,nb1, nb3,nb12, nb5, nb7, nb9, nb12, nb12)))
-            doc.append(Command('vspace', '5mm'))
+            doc.append(Command('vspace', '3mm'))
             doc.append(NewLine())
 
             newnbx_1 = round(((nb1 / nb2) + nb6),1)
             newnb_5 = round(((nb10/nb11)+ nb7),1)
             newnbx_2 = round(((nb1/nb2)+nb12),1)
             doc.append(NoEscape("\\  \\Leftrightarrow %sx + %s - %s &= \\frac{%s}{%s}	- %s       &      \\Leftrightarrow \\frac{%s}{%s}x &= %s     &   \\Leftrightarrow  %sx - %s +%s &= \\frac{%s}{%s} + %s\\\\" % (newnbx_1, nb3, nb3, nb4, nb5, nb3, nb8, nb9, newnb_5,newnbx_2, nb5,nb5, nb7, nb9 ,nb5)))
-            doc.append(Command('vspace', '5mm'))
+            doc.append(Command('vspace', '3mm'))
             doc.append(NewLine())
 
             newnb_4 = round(((nb4/nb5)-nb3),1)
             newnb_6 = round(((nb7/nb9)+nb5),1)
             doc.append(NoEscape("\\  \\Leftrightarrow \\frac{%sx}{%s} &= \\frac{%s}{%s}     &      \\Leftrightarrow \\frac{%s}{%s}x \\times \\frac{%s}{%s} &= %s x \\times \\frac{%s}{%s}      &      \\Leftrightarrow  \\frac{%sx}{%s} &= \\frac{%s}{%s}\\\\" % (newnbx_1, newnbx_1, newnb_4, newnbx_1, nb8, nb9,nb9, nb8, newnb_5, nb9, nb8, newnbx_2,newnbx_2, newnb_6, newnbx_2)))
-            doc.append(Command('vspace', '5mm'))
+            doc.append(Command('vspace', '3mm'))
             doc.append(NewLine())
 
             result_4 = round((newnb_4/newnbx_1),1)
             result_5 = round((newnb_5 * (nb9/nb8)),1)
             result_6 = round((newnb_6/newnbx_2),1)
             doc.append(NoEscape("\\  \\Leftrightarrow x &= %s    &     \\Leftrightarrow x &= %s     &     \\Leftrightarrow  x &= %s\\\\" % (result_4, result_5, result_6)))
-            doc.append(Command('vspace', '5mm'))
+            doc.append(Command('vspace', '3mm'))
             doc.append(NewLine())
 
             doc.append(NoEscape("\\end{align*}"))
@@ -161,42 +161,78 @@ def write(doc, num_exo):
 
             doc.append(NoEscape("\\begin{align*}"))
 
-            doc.append(NoEscape("\\ \\Leftrightarrow %s(%sx + %s) + %sx &= %s(%sx - %s)     &    \\Leftrightarrow \\frac{-%s}{%sx + %s} &= \\frac{%s}{%s} \\\\" % (nb1, nb2, nb3, nb4, nb5, nb6, nb7,nb8, nb9, nb10, nb11, nb12)))
-            doc.append(Command('vspace', '5mm'))
+            doc.append(NoEscape("\\ \\Leftrightarrow %s(%sx + %s) + %sx &= %s(%sx - %s)\\\\" % (nb1, nb2, nb3, nb4, nb5, nb6, nb7)))
+            doc.append(Command('vspace', '3mm'))
             doc.append(NewLine())
 
-            doc.append(NoEscape("\\ \\Leftrightarrow %s \\times %sx + %s \\times %s + %sx     &=      \\Leftrightarrow %s \\times %sx - %s \\times %s        &      \\Leftrightarrow \\frac{-%s}{%sx + %s} \\times( %sx + %s) \\times %s &= \\frac{%s}{%s} \\times %s \\times (%sx + %s)\\\\" % (nb1, nb2, nb1, nb3, nb4, nb5, nb6, nb5, nb7, nb8, nb9, nb10,nb9, nb10,nb12, nb11, nb12, nb12, nb9, nb10)))
-            doc.append(Command('vspace', '5mm'))
+            doc.append(NoEscape("\\ \\Leftrightarrow %s \\times %sx + %s \\times %s + %sx     &=      %s \\times %sx - %s \\times %s\\\\" % (nb1, nb2, nb1, nb3, nb4, nb5, nb6, nb5, nb7)))
+            doc.append(Command('vspace', '3mm'))
             doc.append(NewLine())
 
             nv3_newnb_1 = (nb1 * nb2) + nb4
             nv3_newnb_2 = nb1 * nb3
+            nv3_newnb_3 = nb5 * nb6
+            nv3_newnb_4 = nb5 * nb7
+            doc.append(NoEscape("\\ \\Leftrightarrow %sx + %s   &= %sx - %s\\\\" % (nv3_newnb_1, nv3_newnb_2, nv3_newnb_3, nv3_newnb_4)))
+            doc.append(Command('vspace', '3mm'))
+            doc.append(NewLine())
+
+            doc.append(NoEscape("\\ \\Leftrightarrow %sx -%sx + %s - %s   &=  %sx - %sx + %s - %s\\\\" % (nv3_newnb_1, nv3_newnb_3, nv3_newnb_2, nv3_newnb_2, nv3_newnb_3, nv3_newnb_3, nv3_newnb_4, nv3_newnb_2)))
+            doc.append(Command('vspace', '3mm'))
+            doc.append(NewLine())
+
+            nv3_new2nb_1 = nv3_newnb_1 - nv3_newnb_3
+            nv3_new2nb_2 = nv3_newnb_4 - nv3_newnb_2
+            doc.append(NoEscape("\\ \\Leftrightarrow \\frac{%sx}{%s}   &= \\frac{%s}{%s}\\\\" % (nv3_new2nb_1, nv3_new2nb_1, nv3_new2nb_2, nv3_new2nb_1)))
+            doc.append(Command('vspace', '3mm'))
+            doc.append(NewLine())
+
+            result_nv3 = round((nv3_new2nb_2/nv3_new2nb_1),1)
+            doc.append(NoEscape("\\ \\Leftrightarrow x  &= %s\\\\" % (result_nv3)))
+            doc.append(Command('vspace', '3mm'))
+            doc.append(NewLine())
+
+            doc.append(NoEscape("\\end{align*}"))
+
+
+            doc.append(NewLine())
+
+
+
+
+            doc.append(NoEscape("\\begin{align*}"))
+
+            doc.append(NoEscape("\\  \\Leftrightarrow \\frac{-%s}{%sx + %s} &= \\frac{%s}{%s}\\\\" % (nb8, nb9, nb10, nb11, nb12)))
+            doc.append(Command('vspace', '3mm'))
+            doc.append(NewLine())
+
+            doc.append(NoEscape("\\   \\Leftrightarrow \\frac{-%s}{%sx + %s} \\times( %sx + %s) \\times %s &= \\frac{%s}{%s} \\times %s \\times (%sx + %s)\\\\" % (nb8, nb9, nb10,nb9, nb10,nb12, nb11, nb12, nb12, nb9, nb10)))
+            doc.append(Command('vspace', '3mm'))
+            doc.append(NewLine())
+
             nv3_newnb_3 = nb5*nb6
             nv3_newnb_4 = nb5*nb7
-            doc.append(NoEscape("\\ \\Leftrightarrow %sx + %s   &= %sx - %s    &    \\Leftrightarrow -%s \\times %s &= %s \\times (%sx + %s) \\\\" % (nv3_newnb_1, nv3_newnb_2, nv3_newnb_3, nv3_newnb_4, nb8, nb12, nb11, nb9, nb10)))
-            doc.append(Command('vspace', '5mm'))
+            doc.append(NoEscape("\\  \\Leftrightarrow -%s \\times %s &= %s \\times (%sx + %s)\\\\" % (nb8, nb12, nb11, nb9, nb10)))
+            doc.append(Command('vspace', '3mm'))
             doc.append(NewLine())
 
 
             nv3_newnb_5 = ((-nb8)*nb12)
             nv3_newnb_6 = (nb11*nb9)
             nv3_newnb_7 = (nb11*nb10)
-            doc.append(NoEscape("\\ \\Leftrightarrow %sx -%sx + %s - %s   &=  %sx - %sx + %s - %s    &      \\Leftrightarrow \\ %s - %s &= %sx + %s - %s\\\\" % (nv3_newnb_1, nv3_newnb_3, nv3_newnb_2, nv3_newnb_2, nv3_newnb_3, nv3_newnb_3, nv3_newnb_4, nv3_newnb_2, nv3_newnb_5,nv3_newnb_7, nv3_newnb_6, nv3_newnb_7, nv3_newnb_7)))
-            doc.append(Command('vspace', '5mm'))
+            doc.append(NoEscape("\\   \\Leftrightarrow \\ %s - %s &= %sx + %s - %s\\\\" % (nv3_newnb_5,nv3_newnb_7, nv3_newnb_6, nv3_newnb_7, nv3_newnb_7)))
+            doc.append(Command('vspace', '3mm'))
             doc.append(NewLine())
 
-            nv3_new2nb_1 = nv3_newnb_1 - nv3_newnb_3
-            nv3_new2nb_2 = nv3_newnb_4 - nv3_newnb_2
             nv3_new2nb_3 = nv3_newnb_5 - nv3_newnb_7
-            doc.append(NoEscape("\\ \\Leftrightarrow \\frac{%sx}{%s}   &= \\frac{%s}{%s}     &     \\Leftrightarrow \\frac{%s}{%s} &= \\frac{%sx}{%s}\\\\" % (nv3_new2nb_1, nv3_new2nb_1, nv3_new2nb_2, nv3_new2nb_1, nv3_new2nb_3,nv3_newnb_6,  nv3_newnb_6, nv3_newnb_6)))
-            doc.append(Command('vspace', '5mm'))
+            doc.append(NoEscape("\\   \\Leftrightarrow \\frac{%s}{%s} &= \\frac{%sx}{%s}\\\\" % (nv3_new2nb_3,nv3_newnb_6,  nv3_newnb_6, nv3_newnb_6)))
+            doc.append(Command('vspace', '3mm'))
             doc.append(NewLine())
 
-            result_nv3 = round((nv3_new2nb_2/nv3_new2nb_1),1)
             result_nv3_2 = round((nv3_new2nb_3/nv3_newnb_6),1)
-            doc.append(NoEscape("\\ \\Leftrightarrow x  &= %s       &      \\Leftrightarrow x &= %s\\\\" % (result_nv3, result_nv3_2)))
-            doc.append(Command('vspace', '5mm'))
+            doc.append(NoEscape("\\   \\Leftrightarrow x &= %s\\\\" % (result_nv3_2)))
+            doc.append(Command('vspace', '3mm'))
             doc.append(NewLine())
+
 
             doc.append(NoEscape("\\end{align*}"))
-
