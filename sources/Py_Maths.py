@@ -25,6 +25,8 @@ import glob
 # importation du script pour les polynome du second degré
 import Equation_premier_degre
 import Polynome_second_degre
+import Equation_2_inconnus
+
 import Hearder_Footer
 import Contenue_Page_1
 # import Hearder_Footer
@@ -71,6 +73,8 @@ def activation():
                 type_exo = 'Polynôme du second degre'
         if value_type_exo =="2":
                 type_exo = 'Equation premier degre'
+        if value_type_exo =='3':
+                type_exo = 'Equation à 2 inconnus'
         
         nb_exo = CheckVar2.get()
             
@@ -87,6 +91,10 @@ def activation():
                 elif value_type_exo =="2":
                         appel = Equation_premier_degre.write(doc, i)
                         doc.append(NewPage())
+
+                elif value_type_exo=='3':
+                        appel = Equation_2_inconnus.write(doc,i)
+                        doc.append(NewPage())
                         
 
 
@@ -94,9 +102,9 @@ def activation():
         doc.generate_pdf(f"Py-Maths_{type_exo}" , clean_tex=False, compiler="pdfLaTex")
 
 
-        # fichier = glob.glob('./*.tex')
-        # for supprimer in fichier:
-        #     os.remove(supprimer)
+        fichier = glob.glob('./*.tex')
+        for supprimer in fichier:
+            os.remove(supprimer)
 
 
 
