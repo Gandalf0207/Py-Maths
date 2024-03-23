@@ -1,8 +1,8 @@
 # Py-Maths
 
-Py-Maths est un générateur d'exercice de Maths avec leurs corrections. Inspiré de l'ancien site **PyroMaths**
+Py-Maths est un générateur d'exercices de Maths avec leurs corrections. Inspiré de l'ancien site **PyroMaths**
 
-Télécharger les scripts python depuis github avec la commande dans votre terminal  : 
+Téléchargez les scripts python depuis github avec la commande dans votre terminal  : 
 
       git clone https://github.com/Gandalf0207/Py-Maths.git
 
@@ -14,21 +14,21 @@ Télécharger les scripts python depuis github avec la commande dans votre termi
 
 ##### MikteK
 Pour installer MikteK, rendez-vous sur leur site Web pour le télécharger : [Télécharger MikTeK](https://miktex.org/download)
-Apres l'instalation, veillez à bien redémarer votre machine.
+Après l'installation, veuillez redémmarer votre machine.
 
 #### Requirement
 
-Veuillez executer le fihcier requirement.txt afin d'intaller toutes les librairies python nécéssaire au bon fonctionnement du projet.
-A noter que les librairie doivent etre installer sur python 3.11 (l'installation dans un environnement python est recommendé)
+Veuillez executer le fichier requirement.txt afin d'installer toutes les librairies python nécéssaires au bon fonctionnement du projet.
+À noter que les librairies doivent être installée sur python 3.11 (l'installation dans un environnement python est recommendée)
 
 #### Les Scripts Python
-Télécharger les scripts pythons et les déposer dans le dossier qui contient l'environnement / dans un meme dossier.
+Téléchargez les scripts pythons et déposez-les dans le dossier qui contient l'environnement.
 
 
 ### Lancement
-Apres avoir tout installer et redémaré; executer le script *Py_Maths.py* Il vous faudra installer de nouvelles dépendances de MikteK. A l'ouverture du pop up apres l'execution du script, cliquez sur **install**.
+Après avoir tout installé et redémaré; éxecutez le script *Py_Maths.py*. Il vous faudra installer de nouvelles dépendances de MikteK. A l'ouverture du pop up après l'éxecution du script, cliquez sur **install**.
 
-Voici les dépendances qui vous s'affciher et que vous allez devoir installer : 
+Voici les dépendances qui s'afficheront et que vous devrez installer : 
 
 ##### lastpage.sty
 ##### geometry.sty
@@ -37,10 +37,10 @@ Voici les dépendances qui vous s'affciher et que vous allez devoir installer :
 ##### newunicodechar.sty
 ##### latexmk.pl
 
-Fermez et réouvrez le fichier script et executez-le à nouveau.
+Fermez et réouvrez le fichier script et éxecutez-le à nouveau.
 
 
-## Voila, Py-Maths fonctionne sur votre Machine ! 
+## Voilà, Py-Maths fonctionne sur votre Machine ! 
 
 
 *by Théo LUBAN & Quentin PLADEAU*
