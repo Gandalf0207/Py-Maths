@@ -2,9 +2,11 @@
 from pylatex import *
 from pylatex.utils import *
 
+# Module de GUI de python
 from tkinter import *
 
-#Modules de création, g raphe, courbe.....
+#Modules de création, graphes, courbes.....
+# backend_pdf est importé directement car il peut causer des problème de création des graphes sur une version pdf depuis un executable (.exe)
 import matplotlib.backends.backend_pdf
 import matplotlib
 import matplotlib.pyplot as plt
@@ -22,20 +24,17 @@ from sympy import *
 import os
 import glob
 
-# importation du script pour les polynome du second degré
+# Importation des scripts pour les exercices
 import Equation_premier_degre
 import Polynome_second_degre
 import Equation_2_inconnus
 
+# Importation des scripts de mise en age et de gestions autre
 import Hearder_Footer
 import Contenue_Page_1
-# import Hearder_Footer
-
-fichier = glob.glob('./*.pdf')
-for supprimer in fichier:
-    os.remove(supprimer)
 
 
+# Paramettres généraux de l'interface graphique
 fenetre = Tk()
 fenetre.title("Py-Maths : Générateur d'exercices")
 fenetre.geometry("800x400")
@@ -44,19 +43,27 @@ text = '#111645'
 fenetre.config(bg = bg)
 
 
-
+# Titre de l'interfae graphique avec son sous-titre
 Label_TitrePage = Label(fenetre, text="Py-Maths", bg = bg, font=("Times New Roman", 20, "bold"), fg=text)
 Label_textpage = Label(fenetre, text="Générateur d'exercices de mathématiques avec leurs corrections !", bg = bg, font=("Times New Roman", 15), fg='black')
 
 
 def activation():
 
+        # Gestion et suppression des fichiers .pdf pour un nettoyage complet
+        fichier = glob.glob('./*.pdf')
+        for supprimer in fichier:
+                os.remove(supprimer)
+
+
+        #Paramettres du pdf 
         geometry_options = {"head": "40pt",
                             "margin":"5mm",
                             "bottom": "0.6cm",
                             "includeheadfoot": True}
         doc = Document(geometry_options=geometry_options)
 
+        # Spécification des librairie latex et caractère qui seront utilisés sous différents formes 
         doc.preamble.append(pylatex.Command('usepackage', 'newunicodechar'))
         doc.packages.append(NoEscape("\\usepackage{tkz-tab}"))
         doc.packages.append(NoEscape("\\usepackage{amsmath}"))
@@ -121,8 +128,8 @@ CheckVar1 = StringVar()
 Label_box_exo = Label(fenetre, relief=GROOVE, borderwidth=0, bg = bg)
 
 Label_btn_exo_poly2degre = Radiobutton(Label_box_exo, relief=GROOVE, text='Polynôme du second degré',variable=CheckVar1, value="1", borderwidth=0)
-Label_btn_exo_Equation_Inéquation_premier_degre= Radiobutton(Label_box_exo, relief=GROOVE, text='Equation premier degre',variable=CheckVar1, value="2", borderwidth=0)
-Label_btn_exo_Thalès = Radiobutton(Label_box_exo, relief=GROOVE, text='Equation à deux inconnues',variable=CheckVar1, value="3", borderwidth=0)
+Label_btn_exo_Equation_Inéquation_premier_degre= Radiobutton(Label_box_exo, relief=GROOVE, text='Équation premier degre',variable=CheckVar1, value="2", borderwidth=0)
+Label_btn_exo_Thalès = Radiobutton(Label_box_exo, relief=GROOVE, text='Équation à deux inconnues',variable=CheckVar1, value="3", borderwidth=0)
 
 
 Label_btn_valider = Button(fenetre, text='Générer',borderwidth=1, command=activation)
@@ -158,16 +165,11 @@ fenetre.mainloop()
 
 
 
+### INFOS GÉNÉRALES
 
+# Un fichier "Main.py" qui centralise toutes les actions
+# Un fichier "nomexo.py" par exercice qui permet de générer de A à Z l'exercice
+# Un fichier de page d'acceuil
+# Un fichier d'entête et pied de page
 
-    
-# un fichier pasr type d'exos qui gère l'exo
-# un ficheir main 
-# un fichier latex .py qui gère tout le back
-# un fichier qui gere tout le front
-
-# crédits Mattis
-# https://stackoverflow.com/questions/48898660/mathematics-in-latex-using-python
-
-# import fonction d'un autre fichier
-# print(main .testfunction())
+# Nettoyage des fichiers généré : .tex et .pdf pour éviter les problème de place dans le lieu de création des fichiers
