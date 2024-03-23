@@ -3,6 +3,7 @@
 Py-Maths est un générateur d'exercice de Maths avec leurs corrections. Inspiré de l'ancien site **PyroMaths**
 
 Télécharger les scripts python depuis github avec la commande dans votre terminal  : 
+
       git clone https://github.com/Gandalf0207/Py-Maths.git
 
 ### Utilisation et mise en place de Py-Maths
