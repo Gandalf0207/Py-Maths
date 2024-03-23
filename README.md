@@ -1,7 +1,9 @@
 # Py-Maths
 
-Py-Maths est un générateur d'exercie de Maths avec leurs corrections. Inspiré de l'ancien site **PyroMaths**
+Py-Maths est un générateur d'exercice de Maths avec leurs corrections. Inspiré de l'ancien site **PyroMaths**
 
+Télécharger les scripts python depuis github avec la commande dans votre terminal  : 
+      git clone https://github.com/Gandalf0207/Py-Maths.git
 
 ### Utilisation et mise en place de Py-Maths
 > MikteK avec plusieurs dépendances
@@ -15,7 +17,7 @@ Apres l'instalation, veillez à bien redémarer votre machine.
 
 #### Requirement
 
-Veuillez executer le fihcier requirmeent.txt afin d'interller tout les librairie python nécéssaire au bon fonctionnement du projet.
+Veuillez executer le fihcier requirement.txt afin d'intaller toutes les librairies python nécéssaire au bon fonctionnement du projet.
 A noter que les librairie doivent etre installer sur python 3.11 (l'installation dans un environnement python est recommendé)
 
 #### Les Scripts Python
