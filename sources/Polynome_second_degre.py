@@ -6,7 +6,8 @@
 from pylatex import *
 from pylatex.utils import *
 
-#Modules de création, graphe, courbe.....
+#Modules de création, graphes, courbes.....
+# backend_pdf est importé directement car il peut causer des problème de création des graphes sur une version pdf depuis un executable (.exe)
 import matplotlib.backends.backend_pdf
 import matplotlib
 import matplotlib.pyplot as plt

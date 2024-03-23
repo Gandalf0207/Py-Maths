@@ -73,7 +73,7 @@ def activation():
         doc.preamble.append(pylatex.NoEscape(r'\newunicodechar{β}{\ensuremath{\beta}}'))
 
 
-
+        # On recupère la valeur du bouton sélectioné de tkinter et on en déduit le type d'éxo
         value_type_exo = CheckVar1.get()
         type_exo = ''
         if value_type_exo =='1':
@@ -83,13 +83,15 @@ def activation():
         if value_type_exo =='3':
                 type_exo = 'Equation à 2 inconnus'
         
+        # On recupère le nombre d'exos souhaités
         nb_exo = CheckVar2.get()
             
-
+        # On fait appel au scripts qui permettent la mise en page
         appel1 = Hearder_Footer.generate_header(doc, type_exo)
         appel2 = Contenue_Page_1.generate_contenue_p1(doc)
         doc.append(NewPage())
         
+        # On fait tourner la boucle pour générer le nombre d'exercices demandés en appelant à chaque fois le bon script
         for i in range(nb_exo):
                 if value_type_exo =='1':
                         appel = Polynome_second_degre.write(doc, i)
@@ -105,10 +107,10 @@ def activation():
                         
 
 
-
+        # création du fichier en .tex puis sans conversion en .pdf en spécifiant le compilateur, ici : pdf LaTaTex
         doc.generate_pdf(f"Py-Maths_{type_exo}" , clean_tex=False, compiler="pdfLaTex")
 
-
+        # Gestion et suppression des fichiers .tex pour un nettoyage complet
         fichier = glob.glob('./*.tex')
         for supprimer in fichier:
             os.remove(supprimer)
@@ -117,7 +119,7 @@ def activation():
 
 
 
-
+# Création des elements du GUI
 Label_infos_nb = Label(fenetre, text="Choisissez le nombre d'exos que vous souhaitez :", borderwidth=0, bg = bg)
 CheckVar2 = IntVar()
 Label_nb = Entry(fenetre, textvariable=CheckVar2, width=5)
@@ -173,3 +175,10 @@ fenetre.mainloop()
 # Un fichier d'entête et pied de page
 
 # Nettoyage des fichiers généré : .tex et .pdf pour éviter les problème de place dans le lieu de création des fichiers
+
+
+
+# A FAIRE POUR LE FUTURE DU PROJET / 
+
+        # Le script 'Pôlynome_second_degré.py" est à reprendre car il utilise latexify et donc limite à 3.11 de python
+        # Pour reprendre le fichier >>> utiliser l'écriture brute en latex depuis python : doc.append(NoEscape("\\ \\\\" % ()))

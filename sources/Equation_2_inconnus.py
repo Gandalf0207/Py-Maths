@@ -1,13 +1,21 @@
+### DÉBUT DE L'EXO ÉQUATION à 2 INCONNUES ###
+
+## Importation des Librairies : 
+
+# Module de création du Fichier Tex et convertion en pdf et autre
 from pylatex import *
-from pylatex.utils import * 
+from pylatex.utils import *
+
+#Modules de calcul...
+import math
 import random
 
 
 
 
 
-
 def write(doc,i):
+    # on génère les valeurs aléatoirement pour avoir de nouveau exercices !
     nb1 = random.randint(1,50)
     nb2 = random.randint(1,50)
     nb3 = random.randint(1,50)
@@ -20,6 +28,7 @@ def write(doc,i):
     nb10 = random.randint(1,50)
     nb11= random.randint(1,50)
 
+    # valeurs légèrement différentes pour le niveau 3 pour éviter de trop gros nombres
     nb1_nv3 = random.randint(1,10)
     nb2_nv3 = random.randint(1,10)
     nb3_nv3 = random.randint(1,10)
@@ -31,13 +40,23 @@ def write(doc,i):
     nb9_nv3 = random.randint(1,10)
     nb10_nv3 = random.randint(1,10)
 
+# on définit la taille de l'écriture pour le document
     doc.append(pylatex.Command('fontsize', arguments = ['12', '10']))
     doc.append(pylatex.Command('selectfont'))
     
     with doc.create(Section(f" Exo Équation à 2 inconnues n°{i+1}", numbering = False)):
+            # pour chauque niveau on crée un environement avec la librairie amsmaths (latex) : begin{align*} et end{align*}
+            # \\Leftrightarrow permet de mettre les doubles flêches
+            # \\times pour les signes de multiplication
+            # pour aligner tout les element entre eux (signes égales) et au pour les séparer on utilise '&' de la lib amsmath 
+            # pour résoudre chaque équation on développe chaque étape dans la partie correction
+            # on utilise le module 'cases' de latex pour générer le symbol d'acollade au débus pour la mise en page
+        
+            # l'element NoEscape permet d'écrire du code brute directement en dans le ficheir latex créé
         doc.append(NoEscape("\\ \\text{Pour chaque système d'équation ci-dessous; calculez la valeur (arrondie si nécéssaire) de $x$ et $y$}\\\\ " % ()))
         doc.append(NoEscape("\\\\"))
 
+# Niveau 1 exo
         doc.append("Niveau 1 :")
         doc.append(NoEscape("\\begin{align*}"))
         doc.append(NoEscape("\\begin{cases}"))
@@ -48,7 +67,7 @@ def write(doc,i):
         doc.append(NoEscape("\\end{align*}"))
 
 
-
+# Niveau 2 exo
         doc.append("Niveau 2 :")
 
         doc.append(NoEscape("\\begin{align*}"))
@@ -59,7 +78,7 @@ def write(doc,i):
         doc.append(NoEscape("\\\\"))
         doc.append(NoEscape("\\end{align*}"))
 
-
+# Niveau 3 exo
         doc.append("Niveau 3 :")
 
         doc.append(NoEscape("\\begin{align*}"))
@@ -71,11 +90,13 @@ def write(doc,i):
         doc.append(NoEscape("\\end{align*}"))
 
 
+# On ajoute une page entre la correction et les exercices
     doc.append(NewPage())
 
     with doc.create(Section(f"Correction Exo n°{i+1}", numbering = False)):
+# Niveau 1 correction
         doc.append("Niveau 1 :")
-
+# on redonne l'exercices
     doc.append(NoEscape("\\begin{align*}"))
     doc.append(NoEscape("\\begin{cases}"))
     doc.append(NoEscape("\\  %sx + %sy &= %s \\\\" % (nb1, nb2, nb5)))
@@ -84,7 +105,7 @@ def write(doc,i):
     doc.append(NoEscape("\\\\"))
     doc.append(NoEscape("\\end{align*}"))
 
-
+#puis on développe chaque étape avec un commentaire de ce que l'on fait
     doc.append(NoEscape("\\ \\text{L'équation ligne 2 permet d'écrire :}\\\\" % ()))
 
 
@@ -157,7 +178,7 @@ def write(doc,i):
 
 
 
-
+# de meme pour la correction du niveau 2
     doc.append("Niveau 2 :")
 
     doc.append(NoEscape("\\begin{align*}"))
@@ -242,7 +263,7 @@ def write(doc,i):
 
 
 
-
+# de meme pour la correction du niveau 3
     doc.append("Niveau 3 :")
 
     doc.append(NoEscape("\\begin{align*}"))
@@ -324,3 +345,6 @@ def write(doc,i):
     result_x_nv3 = round((new_nb_8_nv3 / new_x_2_nv3),2)
     doc.append(NoEscape("\\  x &\\approx %s\\\\" % (result_x_nv3)))
     doc.append(NoEscape("\\end{align*}"))
+
+
+### FIN DE L'EXO ÉQUATION à 2 INCONNUES ###
