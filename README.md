@@ -7,26 +7,53 @@ Téléchargez les scripts python depuis github avec la commande dans votre termi
       git clone https://github.com/Gandalf0207/Py-Maths.git
 
 ### Utilisation et mise en place de Py-Maths
-> MikteK avec plusieurs dépendances
-> 
-> Requirement.txt
+>Instalation d'un environnment virtuel avec python 3.11 
 >
+>Instalation des Requirement
+> 
+>Installation de MikteK avec plusieurs dépendances
+>
+>Execution du script python 3.11 : "Py_Maths.py"
+
+Ci-dessous; tous les éléments sont expliqués pour une installation correcte
+
+
+#### Environnement virtuel
+
+Veuillez installer python 3.11 sur votre machine : [Python 3.11](https://www.python.org/downloads/release/python-3110/). Apres cela fait; dans votre terminal éxécuter cette commande afin de créer un environnement virtuel : 
+
+      python3.11 -m venv <environment name>
+
+
+#### Requirement
+Veuillez installer le fichier requirements.txt afin d'installer toutes les librairies python nécéssaires au bon fonctionnement du projet.
+Pour ce faire, executer cette ligne de commande dans votre terminal : 
+
+Pour activer votre environnement : 
+
+
+Sur windows
+
+      <environment name>\Scripts\activate.bat 
+
+Pour installer les requirements : 
+
+      pip install -r requirements.txt
+
 
 ##### MikteK
 Pour installer MikteK, rendez-vous sur leur site Web pour le télécharger : [Télécharger MikTeK](https://miktex.org/download)
 Après l'installation, veuillez redémmarer votre machine.
 
-#### Requirement
 
-Veuillez executer le fichier requirement.txt afin d'installer toutes les librairies python nécéssaires au bon fonctionnement du projet.
-À noter que les librairies doivent être installée sur python 3.11 (l'installation dans un environnement python est recommendée)
+
 
 #### Les Scripts Python
 Téléchargez les scripts pythons et déposez-les dans le dossier qui contient l'environnement.
 
 
 ### Lancement
-Après avoir tout installé et redémaré; éxecutez le script *Py_Maths.py*. Il vous faudra installer de nouvelles dépendances de MikteK. A l'ouverture du pop up après l'éxecution du script, cliquez sur **install**.
+Après avoir tout installé et redémaré votre machine; éxecutez le script *Py_Maths.py*. Il vous faudra installer de nouvelles dépendances de MikteK. A l'ouverture du pop up après l'éxecution du script, cliquez sur **install**.
 
 Voici les dépendances qui s'afficheront et que vous devrez installer : 
 
