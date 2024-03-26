@@ -7,9 +7,9 @@ Téléchargez les scripts python depuis github avec la commande dans votre termi
       git clone https://github.com/Gandalf0207/Py-Maths.git
 
 ### Utilisation et mise en place de Py-Maths
->Instalation d'un environnment virtuel avec python 3.11 
+>Installation d'un environnement virtuel avec python 3.11 
 >
->Instalation des Requirement
+>Installation des Requirement
 > 
 >Installation de MikteK avec plusieurs dépendances
 >
@@ -20,25 +20,25 @@ Ci-dessous; tous les éléments sont expliqués pour une installation correcte
 
 #### Environnement virtuel
 
-Veuillez installer python 3.11 sur votre machine : [Python 3.11](https://www.python.org/downloads/release/python-3110/). Apres cela fait; dans votre terminal éxécuter cette commande afin de créer un environnement virtuel : 
+Veuillez installer python 3.11 sur votre machine : [Python 3.11](https://www.python.org/downloads/release/python-3110/). Après avoir fait cela ; dans votre terminal éxécutez cette commande afin de créer un environnement virtuel : 
 
-Dans votre terminal tapr les commande suivantes : 
+Dans votre terminal tapez les commandes suivantes : 
 
-Pour trouver lal'emplacement de python : 
+Pour trouver l'emplacement de python : 
 
       where python
 <br>
 
-Une fois l'emplacement trouvé, copier le et placer le devant la commande suivante : 
+Une fois l'emplacement trouvé, copiez le et placez le devant la commande suivante : 
 
       <l'emplacement de python> -m venv <nom de l'environnement>
 
-> Vérifié l'endroit de création de votre environnement en vous placent à l'endroit souhaité avant de créer l'environnement
+> Vérifiez l'endroit de création de votre environnement en vous plaçant à l'endroit souhaité avant de créer l'environnement
 
 
 #### Requirement
 Veuillez installer le fichier requirements.txt afin d'installer toutes les librairies python nécéssaires au bon fonctionnement du projet.
-Pour ce faire, executer cette ligne de commande dans votre terminal : 
+Pour ce faire, éxécutez cette ligne de commande dans votre terminal : 
 
 Pour activer votre environnement : 
 
@@ -53,7 +53,7 @@ Pour installer les requirements :
 
 
 ##### MikteK
-Pour installer MikteK, rendez-vous sur leur site Web pour le télécharger : [Télécharger MikTeK](https://miktex.org/download)
+Pour installer MikteK, rendez-vous sur leur site Web afin de le télécharger : [Télécharger MikTeK](https://miktex.org/download)
 Après l'installation, veuillez redémmarer votre machine.
 
 
@@ -64,7 +64,7 @@ Téléchargez les scripts pythons et déposez-les dans le dossier qui contient l
 
 
 ### Lancement
-Après avoir tout installé et redémaré votre machine; éxecutez le script *Py_Maths.py*. Il vous faudra installer de nouvelles dépendances de MikteK. A l'ouverture du pop up après l'éxecution du script, cliquez sur **install**.
+Après avoir tout installé et redémmaré votre machine; éxécutez le script *Py_Maths.py*. Il vous faudra installer de nouvelles dépendances de MikteK. À l'ouverture du pop up après l'éxécution du script, cliquez sur **install**.
 
 Voici les dépendances qui s'afficheront et que vous devrez installer : 
 
