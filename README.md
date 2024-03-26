@@ -22,7 +22,16 @@ Ci-dessous; tous les éléments sont expliqués pour une installation correcte
 
 Veuillez installer python 3.11 sur votre machine : [Python 3.11](https://www.python.org/downloads/release/python-3110/). Apres cela fait; dans votre terminal éxécuter cette commande afin de créer un environnement virtuel : 
 
-      python3.11 -m venv <environment name>
+Dans votre terminal tapr les commande suivantes : 
+
+Pour trouver lal'emplacement de python : 
+
+      where python
+<br>
+
+Une fois l'emplacement trouvé, copier le et placer le devant la commande suivante : 
+
+      <l'emplacement de python> -m venv <environment name\l'emplacement souhait\votre\dossier\...>
 
 
 #### Requirement
