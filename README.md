@@ -31,7 +31,9 @@ Pour trouver lal'emplacement de python :
 
 Une fois l'emplacement trouvé, copier le et placer le devant la commande suivante : 
 
-      <l'emplacement de python> -m venv <environment name\l'emplacement souhait\votre\dossier\...>
+      <l'emplacement de python> -m venv <nom de l'environnement>
+
+> Vérifié l'endroit de création de votre environnement en vous placent à l'endroit souhaité avant de créer l'environnement
 
 
 #### Requirement
