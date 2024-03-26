@@ -132,7 +132,7 @@ def write(doc, num_exo):
 
             newnb_4 = round(((nb4/nb5)-nb3),1)
             newnb_6 = round(((nb7/nb9)+nb5),1)
-            doc.append(NoEscape("\\  \\Leftrightarrow \\frac{%sx}{%s} &= \\frac{%s}{%s}     &      \\Leftrightarrow \\frac{%s}{%s}x \\times \\frac{%s}{%s} &= %s x \\times \\frac{%s}{%s}      &      \\Leftrightarrow  \\frac{%sx}{%s} &= \\frac{%s}{%s}\\\\" % (newnbx_1, newnbx_1, newnb_4, newnbx_1, nb8, nb9,nb9, nb8, newnb_5, nb9, nb8, newnbx_2,newnbx_2, newnb_6, newnbx_2)))
+            doc.append(NoEscape("\\  \\Leftrightarrow \\frac{%sx}{%s} &= \\frac{%s}{%s}     &      \\Leftrightarrow \\frac{%s}{%s}x \\times \\frac{%s}{%s} &= %s \\times \\frac{%s}{%s}      &      \\Leftrightarrow  \\frac{%sx}{%s} &= \\frac{%s}{%s}\\\\" % (newnbx_1, newnbx_1, newnb_4, newnbx_1, nb8, nb9,nb9, nb8, newnb_5, nb9, nb8, newnbx_2,newnbx_2, newnb_6, newnbx_2)))
             doc.append(Command('vspace', '3mm'))
             doc.append(NewLine())
 
