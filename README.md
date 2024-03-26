@@ -33,7 +33,7 @@ Une fois l'emplacement trouvé, copiez le et placez le devant la commande suivan
 
       <l'emplacement de python> -m venv <nom de l'environnement>
 
-> Vérifiez l'endroit de création de votre environnement en vous plaçant à l'endroit souhaité avant de créer l'environnement
+> Vérifiez l'endroit de création de votre environnement en vous plaçant à l'endroit souhaité avant de créer l'environnement.
 
 
 #### Requirement
