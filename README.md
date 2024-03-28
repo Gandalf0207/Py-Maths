@@ -78,6 +78,8 @@ Voici les dépendances qui s'afficheront et que vous devrez installer :
 Fermez et réouvrez le fichier script et éxecutez-le à nouveau.
 
 
+*Si la fenêtre Tkinter ne se lance pas, vérifiez bien que l'environnement est bien utilisée / que les dépendances de MikTek et python soient bien installés également*
+
 ## Voilà, Py-Maths fonctionne sur votre Machine ! 
 
 
