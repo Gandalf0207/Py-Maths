@@ -24,12 +24,12 @@ Veuillez installer python 3.11 sur votre machine : [Python 3.11](https://www.pyt
 
 Dans votre terminal tapez les commandes suivantes : 
 
-Pour trouver l'emplacement de python : 
+Pour trouver l'emplacement de python (Nécéssaire uniquement si vous avez plusieurs version de python d'installé.) : 
 
       where python
 <br>
 
-Une fois l'emplacement trouvé, copiez le et placez le devant la commande suivante : 
+Une fois l'emplacement python 3.11 trouvé, copiez le et placez le devant la commande suivante (uniquement si vous avez plusieurs version de python) : 
 
       <l'emplacement de python> -m venv <nom de l'environnement>
 
