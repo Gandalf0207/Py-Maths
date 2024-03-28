@@ -153,8 +153,8 @@ def write(doc, num_exo):
             itemize.add_item("Donner le(s) solution(s) possible de Delta")
             itemize.add_item("Déterminer la forme canonique")
             itemize.add_item("Déterminer le Sommet S")
-            itemize.add_item("Déterminer le point A ayant pur abscisse 0")
-            itemize.add_item("Représenter l'allure de la coube avec les deux points demandé")
+            itemize.add_item("Déterminer le point A ayant pour abscisse 0")
+            itemize.add_item("Représenter l'allure de la coube avec les deux points demandés")
             itemize.add_item("Dresser le tableau de signes de f")
             itemize.add_item("Dresser le tableau de variations de f")
 
