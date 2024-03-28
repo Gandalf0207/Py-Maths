@@ -80,6 +80,8 @@ Fermez et réouvrez le fichier script et éxecutez-le à nouveau.
 
 *Si la fenêtre Tkinter ne se lance pas, vérifiez bien que l'environnement est bien utilisée / que les dépendances de MikTek et python soient bien installés également*
 
+*Le fichier créé peux être généré à la racine des documents, de la machine en fonction des autorisations utilisateur*
+
 ## Voilà, Py-Maths fonctionne sur votre Machine ! 
 
 
