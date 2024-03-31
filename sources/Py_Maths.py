@@ -25,13 +25,13 @@ import os
 import glob
 
 # Importation des scripts pour les exercices
-import Equation_premier_degre
-import Polynome_second_degre
-import Equation_2_inconnus
+from Exo_Equation_premier_degre import Equation_premier_degre
+from Exo_polynome_second_degre import Polynome_second_degre
+from Exo_Equation_deux_inconnues import Equation_2_inconnues
 
 # Importation des scripts de mise en age et de gestions autre
-import Hearder_Footer
-import Contenue_Page_1
+from Module_Gestion import Hearder_Footer
+from Module_Gestion import Contenue_Page_1
 
 
 # Paramettres généraux de l'interface graphique

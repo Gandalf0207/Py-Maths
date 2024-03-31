@@ -30,8 +30,8 @@ with doc.create(Section("Section de test", numbering = False)):
     doc.append(NoEscape("\\begin{align*}"))
 
     nb_value = 1
-    nb1 = random.randint(2,20)
-    nb2 = random.randint(2,20)
+    nb1 = 1#random.randint(2,20)
+    nb2 = 1#random.randint(2,20)
     nb3 = random.randint(2,20)
     nb4 = random.randint(2,20)
     nb5 = random.randint(2,20)
@@ -153,6 +153,32 @@ with doc.create(Section("Section de test", numbering = False)):
             doc.append(NoEscape("\\  \\Leftrightarrow x +%s - %s &= \\frac{%s}{%s} -%sx - %s \\\\" % (nb3,nb3,nb4,nb5,nb6,nb3)))
             doc.append(Command('vspace', '5mm'))
             doc.append(NewLine())
+
+            #on calcule le pgcd pour simplifier la fraction
+            
+            pgcd_frac2 = pgcd(nb4,nb5)
+            nb4 = nb4//pgcd_frac2
+            nb5 = nb5//pgcd_frac2
+
+            # on déplace les éléments que chaque coté
+            doc.append(NoEscape("\\  \\Leftrightarrow x +%sx &= \\frac{%s}{%s} -%sx +%sx - %s \\\\" % (nb6,nb4,nb5,nb6,nb6,nb3)))
+            doc.append(Command('vspace', '5mm'))
+            doc.append(NewLine())
+
+            # on passe les elements sur fraction du coté ou cela est nécéssaire et on simplifie les x
+            nb3 = nb3*nb5
+            nbx = nb6 + 1
+
+            doc.append(NoEscape("\\  \\Leftrightarrow %sx &= \\frac{%s}{%s} - \\frac{%s}{%s} \\\\" % (nbx,nb4,nb5,nb3,nb5)))
+            doc.append(Command('vspace', '5mm'))
+            doc.append(NewLine())
+
+            #on passe tout sur la meme fraction à droite 
+            nb = nb4 - nb3
+            doc.append(NoEscape("\\  \\Leftrightarrow %sx &= \\frac{%s}{%s}  \\\\" % (nbx,nb,nb5)))
+            doc.append(Command('vspace', '5mm'))
+            doc.append(NewLine())
+
 
         else:
             #Ils sont pareils donc on affiche 1 (frac2)
