@@ -3,6 +3,7 @@ from pylatex.utils import *
 
 import random
 
+
 def pgcd(a,b):
     # pgcd(a,b): calcul du 'Plus Grand Commun Diviseur' entre les 2 nombres entiers a et b
     while b != 0:
@@ -10,34 +11,9 @@ def pgcd(a,b):
     return a
 
 
-nb1 = random.randint(1,10)
-nb2 = random.randint(1,10)
-
-# Créez un document
-doc = Document()
-
-doc.packages.append(NoEscape("\\usepackage{amsmath}"))
-
-
-doc.append(pylatex.Command('fontsize', arguments = ['12', '10']))
-doc.append(pylatex.Command('selectfont'))
-
-with doc.create(Section("Section de test", numbering = False)):
-    doc.append("Niveau 1 :")
-
-#tu ecris entre ces deux éléments
+def ligne_exo(doc,nb1,nb2,nb3,nb4,nb5,nb6):
 
     doc.append(NoEscape("\\begin{align*}"))
-
-    nb_value = 1
-    nb1 = 1#random.randint(2,20)
-    nb2 = 1#random.randint(2,20)
-    nb3 = random.randint(2,20)
-    nb4 = random.randint(2,20)
-    nb5 = random.randint(2,20)
-    nb6 = random.randint(2,20)
-        
-
 
     ### LIGNE DE L'EXO ###
 
@@ -45,8 +21,17 @@ with doc.create(Section("Section de test", numbering = False)):
     doc.append(Command('vspace', '5mm'))
     doc.append(NewLine())
 
+    doc.append(NoEscape("\\end{align*}"))
 
 
+def correction_exo(doc,nb1,nb2,nb3,nb4,nb5,nb6):
+
+    doc.append(NoEscape("\\begin{align*}"))
+
+    doc.append(NoEscape("\\  \\Leftrightarrow \\frac{%s}{%s}x + %s &= \\frac{%s}{%s} - %sx \\\\" % (nb1,nb2,nb3,nb4,nb5,nb6)))
+    doc.append(Command('vspace', '5mm'))
+    doc.append(NewLine())
+    
     #On regarde s'ils sont différents pour savoir si on doit simplifier directement la fraction ou non 
     if (nb2 != nb1) and (nb4!=nb5):
 
@@ -188,32 +173,8 @@ with doc.create(Section("Section de test", numbering = False)):
 
 
 
-
-        doc.append(NoEscape("\\\\"))
-        doc.append(NoEscape("\\\\"))
-
-
-
-
-
-
-    doc.append(NoEscape("\\  \\Leftrightarrow  &= \\\\" % ()))
-    doc.append(Command('vspace', '5mm'))
-    doc.append(NewLine())
-
-    doc.append(NoEscape("\\  \\Leftrightarrow  &= \\\\" % ()))
-    doc.append(Command('vspace', '5mm'))
-    doc.append(NewLine())
-
-    doc.append(NoEscape("\\ \\Leftrightarrow   &= \\\\" % ()))
-    doc.append(Command('vspace', '5mm'))
-    doc.append(NewLine())
-
-
-
-
     doc.append(NoEscape("\\end{align*}"))
 
 
-# Générez le fichier PDF
-doc.generate_pdf(clean_tex=False, compiler='pdflatex')
+
+        
