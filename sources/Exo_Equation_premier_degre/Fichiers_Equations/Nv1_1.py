@@ -129,8 +129,8 @@ def correction_exo(doc,nb1,nb2,nb3,nb4,nb5,nb6,nb_value):
             doc.append(NoEscape("\\  \\Leftrightarrow \\frac{%s}{%s}x + %s &= \\frac{%s}{%s} - %sx \\\\" % (nb1,nb2,nb3,nb4,nb5,nb6)))
             doc.append(NoEscape("\\end{align*}"))
 
-            # Etape 1 : 
-            doc.append(NoEscape("\\  \\parbox{ 450pt }{ \\textbf{Etape 1} : Simplions les fractions. Pour cela, multiplions chaque terme de l'équation par le dénominateur commun qui est %s }" % (nb2)))
+            # Etape 1
+            doc.append(NoEscape("\\  \\parbox{ 450pt }{ \\textbf{Etape 1} : Simplions les fractions. Pour cela, multiplions chaque terme de l'équation par le dénominateur commun qui est %s : }" % (nb2)))
             
             doc.append(NoEscape("\\begin{align*}"))
             doc.append(NoEscape("\\  \\Leftrightarrow %s \\cdot \\frac{%s}{%s}x + %s \\cdot %s &= %s \\cdot %s - %s \\cdot %sx \\\\" % (nb2,nb1,nb2,nb2,nb3,nb2,nb_value,nb2,nb6)))
@@ -139,8 +139,26 @@ def correction_exo(doc,nb1,nb2,nb3,nb4,nb5,nb6,nb_value):
             doc.append(NoEscape("\\  \\Leftrightarrow %sx + %s &= %s - %sx \\\\" % (nb1,nb,nb2,nbx)))
             doc.append(NoEscape("\\end{align*}"))
 
-            
+            # Etape 2
+            doc.append(NoEscape("\\  \\parbox{ 450pt }{ \\textbf{Etape 2} : Regroupons les termes contenant la variable x d’un côté de l’équation et les termes constants de l’autre côté. Ajoutons %sx des deux côtés et retirons %s des deux côtés également : }" % (nbx,nb)))
 
+            doc.append(NoEscape("\\begin{align*}"))
+            doc.append(NoEscape("\\  \\Leftrightarrow %sx + %s -%s + %sx &= %s - %sx + %sx -%s \\\\" % (nb1,nb,nb,nbx,nb2,nbx,nbx,nb)))
+            nb = nb2 - nb
+            nbx = nb1 + nbx
+            doc.append(NoEscape("\\  \\Leftrightarrow %sx &= %s \\\\" % (nbx,nb)))
+            doc.append(NoEscape("\\end{align*}"))
+
+            # Etape 3
+            doc.append(NoEscape("\\  \\parbox{ 450pt }{ \\textbf{Etape 3} : Divisons les deux côtés de l’équation par %s pour isoler x et simplifions: }" % (nbx)))
+
+            doc.append(NoEscape("\\begin{align*}"))
+            doc.append(NoEscape("\\  \\Leftrightarrow \\frac{%sx}{%s} &= \\frac{%s}{%s} \\\\" % (nbx,nbx,nb,nbx)))
+            pgcd_frac3 = pgcd(nb,nbx)
+            nb = nb//pgcd_frac3
+            nbx = nbx//pgcd_frac3
+            doc.append(NoEscape("\\  \\Leftrightarrow x &= \\frac{%s}{%s} \\\\" % (nb,nbx)))
+            doc.append(NoEscape("\\end{align*}"))
 
 
 
