@@ -18,12 +18,12 @@ from Exo_Equation_premier_degre.Fichiers_Equations import Nv1_3
 def write(doc, num_exo):
    
     nb_value = 1
-    nb1 = random.randint(2,20)
-    nb2 = random.randint(2,20)
-    nb3 = random.randint(2,20)
-    nb4 = random.randint(2,20)
-    nb5 = random.randint(2,20)
-    nb6 = random.randint(2,20)
+    nb1 = 4#random.randint(2,20)
+    nb2 = 14#random.randint(2,20)
+    nb3 = 8#random.randint(2,20)
+    nb4 = 1 #random.randint(2,20)
+    nb5 = 1 #random.randint(2,20)
+    nb6 = 9 #random.randint(2,20)
 
    # Définitions de la taille de police d'écriture
     doc.append(pylatex.Command('fontsize', arguments = ['12', '10']))
@@ -35,13 +35,13 @@ def write(doc, num_exo):
        
         # niveau 1
         with doc.create(Subsection("Equation niveau 1 : ", numbering = False)):
-            Nv1_1.ligne_exo(doc,nb1,nb2,nb3,nb4,nb5,nb6)
+            Nv1_1.ligne_exo(doc,nb1,nb2,nb3,nb4,nb5,nb6,nb_value)
         # niveau 2
         with doc.create(Subsection("Equation niveau 2 : ", numbering = False)):
-            Nv1_1.ligne_exo(doc,nb1,nb2,nb3,nb4,nb5,nb6)       
+            Nv1_1.ligne_exo(doc,nb1,nb2,nb3,nb4,nb5,nb6,nb_value)       
         #niveau 3
         with doc.create(Subsection("Equation niveau 3 : ", numbering = False)):
-            Nv1_1.ligne_exo(doc,nb1,nb2,nb3,nb4,nb5,nb6)
+            Nv1_1.ligne_exo(doc,nb1,nb2,nb3,nb4,nb5,nb6,nb_value)
 
 
 
@@ -57,9 +57,9 @@ def write(doc, num_exo):
         with doc.create(Subsection("Equations niveau 1", numbering = False)):
 
             # correction niveau 1
-            Nv1_1.correction_exo(doc,nb1,nb2,nb3,nb4,nb5,nb6)
+            Nv1_1.correction_exo(doc,nb1,nb2,nb3,nb4,nb5,nb6,nb_value)
             doc.append(NoEscape("\\\\"))            
-            Nv1_1.correction_exo(doc,nb1,nb2,nb3,nb4,nb5,nb6)
+            Nv1_1.correction_exo(doc,nb1,nb2,nb3,nb4,nb5,nb6,nb_value)
 
 
 

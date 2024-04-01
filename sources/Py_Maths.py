@@ -55,6 +55,11 @@ def activation():
         for supprimer in fichier:
                 os.remove(supprimer)
 
+        # Gestion et suppression des fichiers .tex pour un nettoyage complet
+        fichier = glob.glob('./*.tex')
+        for supprimer in fichier:
+            os.remove(supprimer)
+
 
         #Paramettres du pdf 
         geometry_options = {"head": "40pt",
@@ -67,6 +72,7 @@ def activation():
         doc.preamble.append(pylatex.Command('usepackage', 'newunicodechar'))
         doc.packages.append(NoEscape("\\usepackage{tkz-tab}"))
         doc.packages.append(NoEscape("\\usepackage{amsmath}"))
+
         doc.preamble.append(pylatex.NoEscape(r'\newunicodechar{∞}{\ensuremath{\infty}}'))
         doc.preamble.append(pylatex.NoEscape(r'\newunicodechar{Δ}{\ensuremath{\Delta}}'))
         doc.preamble.append(pylatex.NoEscape(r'\newunicodechar{α}{\ensuremath{\alpha}}'))
@@ -109,13 +115,6 @@ def activation():
 
         # création du fichier en .tex puis sans conversion en .pdf en spécifiant le compilateur, ici : pdf LaTaTex
         doc.generate_pdf(f"Py-Maths_{type_exo}" , clean_tex=False, compiler="pdfLaTex")
-
-        # Gestion et suppression des fichiers .tex pour un nettoyage complet
-        fichier = glob.glob('./*.tex')
-        for supprimer in fichier:
-            os.remove(supprimer)
-
-
 
 
 
