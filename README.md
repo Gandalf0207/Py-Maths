@@ -1,5 +1,7 @@
 # Py-Maths
 
+
+# L'exercice 'Equation du premier degré' est en cours d'amélioration. Il est actuellement en développement et donc non-fonctionnel !
 Py-Maths est un générateur d'exercices de Maths avec leurs corrections. Inspiré de l'ancien site **PyroMaths**
 
 Téléchargez les scripts python depuis github avec la commande dans votre terminal  : 
