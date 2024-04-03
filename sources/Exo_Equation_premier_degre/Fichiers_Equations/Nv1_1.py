@@ -42,30 +42,53 @@ def correction_exo(doc,nb1,nb2,nb3,nb4,nb5,nb6,nb_value):
         doc.append(NoEscape("\\  \\parbox{ 450pt }{ \\textbf{Etape 1} : Simplifions les fractions. Pour simplifier, multiplions chaque terme de l’équation par le dénominateur commun, qui est (%s) (le produit de (%s) et (%s)) : }" % (deno_com,nb2,nb5)))
         
         doc.append(NoEscape("\\begin{align*}"))
-        doc.append(NoEscape("\\  \\Leftrightarrow %s \\cdot \\left(\\frac{%s}{%s}x\\right) + %s \\cdot %s &= %s \\cdot \\left(\\frac{%s}{%s}\\right) - %s \\cdot %sx \\\\" % (deno_com,nb1,nb2,deno_com,nb3, deno_com,nb4,nb5,deno_com,nb6)))
-        nb = nb2*nb3
-        nbx = nb2 * nb6
-        doc.append(NoEscape("\\  \\Leftrightarrow %sx + %s &= %s - %sx \\\\" % (nb1,nb,nb2,nbx)))
+        doc.append(NoEscape("\\  \\Leftrightarrow %s \\cdot \\left(\\frac{%s}{%s}x + %s\\right) &= %s \\cdot \\left(\\frac{%s}{%s} - %sx\\right) \\\\" % (deno_com,nb1,nb2,nb3, deno_com,nb4,nb5,nb6)))
+        nbx =((nb1 * deno_com)//nb2)
+        nb = nb3 * deno_com
+        nb_2 = ((deno_com *nb4)//nb5)
+        nbx_2 = (deno_com *nb6)
+        doc.append(NoEscape("\\  \\Leftrightarrow %sx + %s &= %s - %sx \\\\" % (nbx,nb,nb_2,nbx_2)))
+        doc.append(NoEscape("\\end{align*}"))
+
+        # Etape 2
+        doc.append(NoEscape("\\  \\parbox{ 450pt }{ \\textbf{Etape 2} : Regroupons les termes contenant la variable x d’un côté de l’équation et les termes constants de l’autre côté.}" % ()))
+
+        doc.append(NoEscape("\\begin{align*}"))
+        doc.append(NoEscape("\\  \\Leftrightarrow %sx + %s - %s + %sx &= %s - %sx + %sx - %s \\\\" % (nbx,nb,nb,nbx_2,nb_2,nbx_2,nbx_2,nb)))
+        nb = nb_2 - nb
+        nbx = nbx + nbx_2
+        doc.append(NoEscape("\\  \\Leftrightarrow %sx &= %s \\\\" % (nbx,nb)))
+        doc.append(NoEscape("\\end{align*}"))
+
+        # Etape 3
+        doc.append(NoEscape("\\  \\parbox{ 450pt }{ \\textbf{Etape 3} : Divisons les deux côtés de l’équation par %s pour isoler x et simplifions: }" % (nbx)))
+
+        doc.append(NoEscape("\\begin{align*}"))
+        doc.append(NoEscape("\\  \\Leftrightarrow \\frac{%sx}{%s} &= \\frac{%s}{%s} \\\\" % (nbx,nbx,nb,nbx)))
+        pgcd_frac3 = pgcd(nb,nbx)
+        nb = nb//pgcd_frac3
+        nbx = nbx//pgcd_frac3
+        doc.append(NoEscape("\\  \\Leftrightarrow x &= \\frac{%s}{%s} \\\\" % (nb,nbx)))
         doc.append(NoEscape("\\end{align*}"))
 
 
     else :
         if (nb1==nb2) and (nb4==nb5):
 
-            doc.append(NoEscape("\\ \\text{L'équation à résoudre est : } " % ()))
+            # doc.append(NoEscape("\\ \\text{L'équation à résoudre est : } " % ()))
 
-            doc.append(NoEscape("\\begin{align*}"))
-            doc.append(NoEscape("\\  \\Leftrightarrow \\frac{%s}{%s}x + %s &= \\frac{%s}{%s} - %sx \\\\" % (nb1,nb2,nb3,nb4,nb5,nb6)))
-            doc.append(NoEscape("\\end{align*}"))
+            # doc.append(NoEscape("\\begin{align*}"))
+            # doc.append(NoEscape("\\  \\Leftrightarrow \\frac{%s}{%s}x + %s &= \\frac{%s}{%s} - %sx \\\\" % (nb1,nb2,nb3,nb4,nb5,nb6)))
+            # doc.append(NoEscape("\\end{align*}"))
 
 
         elif (nb1==nb2):
 
-            doc.append(NoEscape("\\ \\text{L'équation à résoudre est : } " % ()))
+            # doc.append(NoEscape("\\ \\text{L'équation à résoudre est : } " % ()))
 
-            doc.append(NoEscape("\\begin{align*}"))
-            doc.append(NoEscape("\\  \\Leftrightarrow \\frac{%s}{%s}x + %s &= \\frac{%s}{%s} - %sx \\\\" % (nb1,nb2,nb3,nb4,nb5,nb6)))
-            doc.append(NoEscape("\\end{align*}"))
+            # doc.append(NoEscape("\\begin{align*}"))
+            # doc.append(NoEscape("\\  \\Leftrightarrow \\frac{%s}{%s}x + %s &= \\frac{%s}{%s} - %sx \\\\" % (nb1,nb2,nb3,nb4,nb5,nb6)))
+            # doc.append(NoEscape("\\end{align*}"))
 
 
         else:
