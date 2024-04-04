@@ -84,11 +84,19 @@ def correction_exo(doc,nb1,nb2,nb3,nb4,nb5,nb6,nb_value):
 
         elif (nb1==nb2):
 
-            # doc.append(NoEscape("\\ \\text{L'équation à résoudre est : } " % ()))
+            doc.append(NoEscape("\\ \\text{L'équation à résoudre est : } " % ()))
 
-            # doc.append(NoEscape("\\begin{align*}"))
-            # doc.append(NoEscape("\\  \\Leftrightarrow \\frac{%s}{%s}x + %s &= \\frac{%s}{%s} - %sx \\\\" % (nb1,nb2,nb3,nb4,nb5,nb6)))
-            # doc.append(NoEscape("\\end{align*}"))
+            doc.append(NoEscape("\\begin{align*}"))
+            doc.append(NoEscape("\\  \\Leftrightarrow \\frac{%s}{%s}x + %s &= \\frac{%s}{%s} - %sx \\\\" % (nb1,nb2,nb3,nb4,nb5,nb6)))
+            doc.append(NoEscape("\\end{align*}"))
+
+            # Etape 1
+            deno_com = nb2*nb5
+            doc.append(NoEscape("\\  \\parbox{ 450pt }{ \\textbf{Etape 1} : Simplions les fractions. Pour cela, multiplions chaque terme de l'équation par le dénominateur commun qui est %s : }" % (nb5)))
+            
+            doc.append(NoEscape("\\begin{align*}"))
+
+            doc.append(NoEscape("\\end{align*}"))
 
 
         else:
