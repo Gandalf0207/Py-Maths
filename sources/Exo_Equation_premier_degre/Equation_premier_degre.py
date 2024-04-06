@@ -18,12 +18,12 @@ from Exo_Equation_premier_degre.Fichiers_Equations import Nv1_3
 def write(doc, num_exo):
    
     nb_value = 1
-    nb1 = 15 #random.randint(2,20)
-    nb2 = 14 #random.randint(2,20)
-    nb3 = 5 #random.randint(2,20)
-    nb4 =  18 #random.randint(2,20)
-    nb5 = 8 #random.randint(2,20)
-    nb6 = 12 #random.randint(2,20)
+    nb1 = random.randint(2,20)
+    nb2 = random.randint(2,20)
+    nb3 = random.randint(2,20)
+    nb4 = random.randint(2,20)
+    nb5 = random.randint(2,20)
+    nb6 = random.randint(2,20)
 
    # Définitions de la taille de police d'écriture
     doc.append(pylatex.Command('fontsize', arguments = ['12', '10']))
