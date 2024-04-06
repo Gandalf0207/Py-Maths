@@ -34,6 +34,7 @@ def write(doc, num_exo):
     nb13 = random.randint(2,20)
     nb14 = random.randint(2,20)
 
+
     #Pour éviter des divisons par zéro est des éléments = à zéro
     if nb7 == nb10:
         while nb7 == nb10:
@@ -54,8 +55,10 @@ def write(doc, num_exo):
             Nv1_2.ligne_exo(doc,nb11,nb12,nb13,nb14,nb_value)
         # niveau 2
         with doc.create(Subsection("Equation niveau 2 : ", numbering = False)):
-            Nv2.ligne_exo(doc,nb1,nb2,nb3,nb4,nb5,nb6,nb_value)       
-
+            Nv2.ligne_exo(doc,nb1,nb2,nb3,nb4,nb5,nb6,nb_value)   
+        #niveau 3    
+        with doc.create(Subsection("Equation niveau 3 : ", numbering = False)):
+            Nv3.ligne_exo(doc,nb5,nb7,nb9,nb11,nb13,nb_value)  
 
 
 
@@ -73,12 +76,16 @@ def write(doc, num_exo):
             Nv1_1.correction_exo(doc,nb7,nb8,nb9,nb10,nb_value)
             doc.append(NoEscape("\\\\"))            
             doc.append(NoEscape("\\\\"))            
-            Nv1_2.correction_exo(doc,nb11,nb12,nb13,nb14,nb_value) 
+            Nv1_2.correction_exo(doc,nb11,nb12,nb13,nb14,nb_value)
             doc.append(NewPage())  
 
         with doc.create(Subsection("Equation niveau 2",numbering= False)):
             # correction niveau 2
             Nv2.correction_exo(doc,nb1,nb2,nb3,nb4,nb5,nb6,nb_value)
+
+        with doc.create(Subsection("Equation niveau 3",numbering= False)):
+            # correction niveau 3
+            Nv3.correction_exo(doc,nb5,nb7,nb9,nb11,nb13,nb_value)
             doc.append(NewPage())  
 
 
