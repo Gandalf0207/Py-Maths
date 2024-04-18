@@ -108,7 +108,7 @@ def activation():
                         doc.append(NewPage())
 
                 elif value_type_exo=='3':
-                        appel = Equation_2_inconnus.write(doc,i)
+                        appel = Equation_2_inconnues.write(doc,i)
                         doc.append(NewPage())
                         
 
