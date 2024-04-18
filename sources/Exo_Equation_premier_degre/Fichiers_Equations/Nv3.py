@@ -14,7 +14,7 @@ def pgcd(a,b):
 def ligne_exo(doc,nb5,nb7,nb9,nb11,nb13,nb_value):
 
     doc.append(NoEscape("\\begin{align*}"))
-    doc.append(NoEscape("\\  \\Leftrightarrow %s \\codt (%sx + %s) &= %s - %sx \\\\" % (nb5,nb7,nb9,nb11,nb13)))
+    doc.append(NoEscape("\\  \\Leftrightarrow %s \\cdot (%sx + %s) &= %s - %sx \\\\" % (nb5,nb7,nb9,nb11,nb13)))
     doc.append(NoEscape("\\end{align*}"))
 
 
