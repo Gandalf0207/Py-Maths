@@ -1,9 +1,11 @@
 # Py-Maths
 
+## Lauréat aux trophées NSI 2024 (prix originalité territorial) [Résultats](https://trophees-nsi.fr/resultats-2024) :tada:
 
-# L'exercice 'Equation du premier degré' est en cours d'amélioration. Il est actuellement en développement et donc non-fonctionnel !
+# Infos :
+### L'exercice 'Equation du premier degré' est en cours d'amélioration. Il est actuellement en développement et donc non-fonctionnel !
 
-# Il est également possible que certains problèmes sur les autres exercices apparaisentn car l'organisation des fichiers est actuellement modifié.
+### Il est également possible que certains problèmes sur les autres exercices apparaisentn car l'organisation des fichiers est actuellement modifié.
 
 Py-Maths est un générateur d'exercices de Maths avec leurs corrections. Inspiré de l'ancien site **PyroMaths**
 
