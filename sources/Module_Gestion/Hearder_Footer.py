@@ -16,6 +16,8 @@ def generate_header(doc, type_exo):
     # On crée les crédits en bas à gauche
     with header.create(Foot("L")):
         header.append(italic("Théo LUBAN"))
+    with header.create(Foot("C")):
+        header.append(italic("Py-Maths © Tous droits réservés"))
     # On crée les crédits en bas à droite
     with header.create(Foot("R")):
         header.append(italic("Quentin PLADEAU"))
