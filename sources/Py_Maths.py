@@ -17,7 +17,6 @@ import math
 import random
 
 # Modle de convertion / création des formules / la forme
-import latexify
 from sympy import *
 
 #Module de gestion fichier sur la machine
