@@ -54,7 +54,10 @@ def main():
 
     # Installe les dépendances à partir du fichier Requirements.txt
     try:
-        subprocess.run(["pip", "install", "-r", "Requirements.txt"], check=True)
+        subprocess.run(["pip", "install", "pylatex"], check=True)
+        subprocess.run(["pip", "install", "matplotlib"], check=True)
+        subprocess.run(["pip", "install", "numpy"], check=True)
+        subprocess.run(["pip", "install", "sympy"], check=True)
         print("Les dépendances ont été installées avec succès.")
     except subprocess.CalledProcessError as e:
         print(f"Erreur lors de l'installation des dépendances: {e}")
