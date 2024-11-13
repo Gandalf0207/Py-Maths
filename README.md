@@ -1,97 +1,102 @@
 # Py-Maths
 
-## Lauréat aux trophées NSI 2024 (prix originalité territorial) [Résultats](https://trophees-nsi.fr/resultats-2024) :tada:
+> [!NOTE]
+> Le projet **Py-Maths** a été récompensé aux trophées NSI 2024 par le prix territoriale de l'originalité ! [Résultats](https://trophees-nsi.fr/resultats-2024) :tada:
 
-# Infos :
-### L'exercice 'Equation du premier degré' est en cours d'amélioration. Il est actuellement en développement et donc non-fonctionnel !
+> [!IMPORTANT]
+> Pour toute information complémentaire au niveau des droits d'auteur et de distribution, veuillez vous référer à la licence.
 
-### Il est également possible que certains problèmes sur les autres exercices apparaisentn car l'organisation des fichiers est actuellement modifié.
+Py-Maths est un projet étudiant réalisé par 2 élèves en première NSI : **LUBAN Théo** & **PLADEAU Quentin**. Le but de ce projet est de réaliser un exerciseur de mathématique (inspiré de **PyroMaths**) avec leurs corrections détaillés pas à pas, sur différents niveaux (seconde, première et terminale). Ce projet a été développé avec le langage de programmation python et utilise le langage LaTeX pour pouvoir respecter l'ecriture mathématique. En effet toutes les valeurs présentes dans les exercices sont sélectionnées aléaoirement et les correction sont adpaté pour cela. Chaque exercice est donc unique pour un entrainement optimal !
 
-Py-Maths est un générateur d'exercices de Maths avec leurs corrections. Inspiré de l'ancien site **PyroMaths**
+Le projet propose différents exercices selon diffférents niveaux : 
+- Seconde
+  - Polynôme du second degrés
+  - Equation à un inconnus
+  - Equation à deux inconnus
+ 
+- Première
+  - A venir
 
+- Terminale
+  - A venir
 
-
-Téléchargez les scripts python depuis github avec la commande dans votre terminal  : 
-
-      git clone https://github.com/Gandalf0207/Py-Maths.git
-
-### Utilisation et mise en place de Py-Maths
->Installation d'un environnement virtuel avec python 3.11 
->
->Installation des Requirement
-> 
->Installation de MikteK avec plusieurs dépendances
->
->Execution du script python 3.11 : "Py_Maths.py"
-
-Ci-dessous; tous les éléments sont expliqués pour une installation correcte
-
-
-#### Environnement virtuel
-
-Veuillez installer python 3.11 sur votre machine : [Python 3.11](https://www.python.org/downloads/release/python-3110/). Après avoir fait cela ; dans votre terminal éxécutez cette commande afin de créer un environnement virtuel : 
-
-Dans votre terminal tapez les commandes suivantes : 
-
-Pour trouver l'emplacement de python (Nécéssaire uniquement si vous avez plusieurs version de python d'installé.) : 
-
-      where python
 <br>
 
-Une fois l'emplacement python 3.11 trouvé, copiez le et placez le devant la commande suivante (uniquement si vous avez plusieurs version de python) : 
+ Le projet utilise différentes ressources, en voici les principales : 
+- Utilisation du module Python
+- Utilisation du langage LaTeX pour respecter les normes d'écriture mathématique
+- Utilisation des dépendances des modules Python & LaTeX
 
-      <l'emplacement de python> -m venv <nom de l'environnement>
+<br> </br>
+### Comment Fonctionne le projet ?
 
-> Vérifiez l'endroit de création de votre environnement en vous plaçant à l'endroit souhaité avant de créer l'environnement.
+A venir
+
+<br> </br>
+
+### Installation :
+
+> [!NOTE]
+> Le jeu et le système d'installation ont été développés pour les machines utilisant Windows 10 et plus.
+> Si vous utilisez des versions antérieures ou encore un autre système d'exploitation (Linux / MacOS), veillez à ce que chaque élément d'installation soit compatible, téléchargez les éléments en compatibilité avec votre machine.
+
+  > Télécharger le compilateur latex MikTek
+  [MikTeX](https://miktex.org/download)
+
+  > Télécharger Visual C++ 64
+  [Visual C++ x64](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170)
+
+  > Récupérer le projet **Py-Maths**
+  ```cmd
+  git clone https://github.com/Gandalf0207/Maths-Quest.git
+  ```
+  > Installation extension LaTeX : type1cm.sty
+  ```cmd
+  mpm --install type1cm
+  ```
+  > Installation extension LaTeX : type1ec.sty
+  ```cmd
+  mpm --install cm-super
+  ```
+  > Installation extension LaTeX : geometry.sty
+  ```cmd
+  mpm --install geometry
+  ```
+  > Installation extension LaTeX : underscore.sty
+  ```cmd
+  mpm --install underscore
+  ```
+  > Installation extension LaTeX : ttfonts.map
+  ```cmd
+  mpm --install zhmetrics
+  ```
+  > Installation extension LaTeX : amsmath
+  ```cmd
+  mpm --install amsmath
+  ```
+  > Intaller les dépendences
+  ```cmd
+  python -m pip install -r requirements.txt
+  ```
+
+> [!NOTE]
+> Pour toutes les dépendances LaTeX, un pop-up peut s'ouvrir, vous devez cliquer sur "Install" pour pouvoir l'installer.
+
+> [!TIP]
+> Si vous utilisez une ancienne version de Windows ou bien que vous rencontrez toujours une erreur avec Visual C++ x64, installez également [Visual C++ x86](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170).
+
+> [!TIP]
+> Veillez à redémarer votre machine après l'installation du compilateur LaTeX.
+
+<br> </br>
+
+### Partie developpeur :
+
+Avenir
 
 
-#### Requirement
-Veuillez installer le fichier requirements.txt afin d'installer toutes les librairies python nécéssaires au bon fonctionnement du projet.
-Pour ce faire, éxécutez cette ligne de commande dans votre terminal : 
 
-Pour activer votre environnement : 
+#
+__Py-Maths © Tous droits réservés 2024__
 
-
-Sur windows
-
-      <environment name>\Scripts\activate.bat 
-
-Pour installer les requirements : 
-
-      pip install -r requirements.txt
-
-
-##### MikteK
-Pour installer MikteK, rendez-vous sur leur site Web afin de le télécharger : [Télécharger MikTeK](https://miktex.org/download)
-Après l'installation, veuillez redémmarer votre machine.
-
-
-
-
-#### Les Scripts Python
-Téléchargez les scripts pythons et déposez-les dans le dossier qui contient l'environnement.
-
-
-### Lancement
-Après avoir tout installé et redémmaré votre machine; éxécutez le script *Py_Maths.py*. Il vous faudra installer de nouvelles dépendances de MikteK. À l'ouverture du pop up après l'éxécution du script, cliquez sur **install**.
-
-Voici les dépendances qui s'afficheront et que vous devrez installer : 
-
-##### lastpage.sty
-##### geometry.sty
-##### tkz-tab.sty
-##### fancyhdr.sty
-##### newunicodechar.sty
-##### latexmk.pl
-
-Fermez et réouvrez le fichier script et éxecutez-le à nouveau.
-
-
-*Si la fenêtre Tkinter ne se lance pas, vérifiez bien que l'environnement est bien utilisée / que les dépendances de MikTek et python soient bien installés également*
-
-*Le fichier créé peux être généré à la racine des documents, de la machine en fonction des autorisations utilisateur*
-
-## Voilà, Py-Maths fonctionne sur votre Machine ! 
-
-
-*by Théo LUBAN & Quentin PLADEAU*
+*by LUBAN Théo & PLADEAU Quentin with* :heart: 
