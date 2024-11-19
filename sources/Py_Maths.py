@@ -1,4 +1,4 @@
-from Exo_Equation_deux_inconnues.GestionEqt2Incs import *
+from Eqt2IncsFolder.GestionEqt2Incs import *
 
 # Importation des scripts de mise en age et de gestions autre
 from basePDF import *
@@ -101,8 +101,10 @@ class Generation(object):
             nb12 = random.randint(1,50)
 
 
-            a  = Eqt2Incs(self.doc,nb1, nb2, nb3, nb4, nb5, nb6,nb7, nb8, nb9, nb10, nb11, nb12, i, 1)
+            a  = Eqt2Incs(self.doc,nb1, nb2, nb3, nb4, nb5, nb6, i, 1)
             a.Gestion()
+            b = Eqt2Incs(self.doc,nb7, nb8, nb9, nb10, nb11, nb12, i, 2)
+            b.Gestion()
             self.doc.append(NewPage())
 
         # Création du fichier PDF
