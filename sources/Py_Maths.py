@@ -1,4 +1,4 @@
-from Exo_Equation_deux_inconnues.Equation_2_inconnues import *
+from Exo_Equation_deux_inconnues.GestionEqt2Incs import *
 
 # Importation des scripts de mise en age et de gestions autre
 from basePDF import *
@@ -93,9 +93,15 @@ class Generation(object):
             nb4 = random.randint(1,50)
             nb5 = random.randint(1,50)
             nb6 = random.randint(1,50)
+            nb7 = random.randint(1,50)
+            nb8 = random.randint(1,50)
+            nb9 = random.randint(1,50)
+            nb10 = random.randint(1,50)
+            nb11 = random.randint(1,50)
+            nb12 = random.randint(1,50)
 
 
-            a  = Eqt2Incs(self.doc,nb1, nb2, nb3, nb4, nb5, nb6, i, 1)
+            a  = Eqt2Incs(self.doc,nb1, nb2, nb3, nb4, nb5, nb6,nb7, nb8, nb9, nb10, nb11, nb12, i, 1)
             a.Gestion()
             self.doc.append(NewPage())
 
