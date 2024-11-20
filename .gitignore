@@ -1,0 +1,9 @@
+/sources/.venv
+/sources/__pycache__
+/sources/Exo_Equation_deux_inconnues/__pycache__
+/sources/Exo_Equation_premier_degre/__pycache__
+/sources/Exo_polynome_second_degre/__pycache__
+/sources/Module_Gestion/__pycache__
+*pdf
+*tex
+/test
