@@ -18,7 +18,7 @@ import math
 import random
 
 # Modle de convertion / création des formules / la forme
-import latexify
+# import latexify
 from sympy import *
 
 

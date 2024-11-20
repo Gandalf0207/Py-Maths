@@ -1,183 +1,115 @@
-# Module de création du Fichier Tex et convertion en pdf et autre
-from pylatex import *
-from pylatex.utils import *
-
-# Module de GUI de python
-from tkinter import *
-
-#Modules de création, graphes, courbes.....
-# backend_pdf est importé directement car il peut causer des problème de création des graphes sur une version pdf depuis un executable (.exe)
-import matplotlib.backends.backend_pdf
-import matplotlib
-import matplotlib.pyplot as plt
-import numpy as np
-
-#Modules de calcul...
-import math
-import random
-
-# Modle de convertion / création des formules / la forme
-import latexify
-from sympy import *
-
-#Module de gestion fichier sur la machine
-import os
-import glob
-
-# Importation des scripts pour les exercices
-from Exo_Equation_premier_degre import Equation_premier_degre
-from Exo_polynome_second_degre import Polynome_second_degre
-from Exo_Equation_deux_inconnues import Equation_2_inconnues
+from Eqt2IncsFolder.GestionEqt2Incs import *
 
 # Importation des scripts de mise en age et de gestions autre
-from Module_Gestion import Hearder_Footer
+from basePDF import *
 from Module_Gestion import Contenue_Page_1
 
+from settings import *
 
-# Paramettres généraux de l'interface graphique
-fenetre = Tk()
-fenetre.title("Py-Maths : Générateur d'exercices")
-fenetre.geometry("800x400")
-bg = '#B3D1F0'
-text = '#111645'
-fenetre.config(bg = bg)
+class GUI(object):
+    def __init__(self) -> None:
+        self.fenetre = Tk()
+        self.fenetre.title("Py-Maths : Générateur d'exercices")
+        self.fenetre.geometry("800x500")
+        self.bg = '#B3D1F0'
+        self.text = '#111645'
+        self.fenetre.config(bg=self.bg)
+
+        self.CheckVar2 = IntVar()
+        self.CheckVar2.set(1)
+
+    def choixExo(self):
+        # Titre de l'interface graphique avec son sous-titre
+        Label_TitrePage = Label(self.fenetre, text="Py-Maths", bg=self.bg, font=("Times New Roman", 20, "bold"), fg=self.text)
+        Label_textpage = Label(self.fenetre, text="Générateur d'exercices de mathématiques avec leurs corrections !", bg=self.bg, font=("Times New Roman", 15), fg='black')
+        Label_TitrePage.pack()
+        Label_textpage.pack()
+
+        # Élément d'entrée utilisateur
+        Label_infos_nb = Label(self.fenetre, text="Équation à deux inconnues, choisissez le nombre d'exo :", borderwidth=0, bg=self.bg)
+        Label_infos_nb.pack(padx=5, pady=5)
+
+        Label_nb = Entry(self.fenetre, textvariable=self.CheckVar2, width=5)
+        Label_nb.pack(pady=5, padx=5)
+
+        # Bouton pour générer l'exercice
+        Label_btn_exo_Thalès = Button(self.fenetre, relief=GROOVE, text='Générer', command=self.generate_pdf)
+        Label_btn_exo_Thalès.pack(pady=5, padx=5)
+
+        # Crédit
+        textCredits = """
+        by Théo LUBAN & Quentin PLADEAU
+        Py-Maths © Tous droits réservés
+        """
+        Label_Credits = Label(self.fenetre, text=textCredits, bg=self.bg, borderwidth=0, font=("Times New Roman", 9, 'italic'))
+        Label_Credits.pack(pady=5, padx=5)
+
+    def getValue(self):
+        return self.CheckVar2.get()
+
+    def generate_pdf(self):
+        generation_instance = Generation()
+        generation_instance.BuildPDF()
+
+    def Build(self):
+        self.choixExo()
+        self.fenetre.mainloop()
 
 
-# Titre de l'interfae graphique avec son sous-titre
-Label_TitrePage = Label(fenetre, text="Py-Maths", bg = bg, font=("Times New Roman", 20, "bold"), fg=text)
-Label_textpage = Label(fenetre, text="Générateur d'exercices de mathématiques avec leurs corrections !", bg = bg, font=("Times New Roman", 15), fg='black')
+class Generation(object):
+    def __init__(self) -> None:
+        # Initialisation des paramètres du PDF
+        geometry_options = {"head": "40pt", "margin": "5mm", "bottom": "0.6cm", "includeheadfoot": True}
+        self.doc = Document(geometry_options=geometry_options)
 
+        # Ajout des paquets nécessaires
+        self.doc.preamble.append(pylatex.Command('usepackage', 'newunicodechar'))
+        self.doc.packages.append(NoEscape("\\usepackage{tkz-tab}"))
+        self.doc.packages.append(NoEscape("\\usepackage{amsmath}"))
 
-def activation():
+        self.doc.preamble.append(pylatex.NoEscape(r'\newunicodechar{∞}{\ensuremath{\infty}}'))
+        self.doc.preamble.append(pylatex.NoEscape(r'\newunicodechar{Δ}{\ensuremath{\Delta}}'))
+        self.doc.preamble.append(pylatex.NoEscape(r'\newunicodechar{α}{\ensuremath{\alpha}}'))
+        self.doc.preamble.append(pylatex.NoEscape(r'\newunicodechar{β}{\ensuremath{\beta}}'))
 
-        # Gestion et suppression des fichiers .pdf pour un nettoyage complet
-        fichier = glob.glob('./*.pdf')
-        for supprimer in fichier:
-                os.remove(supprimer)
+    def BuildPDF(self):
+        typeExo = 'Equation à 2 inconnus'
 
-        # Gestion et suppression des fichiers .tex pour un nettoyage complet
-        fichier = glob.glob('./*.tex')
-        for supprimer in fichier:
-            os.remove(supprimer)
+        # Récupération du nombre d'exercices à générer
+        nb_exo = int(GUI().getValue())
 
+        # Ajout de l'en-tête et du contenu de la première page
+        hp = HeaderFooter(self.doc, typeExo)
+        hp.HeaderFooterPage()
 
-        #Paramettres du pdf 
-        geometry_options = {"head": "40pt",
-                            "margin":"5mm",
-                            "bottom": "0.6cm",
-                            "includeheadfoot": True}
-        doc = Document(geometry_options=geometry_options)
+        Contenue_Page_1.generate_contenue_p1(self.doc)
+        self.doc.append(NewPage())
 
-        # Spécification des librairie latex et caractère qui seront utilisés sous différents formes 
-        doc.preamble.append(pylatex.Command('usepackage', 'newunicodechar'))
-        doc.packages.append(NoEscape("\\usepackage{tkz-tab}"))
-        doc.packages.append(NoEscape("\\usepackage{amsmath}"))
-
-        doc.preamble.append(pylatex.NoEscape(r'\newunicodechar{∞}{\ensuremath{\infty}}'))
-        doc.preamble.append(pylatex.NoEscape(r'\newunicodechar{Δ}{\ensuremath{\Delta}}'))
-        doc.preamble.append(pylatex.NoEscape(r'\newunicodechar{α}{\ensuremath{\alpha}}'))
-        doc.preamble.append(pylatex.NoEscape(r'\newunicodechar{β}{\ensuremath{\beta}}'))
-
-
-        # On recupère la valeur du bouton sélectioné de tkinter et on en déduit le type d'éxo
-        value_type_exo = CheckVar1.get()
-        type_exo = ''
-        if value_type_exo =='1':
-                type_exo = 'Polynôme du second degre'
-        if value_type_exo =="2":
-                type_exo = 'Equation premier degre'
-        if value_type_exo =='3':
-                type_exo = 'Equation à 2 inconnus'
-        
-        # On recupère le nombre d'exos souhaités
-        nb_exo = CheckVar2.get()
-            
-        # On fait appel au scripts qui permettent la mise en page
-        appel1 = Hearder_Footer.generate_header(doc, type_exo)
-        appel2 = Contenue_Page_1.generate_contenue_p1(doc)
-        doc.append(NewPage())
-        
-        # On fait tourner la boucle pour générer le nombre d'exercices demandés en appelant à chaque fois le bon script
+        # Génération des exercices
         for i in range(nb_exo):
-                if value_type_exo =='1':
-                        appel = Polynome_second_degre.write(doc, i)
-                        doc.append(NewPage())
-
-                elif value_type_exo =="2":
-                        appel = Equation_premier_degre.write(doc, i)
-                        doc.append(NewPage())
-
-                elif value_type_exo=='3':
-                        appel = Equation_2_inconnues.write(doc,i)
-                        doc.append(NewPage())
-                        
-
-
-        # création du fichier en .tex puis sans conversion en .pdf en spécifiant le compilateur, ici : pdf LaTaTex
-        doc.generate_pdf(f"Py-Maths_{type_exo}" , clean_tex=False, compiler="pdfLaTex")
+            nb1 = random.randint(1,50)
+            nb2 = random.randint(1,50)
+            nb3 = random.randint(1,50)
+            nb4 = random.randint(1,50)
+            nb5 = random.randint(1,50)
+            nb6 = random.randint(1,50)
+            nb7 = random.randint(1,50)
+            nb8 = random.randint(1,50)
+            nb9 = random.randint(1,50)
+            nb10 = random.randint(1,50)
+            nb11 = random.randint(1,50)
+            nb12 = random.randint(1,50)
 
 
+            a  = Eqt2Incs(self.doc,nb1, nb2, nb3, nb4, nb5, nb6, i, 1)
+            a.Gestion()
+            b = Eqt2Incs(self.doc,nb7, nb8, nb9, nb10, nb11, nb12, i, 2)
+            b.Gestion()
+            self.doc.append(NewPage())
 
-# Création des elements du GUI
-Label_infos_nb = Label(fenetre, text="Choisissez le nombre d'exos que vous souhaitez :", borderwidth=0, bg = bg)
-CheckVar2 = IntVar()
-Label_nb = Entry(fenetre, textvariable=CheckVar2, width=5)
-
-
-Label_infos_exos = Label(fenetre, text="Choisissez votre type d'exos :", borderwidth=0, bg = bg)
-CheckVar1 = StringVar()
-Label_box_exo = Label(fenetre, relief=GROOVE, borderwidth=0, bg = bg)
-
-Label_btn_exo_poly2degre = Radiobutton(Label_box_exo, relief=GROOVE, text='Polynôme du second degré',variable=CheckVar1, value="1", borderwidth=0)
-Label_btn_exo_Equation_Inéquation_premier_degre= Radiobutton(Label_box_exo, relief=GROOVE, text='Équation premier degre',variable=CheckVar1, value="2", borderwidth=0)
-Label_btn_exo_Thalès = Radiobutton(Label_box_exo, relief=GROOVE, text='Équation à deux inconnues',variable=CheckVar1, value="3", borderwidth=0)
+        # Création du fichier PDF
+        self.doc.generate_pdf(f"Py-Maths_{typeExo}", clean_tex=False, compiler="pdfLaTex")
 
 
-Label_btn_valider = Button(fenetre, text='Générer',borderwidth=1, command=activation)
-
-Label_Credits = Label(fenetre, text="by Théo LUBAN & Quentin PLADEAU", bg = bg, borderwidth=0, font=("Times New Roman", 9,'italic'))
-
-
-
-fenetre.columnconfigure(0, weight=1)
-fenetre.columnconfigure(3, weight=1)
-
-Label_TitrePage.grid(column= 1,row=0,columnspan=2, pady=5)
-Label_textpage.grid(column= 1,row=1, columnspan=2, pady=5 )
-
-Label_infos_nb.grid(column=1,row=2, sticky='NE', padx=5, pady=15)
-Label_nb.grid(column=2,row=2,sticky='NW', pady=15)
-
-
-Label_infos_exos.grid(column=1,row=3, sticky='NE' ,padx=5, pady=15)
-
-Label_box_exo.grid(column=2, row=3 , sticky='NW', pady=15)
-Label_btn_exo_poly2degre.grid(pady=2, sticky='W')
-Label_btn_exo_Equation_Inéquation_premier_degre.grid(pady=2, sticky='W')
-Label_btn_exo_Thalès.grid(pady=2, sticky='W')
-
-
-
-Label_btn_valider.grid(column=1, columnspan=2 ,pady=25)
-Label_Credits.grid( column=2, sticky='S', pady=15)
-
-fenetre.mainloop()
-
-
-
-
-### INFOS GÉNÉRALES
-
-# Un fichier "Main.py" qui centralise toutes les actions
-# Un fichier "nomexo.py" par exercice qui permet de générer de A à Z l'exercice
-# Un fichier de page d'acceuil
-# Un fichier d'entête et pied de page
-
-# Nettoyage des fichiers généré : .tex et .pdf pour éviter les problème de place dans le lieu de création des fichiers
-
-
-
-# A FAIRE POUR LE FUTURE DU PROJET / 
-
-        # Le script 'Pôlynome_second_degré.py" est à reprendre car il utilise latexify et donc limite à 3.11 de python
-        # Pour reprendre le fichier >>> utiliser l'écriture brute en latex depuis python : doc.append(NoEscape("\\ \\\\" % ()))
+if __name__ == "__main__":
+    GUI().Build()
