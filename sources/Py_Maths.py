@@ -1,4 +1,5 @@
 from Eqt2IncsFolder.GestionEqt2Incs import *
+from Eqt1degFolder.GestionEqt1deg import *
 
 # Importation des scripts de mise en age et de gestions autre
 from basePDF import *
@@ -26,8 +27,9 @@ class GUI(object):
         Label_textpage.pack()
 
         # Élément d'entrée utilisateur
-        Label_infos_nb = Label(self.fenetre, text="Équation à deux inconnues, choisissez le nombre d'exo :", borderwidth=0, bg=self.bg)
+        Label_infos_nb = Label(self.fenetre, text="Choisissez le nombre d'exo et type d'exo :", borderwidth=0, bg=self.bg)
         Label_infos_nb.pack(padx=5, pady=5)
+
 
         Label_nb = Entry(self.fenetre, textvariable=self.CheckVar2, width=5)
         Label_nb.pack(pady=5, padx=5)
@@ -43,6 +45,7 @@ class GUI(object):
         """
         Label_Credits = Label(self.fenetre, text=textCredits, bg=self.bg, borderwidth=0, font=("Times New Roman", 9, 'italic'))
         Label_Credits.pack(pady=5, padx=5)
+
 
     def getValue(self):
         return self.CheckVar2.get()
@@ -73,7 +76,12 @@ class Generation(object):
         self.doc.preamble.append(pylatex.NoEscape(r'\newunicodechar{β}{\ensuremath{\beta}}'))
 
     def BuildPDF(self):
-        typeExo = 'Equation à 2 inconnus'
+
+        def checkUniqueValuesList(liste):
+            return len(liste) == len(set(liste)) # check de si toutes les valeurs sont uniques
+        
+
+        typeExo = "tttt"
 
         # Récupération du nombre d'exercices à générer
         nb_exo = int(GUI().getValue())
@@ -87,25 +95,56 @@ class Generation(object):
 
         # Génération des exercices
         for i in range(nb_exo):
-            nb1 = random.randint(1,50)
-            nb2 = random.randint(1,50)
-            nb3 = random.randint(1,50)
-            nb4 = random.randint(1,50)
-            nb5 = random.randint(1,50)
-            nb6 = random.randint(1,50)
-            nb7 = random.randint(1,50)
-            nb8 = random.randint(1,50)
-            nb9 = random.randint(1,50)
-            nb10 = random.randint(1,50)
-            nb11 = random.randint(1,50)
-            nb12 = random.randint(1,50)
+            liste = []
+            nb1 = random.randint(2,50)
+            nb2 = random.randint(2,50)
+            nb3 = random.randint(2,50)
+            nb4 = random.randint(2,50)
+            nb5 = random.randint(2,50)
+            nb6 = random.randint(2,50)
+            nb7 = random.randint(2,50)
+            nb8 = random.randint(2,50)
+            nb9 = random.randint(2,50)
+            nb12 = random.randint(2,50)
+            nb10 = random.randint(2,50)
+            nb11 = random.randint(2,50)
+        
+            liste = [nb1, nb2, nb3, nb4, nb5, nb6, nb7, nb8, nb9, nb10, nb11, nb12]
 
 
-            a  = Eqt2Incs(self.doc,nb1, nb2, nb3, nb4, nb5, nb6, i, 1)
+            while not checkUniqueValuesList(liste):
+                liste= []
+
+                nb1 = random.randint(2,50)
+                nb2 = random.randint(2,50)
+                nb3 = random.randint(2,50)
+                nb4 = random.randint(2,50)
+                nb5 = random.randint(2,50)
+                nb6 = random.randint(2,50)
+                nb7 = random.randint(2,50)
+                nb8 = random.randint(2,50)
+                nb9 = random.randint(2,50)
+                nb12 = random.randint(2,50)
+                nb10 = random.randint(2,50)
+                nb11 = random.randint(2,50)
+
+                liste = [nb1, nb2, nb3, nb4, nb5, nb6, nb7, nb8, nb9, nb10, nb11, nb12]
+
+            # Equations 2 inconnus
+            # a  = Eqt2Incs(self.doc,nb1, nb2, nb3, nb4, nb5, nb6, i, 1)
+            # a.Gestion()
+            # b = Eqt2Incs(self.doc,nb7, nb8, nb9, nb10, nb11, nb12, i, 2)
+            # b.Gestion()
+
+            # Equation 1 degré
+            a = Eqt1deg(self.doc, nb1, nb2, nb3, nb4, nb5, nb6, i, 1)
             a.Gestion()
-            b = Eqt2Incs(self.doc,nb7, nb8, nb9, nb10, nb11, nb12, i, 2)
+
+            b = Eqt1deg(self.doc, nb1, nb2, nb3, nb4, nb5, nb6, i, 2)
             b.Gestion()
-            self.doc.append(NewPage())
+
+
+
 
         # Création du fichier PDF
         self.doc.generate_pdf(f"Py-Maths_{typeExo}", clean_tex=False, compiler="pdfLaTex")
