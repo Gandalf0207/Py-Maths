@@ -1,5 +1,6 @@
 from Eqt2IncsFolder.GestionEqt2Incs import *
 from Eqt1degFolder.GestionEqt1deg import *
+from Poly2defFolder.GestionPoly2deg import *
 
 # Importation des scripts de mise en age et de gestions autre
 from basePDF import *
@@ -69,11 +70,14 @@ class Generation(object):
         self.doc.preamble.append(pylatex.Command('usepackage', 'newunicodechar'))
         self.doc.packages.append(NoEscape("\\usepackage{tkz-tab}"))
         self.doc.packages.append(NoEscape("\\usepackage{amsmath}"))
+        self.doc.packages.append(NoEscape("\\usepackage[utf8]{inputenc}"))
+        self.doc.packages.append(NoEscape("\\usepackage{enumitem}"))
 
         self.doc.preamble.append(pylatex.NoEscape(r'\newunicodechar{∞}{\ensuremath{\infty}}'))
         self.doc.preamble.append(pylatex.NoEscape(r'\newunicodechar{Δ}{\ensuremath{\Delta}}'))
         self.doc.preamble.append(pylatex.NoEscape(r'\newunicodechar{α}{\ensuremath{\alpha}}'))
         self.doc.preamble.append(pylatex.NoEscape(r'\newunicodechar{β}{\ensuremath{\beta}}'))
+
 
     def BuildPDF(self):
 
@@ -92,6 +96,9 @@ class Generation(object):
 
         Contenue_Page_1.generate_contenue_p1(self.doc)
         self.doc.append(NewPage())
+        a = 2
+        b = -1
+        c = 1
 
         # Génération des exercices
         for i in range(nb_exo):
@@ -137,13 +144,14 @@ class Generation(object):
             # b.Gestion()
 
             # Equation 1 degré
-            a = Eqt1deg(self.doc, nb1, nb2, nb3, nb4, nb5, nb6, i, 1)
-            a.Gestion()
+            # a = Eqt1deg(self.doc, nb1, nb2, nb3, nb4, nb5, nb6, i, 1)
+            # a.Gestion()
 
-            b = Eqt1deg(self.doc, nb1, nb2, nb3, nb4, nb5, nb6, i, 2)
-            b.Gestion()
+            # b = Eqt1deg(self.doc, nb1, nb2, nb3, nb4, nb5, nb6, i, 2)
+            # b.Gestion()
 
-
+            c = Poly2deg(self.doc,i, a, b, c )
+            c.Gestion()
 
 
         # Création du fichier PDF
