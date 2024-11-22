@@ -36,7 +36,20 @@ class Poly2degNv(object):
             self.doc.append(NoEscape("\\ f(x) =  %sx^2 + %sy + %s \\\\" % (self.a, self.b, self.c)))
             self.doc.append(NoEscape("\\\\"))
             self.doc.append(NoEscape("\\end{align*}"))
-     
+
+    def SimplificationDeltaRacines(self, num, den):
+        num = num
+        den = den
+
+        if isinstance(num, int) and isinstance(den, int):
+            # Trouver le plus grand commun diviseur (PGCD)
+            facteur_commun = gcd(int(num), den)
+            num //= facteur_commun
+            den //= facteur_commun
+    
+        # Retour sous forme de fraction lisible
+        return num, den
+
     def CreateExoPoly2degNv(self):
         with self.doc.create(Section(f" Exo Polynôme du second degré n°{self.i+1}", numbering = False)):
                 # pour chauque niveau on crée un environement avec la librairie amsmaths (latex) : begin{align*} et end{align*}
@@ -126,11 +139,31 @@ class Poly2degNv(object):
             self.doc.append(NoEscape("\\item $\\text{Si Δ = 0, il y a une solution réelle unique (racine double)}$"))
             self.doc.append(NoEscape("\\item $\\text{Si Δ < 0, il n'y a pas de solution réelle, mais deyx soltions complexes}$"))
             self.doc.append(NoEscape("\\end{itemize}"))
-            
+            self.doc.append(NoEscape("\\\\"))
+
 
             # terminer delta    
             if deltaValue > 0:
                 self.doc.append(NoEscape("\\ \\parbox{ 450 pt}{ Ici Δ > 0, donc il y a \\textbf{deux solutions réelles distinctes} données par : }"))
+                self.doc.append(NoEscape("\\begin{align*}"))            
+                self.doc.append(NoEscape("\\ x1 = \\frac{-b - \\sqrt{Δ} }{2 \\cdot a}  ,  x2 = \\frac{-b + \\sqrt{Δ} }{2 \\cdot a} \\\\ "))
+                self.doc.append(NoEscape("\\\\"))
+                self.doc.append(NoEscape("\\end{align*}"))  
+                
+                self.doc.append(NoEscape("\\ \\parbox{ 450 pt}{ \\text{Calculons :}"))
+                self.doc.append(NoEscape("\\begin{align*}"))
+                num, den = self.SimplificationDeltaRacines(-self.b-sqrt(deltaValue), 2*self.a)
+                x1Value = (num) / (den)
+                if den ==1:            
+                    self.doc.append(NoEscape("\\ x1 &= \\frac{-(%s) - \\sqrt{%s} }{2 \\cdot %s}  &=  %s \\\\"% (self.b, deltaValue, self.a, num)))
+                elif float(x1Value) == round(x1Value,0) or float(x1Value) == round(x1Value,1) or float(x1Value) == round(x1Value,2):
+                    self.doc.append(NoEscape("\\ x1 &= \\frac{-(%s) - \\sqrt{%s} }{2 \\cdot %s}  &=  %s \\\\"% (self.b, deltaValue, self.a, x1Value)))
+                else : 
+                    self.doc.append(NoEscape("\\ x1 &= \\frac{-(%s) - \\sqrt{%s} }{2 \\cdot %s}  &=  \\frac{%s}{%s} \\\\"% (self.b, deltaValue, self.a, num, den)))
+
+                self.doc.append(NoEscape("\\\\"))
+                self.doc.append(NoEscape("\\end{align*}"))
+
             elif deltaValue == 0:
                 self.doc.append(NoEscape("\\ \\parbox{ 450 pt}{ Ici Δ = 0, donc il y a \\textbf{une solution réelle unique (racine double)} données par : }"))
             else:

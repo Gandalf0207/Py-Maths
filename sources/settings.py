@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 #Modules de calcul...
-import math
+from math import *
 import random
 
 # Modle de convertion / création des formules / la forme

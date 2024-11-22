@@ -97,7 +97,7 @@ class Generation(object):
         Contenue_Page_1.generate_contenue_p1(self.doc)
         self.doc.append(NewPage())
         a = 2
-        b = -1
+        b = -4
         c = 1
 
         # Génération des exercices
