@@ -133,41 +133,99 @@ class Poly2degNv(object):
             self.doc.append(NoEscape("\\end{align*}"))  
 
         # solus delta
-            self.doc.append(NoEscape("\\ \\parbox{ 450pt }{\\textbf{Etape 4 : Trouver la/les solution(s) possible(s) de Δ} \\\\ Les solutions dépendent de la valeur de Δ :}"))
-            self.doc.append(NoEscape("\\begin{itemize}[label=\\textbullet]"))
+            self.doc.append(NoEscape("\\parbox{ 450pt }{\\textbf{Etape 4 : Trouver la/les solution(s) possible(s) de Δ} \\\\ Les solutions dépendent de la valeur de Δ :}"))
+            self.doc.append(NoEscape("{\\renewcommand{\\labelitemi}{\\textbullet}"))
+            self.doc.append(NoEscape("\\begin{itemize}"))
             self.doc.append(NoEscape("\\item $\\text{Si Δ > 0, il y a deux solutions réelles distinctes.}$"))
-            self.doc.append(NoEscape("\\item $\\text{Si Δ = 0, il y a une solution réelle unique (racine double)}$"))
-            self.doc.append(NoEscape("\\item $\\text{Si Δ < 0, il n'y a pas de solution réelle, mais deyx soltions complexes}$"))
+            self.doc.append(NoEscape("\\item $\\text{Si Δ = 0, il y a une solution réelle unique (racine double).}$"))
+            self.doc.append(NoEscape("\\item $\\text{Si Δ < 0, il n'y a pas de solution réelle, mais deux solutions complexes.}$"))
             self.doc.append(NoEscape("\\end{itemize}"))
-            self.doc.append(NoEscape("\\\\"))
+            self.doc.append(NoEscape("\\ }"))  # Ferme la redéfinition temporaire de labelitemi
+            self.doc.append(NoEscape("  \\\\"))
 
 
             # terminer delta    
             if deltaValue > 0:
-                self.doc.append(NoEscape("\\ \\parbox{ 450 pt}{ Ici Δ > 0, donc il y a \\textbf{deux solutions réelles distinctes} données par : }"))
+                self.doc.append(NoEscape("\\ \\parbox{ 450pt }{Ici Δ > 0, donc il y a \\textbf{deux solutions réelles distinctes} données par : }"))
                 self.doc.append(NoEscape("\\begin{align*}"))            
                 self.doc.append(NoEscape("\\ x1 = \\frac{-b - \\sqrt{Δ} }{2 \\cdot a}  ,  x2 = \\frac{-b + \\sqrt{Δ} }{2 \\cdot a} \\\\ "))
                 self.doc.append(NoEscape("\\\\"))
                 self.doc.append(NoEscape("\\end{align*}"))  
                 
-                self.doc.append(NoEscape("\\ \\parbox{ 450 pt}{ \\text{Calculons :}"))
+                self.doc.append(NoEscape("\\ \\parbox{ 450pt }{\\text{Calculons :}}"))
                 self.doc.append(NoEscape("\\begin{align*}"))
-                num, den = self.SimplificationDeltaRacines(-self.b-sqrt(deltaValue), 2*self.a)
-                x1Value = (num) / (den)
-                if den ==1:            
-                    self.doc.append(NoEscape("\\ x1 &= \\frac{-(%s) - \\sqrt{%s} }{2 \\cdot %s}  &=  %s \\\\"% (self.b, deltaValue, self.a, num)))
-                elif float(x1Value) == round(x1Value,0) or float(x1Value) == round(x1Value,1) or float(x1Value) == round(x1Value,2):
-                    self.doc.append(NoEscape("\\ x1 &= \\frac{-(%s) - \\sqrt{%s} }{2 \\cdot %s}  &=  %s \\\\"% (self.b, deltaValue, self.a, x1Value)))
-                else : 
-                    self.doc.append(NoEscape("\\ x1 &= \\frac{-(%s) - \\sqrt{%s} }{2 \\cdot %s}  &=  \\frac{%s}{%s} \\\\"% (self.b, deltaValue, self.a, num, den)))
+
+                # x1
+                num, den = self.SimplificationDeltaRacines(-self.b - sqrt(deltaValue), 2 * self.a)
+                x1Value = num / den
+                if den == 1:            
+                    self.doc.append(NoEscape("\\ x1 = \\frac{-(%s) - \\sqrt{%s} }{2 \\cdot %s}  &=  %s \\\\" % (self.b, deltaValue, self.a, num)))
+                elif abs(x1Value - round(x1Value, 2)) < 1e-10:
+                    self.doc.append(NoEscape("\\ x1 = \\frac{-(%s) - \\sqrt{%s} }{2 \\cdot %s}  &=  %s \\\\" % (self.b, deltaValue, self.a, round(x1Value, 2))))
+                else: 
+                    self.doc.append(NoEscape("\\ x1 = \\frac{-(%s) - \\sqrt{%s} }{2 \\cdot %s}  &\\approx  \\frac{%s}{%s} \\\\" % (self.b, deltaValue, self.a, round(float(num),2), round(float(den),2))))
+
+                # x2
+                num2, den2 = self.SimplificationDeltaRacines(-self.b + sqrt(deltaValue), 2 * self.a)
+                x2Value = num2 / den2
+                if den2 == 1:            
+                    self.doc.append(NoEscape("\\ x2 = \\frac{-(%s) + \\sqrt{%s} }{2 \\cdot %s}  &=  %s \\\\" % (self.b, deltaValue, self.a, num2)))
+                elif abs(x2Value - round(x2Value, 2)) < 1e-10:
+                    self.doc.append(NoEscape("\\ x2 = \\frac{-(%s) + \\sqrt{%s} }{2 \\cdot %s}  &=  %s \\\\" % (self.b, deltaValue, self.a, round(x2Value, 2))))
+                else: 
+                    self.doc.append(NoEscape("\\ x2 = \\frac{-(%s) + \\sqrt{%s} }{2 \\cdot %s}  &\\approx  \\frac{%s}{%s} \\\\" % (self.b, deltaValue, self.a, round(float(num2),2), round(float(den2),2))))
 
                 self.doc.append(NoEscape("\\\\"))
                 self.doc.append(NoEscape("\\end{align*}"))
 
             elif deltaValue == 0:
                 self.doc.append(NoEscape("\\ \\parbox{ 450 pt}{ Ici Δ = 0, donc il y a \\textbf{une solution réelle unique (racine double)} données par : }"))
+
+                self.doc.append(NoEscape("\\begin{align*}"))            
+                self.doc.append(NoEscape("\\ x = \\frac{-b}{2 \\codt a} \\\\ "))
+                self.doc.append(NoEscape("\\\\"))
+                self.doc.append(NoEscape("\\end{align*}"))  
+
+                self.doc.append(NoEscape("\\ \\parbox{ 450pt }{\\text{Calculons :}}"))
+                self.doc.append(NoEscape("\\begin{align*}"))
+
+                num, den = self.SimplificationDeltaRacines(-self.b, 2 * self.a)
+                x1Value = num / den
+                if den == 1:            
+                    self.doc.append(NoEscape("\\ x = \\frac{-(%s)}{2 \\cdot %s}  &=  %s \\\\" % (self.b, self.a, num)))
+                elif abs(x1Value - round(x1Value, 2)) < 1e-10:
+                    self.doc.append(NoEscape("\\ x = \\frac{-(%s)}{2 \\cdot %s}  &=  %s \\\\" % (self.b, self.a, round(x1Value, 2))))
+                else: 
+                    self.doc.append(NoEscape("\\ x = \\frac{-(%s) }{2 \\cdot %s}  &\\approx  \\frac{%s}{%s} \\\\" % (self.b, self.a, round(float(num),2), round(float(den),2))))
+
             else:
                 self.doc.append(NoEscape("\\ \\parbox{ 450 pt}{ Ici Δ < 0, donc il n'y a \\textbf{aucune solution réelle}}"))
+
+                self.doc.append(NoEscape("\\begin{align*}"))            
+                self.doc.append(NoEscape("\\ x = \\emptyset \\\\ "))
+                self.doc.append(NoEscape("\\\\"))
+                self.doc.append(NoEscape("\\end{align*}"))
+
+        # forme canonique
+            self.doc.append(NoEscape("\\parbox{ 450pt }{\\textbf{Etape 5 : Déterminer la forme canonique} \\\\ La forme canonique d’un polynôme est donnée par :}"))
+            self.doc.append(NoEscape("\\begin{align*}"))            
+            self.doc.append(NoEscape("\\ f(x) = a(x - α)^2 + β \\\\"))
+            self.doc.append(NoEscape("\\\\"))
+            self.doc.append(NoEscape("\\end{align*}"))
+
+
+            self.doc.append(NoEscape("\\ \\parbox{ 450 pt}{ \\text{Ainsi, la forme canonique est :}}"))
+            self.doc.append(NoEscape("\\begin{align*}"))            
+            self.doc.append(NoEscape("\\ f(x) = %s(x - %s)^2 + (%s) \\\\" % (self.a, self.a, round(betaValue,2))))
+            self.doc.append(NoEscape("\\\\"))
+            self.doc.append(NoEscape("\\end{align*}")) 
+
+        # forme canonique
+            self.doc.append(NoEscape("\\parbox{ 450pt }{\\textbf{Etape 6 : Déterminer le sommet $S$} \\\\ Le sommet $S$ est donné par les coordonnées (α,β). \\\\ Ici α = %s et β = %s donc : }" % (self.a, round(betaValue,2))))
+            self.doc.append(NoEscape("\\begin{align*}"))            
+            self.doc.append(NoEscape("\\ S = (%s, %s) \\\\" % (self.a, round(betaValue,2))))
+            self.doc.append(NoEscape("\\\\"))
+            self.doc.append(NoEscape("\\end{align*}"))
 
 
 
