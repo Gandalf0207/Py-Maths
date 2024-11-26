@@ -19,52 +19,30 @@ class Poly2degNv(object):
             a,b=b,a%b
         return a
 
-    def WritePoly(self):
+    def WritePoly(self, element = "x"):
         
         if self.b < 0 or self.c < 0:
             if self.b < 0 and self.c < 0:
                 self.doc.append(NoEscape("\\begin{align*}"))
-                self.doc.append(NoEscape("\\ f(x) =  %sx^2  %sx  %s \\\\" % (self.a, self.b, self.c)))
+                self.doc.append(NoEscape("\\ f(%s) =  %s%s^2  %s%s  %s \\\\" % (element, self.a, element, self.b, element, self.c)))
                 self.doc.append(NoEscape("\\\\"))
                 self.doc.append(NoEscape("\\end{align*}"))
             elif self.b < 0:
                 self.doc.append(NoEscape("\\begin{align*}"))
-                self.doc.append(NoEscape("\\ f(x) =  %sx^2  %sx + %s \\\\" % (self.a, self.b, self.c)))
+                self.doc.append(NoEscape("\\ f(%s) =  %s%s^2  %s%s + %s \\\\" % (element, self.a, element, self.b, element, self.c)))
                 self.doc.append(NoEscape("\\\\"))
                 self.doc.append(NoEscape("\\end{align*}"))
             else:
                 self.doc.append(NoEscape("\\begin{align*}"))
-                self.doc.append(NoEscape("\\ f(x) =  %sx^2 + %sx  %s \\\\" % (self.a, self.b, self.c)))
+                self.doc.append(NoEscape("\\ f(%s) =  %s%s^2 + %s%s  %s \\\\" % (element, self.a, element, self.b, element, self.c)))
                 self.doc.append(NoEscape("\\\\"))
                 self.doc.append(NoEscape("\\end{align*}"))
         else:
             self.doc.append(NoEscape("\\begin{align*}"))
-            self.doc.append(NoEscape("\\ f(x) =  %sx^2 + %sx + %s \\\\" % (self.a, self.b, self.c)))
+            self.doc.append(NoEscape("\\ f(%s) =  %s%s^2 + %s%s + %s \\\\" % (element, self.a, element, self.b, element, self.c)))
             self.doc.append(NoEscape("\\\\"))
             self.doc.append(NoEscape("\\end{align*}"))
 
-    def WritePolyBeta(self, element):
-        if self.b < 0 or self.c < 0:
-            if self.b < 0 and self.c < 0:
-                self.doc.append(NoEscape("\\begin{align*}"))
-                self.doc.append(NoEscape("\\ β =  %s \\cdot (%s)^2  %s \\cdot (%s)  %s \\\\" % (element, self.a, element, self.b, self.c)))
-                self.doc.append(NoEscape("\\\\"))
-                self.doc.append(NoEscape("\\end{align*}"))
-            elif self.b < 0:
-                self.doc.append(NoEscape("\\begin{align*}"))
-                self.doc.append(NoEscape("\\ β =  %s \\cdot (%s)^2  %s \\cdot (%s) + %s \\\\" % (element, self.a, element, self.b, self.c)))
-                self.doc.append(NoEscape("\\\\"))
-                self.doc.append(NoEscape("\\end{align*}"))
-            else:
-                self.doc.append(NoEscape("\\begin{align*}"))
-                self.doc.append(NoEscape("\\ β =  %s \\cdot (%s)^2 + %s \\cdot (%s)  %s \\\\" % (element, self.a, element, self.b, self.c)))
-                self.doc.append(NoEscape("\\\\"))
-                self.doc.append(NoEscape("\\end{align*}"))
-        else:
-            self.doc.append(NoEscape("\\begin{align*}"))
-            self.doc.append(NoEscape("\\ β =  %s \\cdot (%s)^2 + %s \\cdot (%s) + %s \\\\" % (element, self.a, element, self.b, self.c)))
-            self.doc.append(NoEscape("\\\\"))
-            self.doc.append(NoEscape("\\end{align*}"))   
 
     def SimplificationDeltaRacines(self, num, den):
         num = num
@@ -124,18 +102,27 @@ class Poly2degNv(object):
             self.WritePoly()
 
         # alpha value
-            self.doc.append(NoEscape("\\  \\parbox{ 450pt }{ \\textbf{Etape 1 : Donner la valeur de α } \\\\ La valeur de α est calculée comme suit :}"))
+            self.doc.append(NoEscape("\\  \\parbox{ 450pt }{ \\textbf{Etape 1 : Donner la valeur de α } \\\\ La valeur de α est calculée avec cette formule :}"))
             self.doc.append(NoEscape("\\begin{align*}"))
             self.doc.append(NoEscape("\\ α = - \\frac{ b }{ 2 \\cdot a } \\\\"))
             self.doc.append(NoEscape("\\\\"))
             self.doc.append(NoEscape("\\end{align*}"))  
 
             self.doc.append(NoEscape("\\ \\parbox{ 450 pt}{ \\text{En remplaçant : }}"))
-            self.doc.append(NoEscape("\\begin{align*}"))            
-            alphaValue = (- (self.b / (2*self.a)))
-            self.doc.append(NoEscape("\\ β &= - \\frac{%s}{2 \\cdot (%s)} \\\\" % (self.b, self.a)))
-            if float(alphaValue) == round(alphaValue,0) or float(alphaValue) == round(alphaValue,1) or float(alphaValue) == round(alphaValue,2):
-                self.doc.append(NoEscape("\\ β &= %s \\\\" % (alphaValue)))   # on affiche que si c'est pas un nombre à virgule fini
+            self.doc.append(NoEscape("\\begin{align*}"))  
+            self.doc.append(NoEscape("\\ α &=  \\frac{- (%s)}{2 \\cdot (%s)} \\\\" % (self.b, self.a)))
+
+            numAlpha = -self.b
+            denAlpha = 2*self.a
+            division = self.pgcd(numAlpha, denAlpha)
+            numAlpha = numAlpha // division
+            denAlpha = denAlpha // division
+
+            if denAlpha == 1:
+                self.doc.append(NoEscape("\\ α &= %s \\\\"%(numAlpha)))
+            else:
+                self.doc.append(NoEscape("\\ α &= \\frac{%s}{%s} \\\\" % (numAlpha, denAlpha)))
+
             self.doc.append(NoEscape("\\\\"))
             self.doc.append(NoEscape("\\end{align*}"))  
 
@@ -150,25 +137,78 @@ class Poly2degNv(object):
             self.doc.append(NoEscape("\\ \\parbox{ 450 pt}{ \\text{Ici $a$ = %s, $b$ = %s, $c$ = %s. Calculons : }}" % (self.a, self.b, self.c)))
             self.doc.append(NoEscape("\\begin{align*}"))
             deltaValue = self.b**2 - 4*self.a*self.c
-            self.doc.append(NoEscape("\\ Δ &= %s^2 - 4 \\cdot (%s) \\cdot (%s) \\\\" % (self.b, self.a, self.c)))
+            self.doc.append(NoEscape("\\ Δ &= (%s)^2 - 4 \\cdot (%s) \\cdot (%s) \\\\" % (self.b, self.a, self.c)))
             self.doc.append(NoEscape("\\ Δ &= %s \\\\" % (deltaValue)))
             self.doc.append(NoEscape("\\\\"))
             self.doc.append(NoEscape("\\end{align*}"))
 
+
         # # beta value
-            self.doc.append(NoEscape("\\  \\parbox{ 450pt }{ \\textbf{Etape 3 : Donner la valeur de β } \\\\ La valeur de β est calculée comme suit :}"))
+            self.doc.append(NoEscape("\\  \\parbox{ 450pt }{ \\textbf{Etape 3 : Donner la valeur de β } \\\\ La valeur de β est calculée avec cette formule :}"))
             self.doc.append(NoEscape("\\begin{align*}"))
             self.doc.append(NoEscape("\\ β = f(α)  \\\\"))
-            self.doc.append(NoEscape("\\\\"))
             self.doc.append(NoEscape("\\end{align*}"))
-            self.WritePolyBeta("α")
+            self.WritePoly("α")
 
 
-            self.doc.append(NoEscape("\\ \\parbox{ 450 pt}{ \\text{Ici $a$ = %s, $b$ = %s, $c$ = %s. Calculons : }}" % (self.a, self.b, self.c)))
-            self.WritePolyBeta(round(alphaValue,2))
+            self.doc.append(NoEscape("\\ \\parbox{ 450 pt}{ \\text{Calculons : }}"))
+            if denAlpha == 1:
+                if self.b < 0 or self.c < 0:
+                    if self.b < 0 and self.c < 0:
+                        self.doc.append(NoEscape("\\begin{align*}"))
+                        self.doc.append(NoEscape("\\ β =  %s \\cdot (%s)^2  %s \\cdot (%s)  %s \\\\" % (self.a, numAlpha, self.b, numAlpha, self.c)))
+                        self.doc.append(NoEscape("\\\\"))
+                        self.doc.append(NoEscape("\\end{align*}"))
+                    elif self.b < 0:
+                        self.doc.append(NoEscape("\\begin{align*}"))
+                        self.doc.append(NoEscape("\\ β =  %s \\cdot (%s)^2  %s \\cdot (%s) + %s \\\\" % (self.a, numAlpha, self.b, numAlpha, self.c)))
+                        self.doc.append(NoEscape("\\\\"))
+                        self.doc.append(NoEscape("\\end{align*}"))
+                    else:
+                        self.doc.append(NoEscape("\\begin{align*}"))
+                        self.doc.append(NoEscape("\\ β =  %s \\cdot (%s)^2 + %s \\cdot (%s)  %s \\\\" % (self.a, numAlpha, self.b, numAlpha, self.c)))
+                        self.doc.append(NoEscape("\\\\"))
+                        self.doc.append(NoEscape("\\end{align*}"))
+                else:
+                    self.doc.append(NoEscape("\\begin{align*}"))
+                    self.doc.append(NoEscape("\\ β =  %s \\cdot (%s)^2 + %s \\cdot (%s) + %s \\\\" % (self.a, numAlpha, self.b, numAlpha, self.c)))
+                    self.doc.append(NoEscape("\\\\"))
+            else:
+                if self.b < 0 or self.c < 0:
+                    if self.b < 0 and self.c < 0:
+                        self.doc.append(NoEscape("\\begin{align*}"))
+                        self.doc.append(NoEscape("\\ β =  %s \\cdot (\\frac{%s}{%s})^2  %s \\cdot (\\frac{%s}{%s})  %s \\\\" % (self.a, numAlpha, denAlpha, self.b, numAlpha, denAlpha, self.c)))
+                        self.doc.append(NoEscape("\\\\"))
+                        self.doc.append(NoEscape("\\end{align*}"))
+                    elif self.b < 0:
+                        self.doc.append(NoEscape("\\begin{align*}"))
+                        self.doc.append(NoEscape("\\ β =  %s \\cdot (\\frac{%s}{%s})^2  %s \\cdot (\\frac{%s}{%s}) + %s \\\\" % (self.a, numAlpha, denAlpha, self.b, numAlpha, denAlpha, self.c)))
+                        self.doc.append(NoEscape("\\\\"))
+                        self.doc.append(NoEscape("\\end{align*}"))
+                    else:
+                        self.doc.append(NoEscape("\\begin{align*}"))
+                        self.doc.append(NoEscape("\\ β =  %s \\cdot (\\frac{%s}{%s})^2 + %s \\cdot (\\frac{%s}{%s})  %s \\\\" % (self.a, numAlpha, denAlpha, self.b, numAlpha, denAlpha, self.c)))
+                        self.doc.append(NoEscape("\\\\"))
+                        self.doc.append(NoEscape("\\end{align*}"))
+                else:
+                    self.doc.append(NoEscape("\\begin{align*}"))
+                    self.doc.append(NoEscape("\\ β =  %s \\cdot (\\frac{%s}{%s})^2 + %s \\cdot (\\frac{%s}{%s}) + %s \\\\" % (self.a, numAlpha, denAlpha, self.b, numAlpha, denAlpha, self.c)))
+                    self.doc.append(NoEscape("\\\\"))
+
+
             self.doc.append(NoEscape("\\begin{align*}"))
-            betaValue = self.c - (self.b**2 / 4*self.a)
-            self.doc.append(NoEscape("\\ β = %s \\\\" % (round(betaValue,2))))
+            # ne pas oublier de soustraire la fraction à la valeur de c
+            numBeta = self.c * 4*self.a - self.b**2  
+            denBeta = 4*self.a
+            division = self.pgcd(numBeta, denBeta)
+            numBeta = numBeta // division
+            denBeta = denBeta // division
+
+            if denBeta ==1 : 
+                self.doc.append(NoEscape("\\ β = %s \\\\" % (self.c - denBeta)))
+            else:
+                self.doc.append(NoEscape("\\ β = \\frac{%s}{%s}\\\\" % (numBeta, denBeta)))
+
             self.doc.append(NoEscape("\\\\"))
             self.doc.append(NoEscape("\\end{align*}"))       
 
@@ -250,27 +290,44 @@ class Poly2degNv(object):
 
 
 
+        # forme canonique
+            self.doc.append(NoEscape("\\parbox{ 450pt }{\\textbf{Etape 5 : Déterminer la forme canonique} \\\\ La forme canonique d’un polynôme est donnée par :}"))
+            self.doc.append(NoEscape("\\begin{align*}"))            
+            self.doc.append(NoEscape("\\ f(x) = a(x - α)^2 + β \\\\"))
+            self.doc.append(NoEscape("\\\\"))
+            self.doc.append(NoEscape("\\end{align*}"))
 
-        # # forme canonique
-        #     self.doc.append(NoEscape("\\parbox{ 450pt }{\\textbf{Etape 5 : Déterminer la forme canonique} \\\\ La forme canonique d’un polynôme est donnée par :}"))
-        #     self.doc.append(NoEscape("\\begin{align*}"))            
-        #     self.doc.append(NoEscape("\\ f(x) = a(x - α)^2 + β \\\\"))
-        #     self.doc.append(NoEscape("\\\\"))
-        #     self.doc.append(NoEscape("\\end{align*}"))
 
+            self.doc.append(NoEscape("\\ \\parbox{ 450 pt}{ \\text{Ainsi, la forme canonique est :}}"))
+            self.doc.append(NoEscape("\\begin{align*}"))
+            if denAlpha == 1 or denBeta == 1:
+                if denAlpha == 1 and denBeta == 1:
+                    self.doc.append(NoEscape("\\ f(x) = %s(x - (%s))^2 + (%s) \\\\" % (self.a, numAlpha, numBeta)))
+                elif denBeta == 1 :
+                    self.doc.append(NoEscape("\\ f(x) = %s(x - \\frac{%s}{%s})^2 + (%s) \\\\" % (self.a, numAlpha,denAlpha, numBeta)))
+                elif denAlpha == 1 :
+                    self.doc.append(NoEscape("\\ f(x) = %s(x - (%s))^2 + \\frac{%s}{%s} \\\\" % (self.a, numAlpha, numBeta, denBeta)))
+            else:
+                self.doc.append(NoEscape("\\ f(x) = %s(x - \\frac{%s}{%s})^2 + \\frac{%s}{%s} \\\\" % (self.a, numAlpha, denAlpha, numBeta, denBeta)))
 
-        #     self.doc.append(NoEscape("\\ \\parbox{ 450 pt}{ \\text{Ainsi, la forme canonique est :}}"))
-        #     self.doc.append(NoEscape("\\begin{align*}"))            
-        #     self.doc.append(NoEscape("\\ f(x) = %s(x - %s)^2 + (%s) \\\\" % (self.a, self.a, round(betaValue,2))))
-        #     self.doc.append(NoEscape("\\\\"))
-        #     self.doc.append(NoEscape("\\end{align*}")) 
+            self.doc.append(NoEscape("\\\\"))
+            self.doc.append(NoEscape("\\end{align*}")) 
 
-        # # forme canonique
-        #     self.doc.append(NoEscape("\\parbox{ 450pt }{\\textbf{Etape 6 : Déterminer le sommet $S$} \\\\ Le sommet $S$ est donné par les coordonnées (α,β). \\\\ Ici α = %s et β = %s donc : }" % (self.a, round(betaValue,2))))
-        #     self.doc.append(NoEscape("\\begin{align*}"))            
-        #     self.doc.append(NoEscape("\\ S = (%s, %s) \\\\" % (self.a, round(betaValue,2))))
-        #     self.doc.append(NoEscape("\\\\"))
-        #     self.doc.append(NoEscape("\\end{align*}"))
+        # sommet S
+            self.doc.append(NoEscape("\\parbox{ 450pt }{\\textbf{Etape 6 : Déterminer le sommet $S$} \\\\ Le sommet $S$ est donné par les coordonnées (α,β).}"))
+            self.doc.append(NoEscape("\\begin{align*}"))    
+            if denAlpha == 1 or denBeta == 1:
+                if denAlpha == 1 and denBeta == 1:
+                    self.doc.append(NoEscape("\\ S = (%s, %s) \\\\" % (numAlpha, numBeta)))
+                elif denBeta == 1 :
+                    self.doc.append(NoEscape("\\ S = (\\frac{%s}{%s}, %s) \\\\" % (numAlpha,denAlpha, numBeta)))
+                elif denAlpha == 1 :
+                    self.doc.append(NoEscape("\\ S = (%s, \\frac{%s}{%s}) \\\\" % (numAlpha, numBeta, denBeta)))
+            else:
+                self.doc.append(NoEscape("\\ S = (\\frac{%s}{%s}, \\frac{%s}{%s}) \\\\" % (numAlpha, denAlpha, numBeta, denBeta)))
+
+            self.doc.append(NoEscape("\\\\"))
+            self.doc.append(NoEscape("\\end{align*}"))
 
 
 
