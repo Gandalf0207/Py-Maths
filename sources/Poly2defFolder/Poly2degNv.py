@@ -350,7 +350,6 @@ class Poly2degNv(object):
 
         # tableau de signe de f(x)
             self.doc.append(NoEscape("\\parbox{ 450pt }{\\textbf{Question 1 : Déterminer le tableau de signes de $f(x)$} \\\\ Les signes de $f(x)$ sont calculés en fonction des valeurs de $a$ et $\\Delta$.}"))
-            self.doc.append(NoEscape("\\begin{align*}"))
 
 
     def Setup(self):
