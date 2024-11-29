@@ -349,93 +349,53 @@ class Poly2degNv(object):
 
 
         # tableau de signe de f(x)
-            self.doc.append(NoEscape("\\parbox{ 450pt }{\\textbf{Question 1 : Déterminer le tableau de signes de $f(x)$} \\\\ Les signes de $f(x)$ sont calculés en fonction des valeurs de $a$ et $\\Delta$.}"))
+            self.doc.append(NoEscape("\\parbox{ 450pt }{\\textbf{Etape 9 : Déterminer le tableau de signes de $f(x)$} \\\\ }"))
+            #rappel + description
+            if self.a > 0:
+                if deltaValue < 0 : 
+                    self.doc.append(NoEscape("\\parbox{ 450pt }{La valeur de $Δ$ est négative : $Δ$ = %s < 0. La droite réelle est donc divisdé en un seul est unique interval.\\\\ Pour $a$ positif : $a$ = %s > 0 \\\\}" % (deltaValue, self.a)))
+                elif deltaValue == 0 : 
+                    self.doc.append(NoEscape("\\parbox{ 450pt }{La valeur de $Δ$ est null : $Δ$ = %s. La droite réelle est donc divisdé en deux intervals.\\\\ Pour $a$ positif : $a$ = %s > 0 \\\\}" % (deltaValue, self.a)))
+                elif deltaValue > 0  :
+                    self.doc.append(NoEscape("\\parbox{ 450pt }{La valeur de $Δ$ est positive : $Δ$ = %s > 0. La droite réelle est donc divisdé en trois intervals.\\\\ Pour $a$ positif : $a$ = %s > 0 \\\\}" % (deltaValue, self.a)))
+
+            elif self.a < 0:
+                if deltaValue < 0 : 
+                    self.doc.append(NoEscape("\\parbox{ 450pt }{La valeur de $Δ$ est négative : $Δ$ = %s < 0. La droite réelle est donc divisdé en un seul est unique interval.\\\\ Pour $a$ négatif : $a$ = %s < 0 \\\\}" % (deltaValue, self.a)))
+                elif deltaValue == 0 : 
+                    self.doc.append(NoEscape("\\parbox{ 450pt }{La valeur de $Δ$ est null : $Δ$ = %s. La droite réelle est donc divisdé en deux intervals.\\\\ Pour $a$ négatif : $a$ = %s < 0 \\\\}" % (deltaValue, self.a)))
+                elif deltaValue > 0  :
+                    self.doc.append(NoEscape("\\parbox{ 450pt }{La valeur de $Δ$ est positive : $Δ$ = %s > 0. La droite réelle est donc divisdé en trois intervals.\\\\ Pour $a$ négatif : $a$ = %s < 0 \\\\}" % (deltaValue, self.a)))
 
 
+            # #tableau 
+            # self.doc.create(TikZ())
+            # if self.a > 0:
+            #     if deltaValue < 0 : 
+            #         self.doc.append(NoEscape("\\tkzTabInit{$x$ / 1, $f (x)$ / 1}{$- ∞$, $+ ∞$}"))
+            #         self.doc.append(NoEscape("\\tkzTabLine{, +}"))                
+            #     elif deltaValue == 0 : 
+            #         self.doc.append(NoEscape("\\tkzTabInit{$x$ / 1, $f (x)$ / 1}{$- ∞$, $α$, $+ ∞$}"))
+            #         self.doc.append(NoEscape("\\tkzTabLine{, +, z, +}"))
+            #     elif deltaValue > 0  :
+            #         self.doc.append(NoEscape("\\tkzTabInit{$x$ / 1, $f (x)$ / 1}{$- ∞$, $x1$, $x2$, $+ ∞$}"))
+            #         self.doc.append(NoEscape("\\tkzTabLine{, +, z, -, z, +, }"))
+            # elif self.a < 0:
+            #     if deltaValue < 0 : 
+            #         self.doc.append(NoEscape("\\tkzTabInit{$x$ / 1, $f (x)$ / 1}{$- ∞$, $+ ∞$}"))
+            #         self.doc.append(NoEscape("\\tkzTabLine{, -}"))
+            #     elif deltaValue == 0 : 
+            #         self.doc.append(NoEscape("\\tkzTabInit{$x$ / 1, $f (x)$ / 1}{$- ∞$, $α$, $+ ∞$}"))
+            #         self.doc.append(NoEscape("\\tkzTabLine{, -, z, -}"))
+            #     elif deltaValue > 0  :
+            #         self.doc.append(NoEscape("\\tkzTabInit{$-∞$ / 1, $f (x)$ / 1}{$- ∞$, $x1$, $x2$, $+ ∞$}"))
+            #         self.doc.append(NoEscape("\\tkzTabLine{, -, z, +, z, -, }"))    
     def Setup(self):
         self.CreateExoPoly2degNv()
         self.doc.append(NewPage())
         self.CreateCorrectionPolyNv()
         self.doc.append(NewPage())
 
-        
-#------------------------------------------------------------------------------------
-
-
-    # #On affiche si a est supérieur ou inférieur à 0 et si delta est inférieur, suppérieur ou égale à 0
-    # with doc.create(Subsection("", numbering=False)):
-    #     doc.append("Valeurs nécéssaire, pour déterminer les deux tableau suivants : ")
-    #     doc.append(NewLine())
-    #     if a > 0:
-    #         if Delta < 0:
-    #             doc.append('a > 0')
-    #             doc.append(Command('hspace', '1cm'))
-    #             doc.append('Δ < 0')
-    #         elif Delta == 0:
-    #             doc.append('a > 0')
-    #             doc.append(Command('hspace', '1cm'))
-    #             doc.append('Δ = 0')
-    #         elif Delta > 0:
-    #             doc.append('a > 0')
-    #             doc.append(Command('hspace', '1cm'))
-    #             doc.append('Δ > 0')
-    #     elif a < 0:
-    #         if Delta < 0:
-    #             doc.append('a < 0')
-    #             doc.append(Command('hspace', '1cm'))
-    #             doc.append('Δ < 0')
-    #         elif Delta == 0:
-    #             doc.append('a < 0')
-    #             doc.append(Command('hspace', '1cm'))
-    #             doc.append('Δ = 0')
-    #         elif Delta > 0:
-    #             doc.append('a < 0')
-    #             doc.append(Command('hspace', '1cm'))
-    #             doc.append('Δ > 0')
-
-
-    # #On affiche les deux tableaux
-    # with doc.create(Subsection("", numbering=False)):
-
-    #     #Tableau de signes
-    #     doc.append('Tableau de Signes : ')
-    #     doc.append(Command('hspace', '2cm'))
-    #     if Delta > 0:
-    #         doc.append(f"Rappel = x1 = {x1}; x2 = {x2}")
-    #     elif Delta==0:
-    #         doc.append(f"Rappel x = α = {Alpha}")
-    #     elif Delta < 0:
-    #         doc.append(f"Rappel : Δ n'a pas de solution en R")
-
-    #     doc.append(NewLine())
-    #     with doc.create(TikZ()):
-    #         if a > 0:
-    #             if Delta < 0:
-    #                 doc.append(NoEscape("\\tkzTabInit{$x$ / 1, $f (x)$ / 1}{$- ∞$, $+ ∞$}"))
-    #                 doc.append(NoEscape("\\tkzTabLine{, +}"))
-
-    #             elif Delta == 0:
-    #                 doc.append(NoEscape("\\tkzTabInit{$x$ / 1, $f (x)$ / 1}{$- ∞$, $α$, $+ ∞$}"))
-    #                 doc.append(NoEscape("\\tkzTabLine{, +, z, +}"))
-                    
-    #             elif Delta > 0:
-    #                 doc.append(NoEscape("\\tkzTabInit{$x$ / 1, $f (x)$ / 1}{$- ∞$, $x1$, $x2$, $+ ∞$}"))
-    #                 doc.append(NoEscape("\\tkzTabLine{, +, z, -, z, +, }"))
-    #         elif a < 0:
-    #             if Delta < 0:
-    #                 doc.append(NoEscape("\\tkzTabInit{$x$ / 1, $f (x)$ / 1}{$- ∞$, $+ ∞$}"))
-    #                 doc.append(NoEscape("\\tkzTabLine{, -}"))
-
-    #             elif Delta == 0:
-    #                 doc.append(NoEscape("\\tkzTabInit{$x$ / 1, $f (x)$ / 1}{$- ∞$, $α$, $+ ∞$}"))
-    #                 doc.append(NoEscape("\\tkzTabLine{, -, z, -}"))
-                    
-    #             elif Delta > 0:
-    #                 doc.append(NoEscape("\\tkzTabInit{$-∞$ / 1, $f (x)$ / 1}{$- ∞$, $x1$, $x2$, $+ ∞$}"))
-    #                 doc.append(NoEscape("\\tkzTabLine{, -, z, +, z, -, }"))
-
-    #     doc.append(Command('vspace', '1cm'))
-    #     doc.append(NewLine())
 
     #     #Tableau de variations
     #     doc.append('Tableau de Variations : ')
@@ -470,6 +430,7 @@ class CourbeRepresentation(object):
         """
         self.doc.append(NoEscape("\\\\"))
         self.doc.append(NoEscape("\\parbox{ 450pt }{\\textbf{Etape 8 : Représenter l’allure de la courbe avec les deux points demandés} \\\\ On représente la parabole $f(x)$ avec les points $S$ (sommet) et $A$}."))
+        self.doc.append(NoEscape("\\\\"))
 
         # Ajout du graphique
         with self.doc.create(Figure(position='htbp')) as plot:
@@ -510,3 +471,4 @@ class CourbeRepresentation(object):
         """
         func = lambda x: (self.a * x**2) + (self.b * x) + self.c
         self.plot(func)
+        self.doc.append(NoEscape("\\\\"))
