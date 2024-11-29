@@ -7,3 +7,5 @@
 *pdf
 *tex
 /test
+__pycache__/
+*.pyc

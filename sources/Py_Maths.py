@@ -69,6 +69,7 @@ class Generation(object):
         # Ajout des paquets nécessaires
         self.doc.preamble.append(pylatex.Command('usepackage', 'newunicodechar'))
         self.doc.packages.append(NoEscape("\\usepackage{tkz-tab}"))
+        self.doc.packages.append(NoEscape("\\usepackage{placeins}"))
         self.doc.packages.append(NoEscape("\\usepackage{amsmath}"))
         self.doc.packages.append(NoEscape("\\usepackage[utf8]{inputenc}"))
         self.doc.packages.append(NoEscape("\\usepackage{enumitem}"))

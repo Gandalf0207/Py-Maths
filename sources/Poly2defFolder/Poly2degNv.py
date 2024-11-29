@@ -281,7 +281,7 @@ class Poly2degNv(object):
 
 
         # forme canonique
-            self.doc.append(NoEscape("\\parbox{ 450pt }{\\textbf{Etape 5 : Déterminer la forme canonique} \\\\ La forme canonique d’un polynôme est donnée par :}"))
+            self.doc.append(NoEscape("\\ \\parbox{ 450pt }{\\textbf{Etape 5 : Déterminer la forme canonique} \\\\ La forme canonique d’un polynôme est donnée par :}"))
             self.doc.append(NoEscape("\\begin{align*}"))            
             self.doc.append(NoEscape("\\ f(x) = a(x - α)^2 + β \\\\"))
             self.doc.append(NoEscape("\\\\"))
@@ -304,7 +304,7 @@ class Poly2degNv(object):
             self.doc.append(NoEscape("\\end{align*}")) 
 
         # sommet S
-            self.doc.append(NoEscape("\\parbox{ 450pt }{\\textbf{Etape 6 : Déterminer le sommet $S$} \\\\ Le sommet $S$ est donné par les coordonnées (α,β).}"))
+            self.doc.append(NoEscape("\\ \\parbox{ 450pt }{\\textbf{Etape 6 : Déterminer le sommet $S$} \\\\ Le sommet $S$ est donné par les coordonnées (α,β).}"))
             self.doc.append(NoEscape("\\begin{align*}"))    
             if denAlpha == 1 or denBeta == 1:
                 if denAlpha == 1 and denBeta == 1:
@@ -321,7 +321,7 @@ class Poly2degNv(object):
             self.doc.append(NoEscape("\\end{align*}"))
 
         # point A
-            self.doc.append(NoEscape("\\parbox{ 450pt }{\\textbf{Etape 7 : Déterminer le spoint $A$ ayant pour abscisse 0} \\\\ Pour $x$ = 0, calculons $f(0)$.}"))
+            self.doc.append(NoEscape("\\ \\parbox{ 450pt }{\\textbf{Etape 7 : Déterminer le spoint $A$ ayant pour abscisse 0} \\\\ Pour $x$ = 0, calculons $f(0)$.}"))
             self.doc.append(NoEscape("\\begin{align*}"))
             if self.b < 0 or self.c < 0:
                 if self.b < 0 and self.c < 0:
@@ -343,74 +343,106 @@ class Poly2degNv(object):
 
 
         # allure courbe avec les 2 pts
+
             courbe = CourbeRepresentation(self.doc, self.a, self.b, self.c, self.Scoord, self.Acoord)
             courbe.generate_graph()
             courbe.courbe_poly(width=r'1\textwidth', dpi=300)
 
+            # Insérer une barrière pour garantir l'ordre du contenu
+            self.doc.append(NoEscape("\\FloatBarrier"))
+
 
         # tableau de signe de f(x)
-            self.doc.append(NoEscape("\\parbox{ 450pt }{\\textbf{Etape 9 : Déterminer le tableau de signes de $f(x)$} \\\\ }"))
             #rappel + description
             if self.a > 0:
                 if deltaValue < 0 : 
-                    self.doc.append(NoEscape("\\parbox{ 450pt }{La valeur de $Δ$ est négative : $Δ$ = %s < 0. La droite réelle est donc divisdé en un seul est unique interval.\\\\ Pour $a$ positif : $a$ = %s > 0 \\\\}" % (deltaValue, self.a)))
+                    self.doc.append(NoEscape("\\ \\parbox{ 450pt }{\\textbf{Etape 9 : Déterminer le tableau de signes de $f(x)$} \\\\ La valeur de $Δ$ est négative : $Δ$ = %s < 0. La droite réelle est donc divisdé en un seul est unique interval.\\\\ Pour $a$ positif : $a$ = %s > 0 \\\\}" % (deltaValue, self.a)))
                 elif deltaValue == 0 : 
-                    self.doc.append(NoEscape("\\parbox{ 450pt }{La valeur de $Δ$ est null : $Δ$ = %s. La droite réelle est donc divisdé en deux intervals.\\\\ Pour $a$ positif : $a$ = %s > 0 \\\\}" % (deltaValue, self.a)))
+                    self.doc.append(NoEscape("\\ \\parbox{ 450pt }{\\textbf{Etape 9 : Déterminer le tableau de signes de $f(x)$} \\\\ La valeur de $Δ$ est null : $Δ$ = %s. La droite réelle est donc divisdé en deux intervals.\\\\ Pour $a$ positif : $a$ = %s > 0 \\\\}" % (deltaValue, self.a)))
                 elif deltaValue > 0  :
-                    self.doc.append(NoEscape("\\parbox{ 450pt }{La valeur de $Δ$ est positive : $Δ$ = %s > 0. La droite réelle est donc divisdé en trois intervals.\\\\ Pour $a$ positif : $a$ = %s > 0 \\\\}" % (deltaValue, self.a)))
+                    self.doc.append(NoEscape("\\ \\parbox{ 450pt }{\\textbf{Etape 9 : Déterminer le tableau de signes de $f(x)$} \\\\ La valeur de $Δ$ est positive : $Δ$ = %s > 0. La droite réelle est donc divisdé en trois intervals.\\\\ Pour $a$ positif : $a$ = %s > 0 \\\\}" % (deltaValue, self.a)))
 
             elif self.a < 0:
                 if deltaValue < 0 : 
-                    self.doc.append(NoEscape("\\parbox{ 450pt }{La valeur de $Δ$ est négative : $Δ$ = %s < 0. La droite réelle est donc divisdé en un seul est unique interval.\\\\ Pour $a$ négatif : $a$ = %s < 0 \\\\}" % (deltaValue, self.a)))
+                    self.doc.append(NoEscape("\\ \\parbox{ 450pt }{\\textbf{Etape 9 : Déterminer le tableau de signes de $f(x)$} \\\\ La valeur de $Δ$ est négative : $Δ$ = %s < 0. La droite réelle est donc divisdé en un seul est unique interval.\\\\ Pour $a$ négatif : $a$ = %s < 0 \\\\}" % (deltaValue, self.a)))
                 elif deltaValue == 0 : 
-                    self.doc.append(NoEscape("\\parbox{ 450pt }{La valeur de $Δ$ est null : $Δ$ = %s. La droite réelle est donc divisdé en deux intervals.\\\\ Pour $a$ négatif : $a$ = %s < 0 \\\\}" % (deltaValue, self.a)))
+                    self.doc.append(NoEscape("\\ \\parbox{ 450pt }{\\textbf{Etape 9 : Déterminer le tableau de signes de $f(x)$} \\\\ La valeur de $Δ$ est null : $Δ$ = %s. La droite réelle est donc divisdé en deux intervals.\\\\ Pour $a$ négatif : $a$ = %s < 0 \\\\}" % (deltaValue, self.a)))
                 elif deltaValue > 0  :
-                    self.doc.append(NoEscape("\\parbox{ 450pt }{La valeur de $Δ$ est positive : $Δ$ = %s > 0. La droite réelle est donc divisdé en trois intervals.\\\\ Pour $a$ négatif : $a$ = %s < 0 \\\\}" % (deltaValue, self.a)))
+                    self.doc.append(NoEscape("\\ \\parbox{ 450pt }{\\textbf{Etape 9 : Déterminer le tableau de signes de $f(x)$} \\\\ La valeur de $Δ$ est positive : $Δ$ = %s > 0. La droite réelle est donc divisdé en trois intervals.\\\\ Pour $a$ négatif : $a$ = %s < 0 \\\\}" % (deltaValue, self.a)))
 
 
-            # #tableau 
-            # self.doc.create(TikZ())
-            # if self.a > 0:
-            #     if deltaValue < 0 : 
-            #         self.doc.append(NoEscape("\\tkzTabInit{$x$ / 1, $f (x)$ / 1}{$- ∞$, $+ ∞$}"))
-            #         self.doc.append(NoEscape("\\tkzTabLine{, +}"))                
-            #     elif deltaValue == 0 : 
-            #         self.doc.append(NoEscape("\\tkzTabInit{$x$ / 1, $f (x)$ / 1}{$- ∞$, $α$, $+ ∞$}"))
-            #         self.doc.append(NoEscape("\\tkzTabLine{, +, z, +}"))
-            #     elif deltaValue > 0  :
-            #         self.doc.append(NoEscape("\\tkzTabInit{$x$ / 1, $f (x)$ / 1}{$- ∞$, $x1$, $x2$, $+ ∞$}"))
-            #         self.doc.append(NoEscape("\\tkzTabLine{, +, z, -, z, +, }"))
-            # elif self.a < 0:
-            #     if deltaValue < 0 : 
-            #         self.doc.append(NoEscape("\\tkzTabInit{$x$ / 1, $f (x)$ / 1}{$- ∞$, $+ ∞$}"))
-            #         self.doc.append(NoEscape("\\tkzTabLine{, -}"))
-            #     elif deltaValue == 0 : 
-            #         self.doc.append(NoEscape("\\tkzTabInit{$x$ / 1, $f (x)$ / 1}{$- ∞$, $α$, $+ ∞$}"))
-            #         self.doc.append(NoEscape("\\tkzTabLine{, -, z, -}"))
-            #     elif deltaValue > 0  :
-            #         self.doc.append(NoEscape("\\tkzTabInit{$-∞$ / 1, $f (x)$ / 1}{$- ∞$, $x1$, $x2$, $+ ∞$}"))
-            #         self.doc.append(NoEscape("\\tkzTabLine{, -, z, +, z, -, }"))    
+            #tableau 
+            self.doc.append(NoEscape("\\begin{table}[htbp]"))  # Début du flottant
+            self.doc.append(NoEscape("\\centering"))          # Centrage
+            self.doc.append(NoEscape("\\begin{tikzpicture}")) # Début du TikZ
+
+            if self.a > 0:
+                if deltaValue < 0: 
+                    self.doc.append(NoEscape("\\tkzTabInit{$x$ / 1, $f(x)$ / 1}{$- \\infty$, $+ \\infty$}"))
+                    self.doc.append(NoEscape("\\tkzTabLine{, +}"))                
+                elif deltaValue == 0: 
+                    self.doc.append(NoEscape("\\tkzTabInit{$x$ / 1, $f(x)$ / 1}{$- \\infty$, $\\alpha$, $+ \\infty$}"))
+                    self.doc.append(NoEscape("\\tkzTabLine{, +, z, +}"))
+                elif deltaValue > 0:
+                    self.doc.append(NoEscape("\\tkzTabInit{$x$ / 1, $f(x)$ / 1}{$- \\infty$, $x_1$, $x_2$, $+ \\infty$}"))
+                    self.doc.append(NoEscape("\\tkzTabLine{, +, z, -, z, +, }"))
+            elif self.a < 0:
+                if deltaValue < 0: 
+                    self.doc.append(NoEscape("\\tkzTabInit{$x$ / 1, $f(x)$ / 1}{$- \\infty$, $+ \\infty$}"))
+                    self.doc.append(NoEscape("\\tkzTabLine{, -}"))
+                elif deltaValue == 0: 
+                    self.doc.append(NoEscape("\\tkzTabInit{$x$ / 1, $f(x)$ / 1}{$- \\infty$, $\\alpha$, $+ \\infty$}"))
+                    self.doc.append(NoEscape("\\tkzTabLine{, -, z, -}"))
+                elif deltaValue > 0:
+                    self.doc.append(NoEscape("\\tkzTabInit{$x$ / 1, $f(x)$ / 1}{$- \\infty$, $x_1$, $x_2$, $+ \\infty$}"))
+                    self.doc.append(NoEscape("\\tkzTabLine{, -, z, +, z, -, }"))  
+
+            self.doc.append(NoEscape("\\end{tikzpicture}"))   # Fin TikZ
+            self.doc.append(NoEscape("\\caption{Table de signes pour $f(x)$}")) # Légende
+            self.doc.append(NoEscape("\\label{tab:variations}"))  # Référence
+            self.doc.append(NoEscape("\\end{table}"))        # Fin du flottant
+
+            # Insérer une barrière pour garantir l'ordre du contenu
+            self.doc.append(NoEscape("\\FloatBarrier"))
+
+
+
+        
+        # tableau de variations de f(x)
+            if self.a > 0:
+                self.doc.append(NoEscape("\\ \\parbox{ 450pt }{\\textbf{Etape 10 : Dresser le tableau de variations de $f(x)$} \\\\ Pour $a$ > 0, la parabole à une branche descendante et une branche montante avec un minimum au sommet $S$  \\\\}"))
+            elif self.a < 0:
+                self.doc.append(NoEscape("\\ \\parbox{ 450pt }{\\textbf{Etape 10 : Dresser le tableau de variations de $f(x)$} \\\\ Pour $a$ < 0, la parabole à une branche montante et une branche descendante avec un maximum au sommet $S$  \\\\}"))
+
+            #tableau 
+            self.doc.append(NoEscape("\\begin{table}[htbp]"))  # Début du flottant
+            self.doc.append(NoEscape("\\centering"))          # Centrage
+            self.doc.append(NoEscape("\\begin{tikzpicture}")) # Début du TikZ
+            
+            if self.a > 0:
+                self.doc.append(NoEscape("\\tkzTabInit{$x$ / 1, $f (x)$ / 1}{$- ∞$, $α$, $+ ∞$}"))
+                self.doc.append(NoEscape("\\tkzTabVar{+/, -/ $β$, +/}"))
+            elif self.a < 0 : 
+                self.doc.append(NoEscape("\\tkzTabInit{$x$ / 1, $f (x)$ / 1}{$- ∞$, $α$, $+ ∞$}"))
+                self.doc.append(NoEscape("\\tkzTabVar{-/, +/ $β$, -/}"))
+
+            self.doc.append(NoEscape("\\end{tikzpicture}"))   # Fin TikZ
+            self.doc.append(NoEscape("\\caption{Table de variations pour $f(x)$}")) # Légende
+            self.doc.append(NoEscape("\\label{tab:variations}"))  # Référence
+            self.doc.append(NoEscape("\\end{table}"))        # Fin du flottant
+
+
+            # Insérer une barrière pour garantir l'ordre du contenu
+            self.doc.append(NoEscape("\\FloatBarrier"))
+
+            
+
+            
     def Setup(self):
         self.CreateExoPoly2degNv()
         self.doc.append(NewPage())
         self.CreateCorrectionPolyNv()
         self.doc.append(NewPage())
-
-
-    #     #Tableau de variations
-    #     doc.append('Tableau de Variations : ')
-
-    #     doc.append(Command('hspace', '2cm'))
-    #     doc.append(f"Rappel : α = {Alpha}; β = {Beta} ")
-
-    #     doc.append(NewLine())
-    #     with doc.create(TikZ()):
-    #         if a > 0:
-    #             doc.append(NoEscape("\\tkzTabInit{$x$ / 1, $f (x)$ / 1}{$- ∞$, $α$, $+ ∞$}"))
-    #             doc.append(NoEscape("\\tkzTabVar{+/, -/ $β$, +/}"))
-    #         elif a < 0:
-    #             doc.append(NoEscape("\\tkzTabInit{$x$ / 1, $f (x)$ / 1}{$- ∞$, $α$, $+ ∞$}"))
-    #             doc.append(NoEscape("\\tkzTabVar{-/, +/ $β$, -/}"))
 
 
 
@@ -427,9 +459,10 @@ class CourbeRepresentation(object):
         """
         Ajout de la représentation graphique de la fonction avec description
         dans le document latex / pdf.
-        """
+        """      
+        # self.doc.append(NoEscape("\\clearpage"))  # Passe à une nouvelle page
         self.doc.append(NoEscape("\\\\"))
-        self.doc.append(NoEscape("\\parbox{ 450pt }{\\textbf{Etape 8 : Représenter l’allure de la courbe avec les deux points demandés} \\\\ On représente la parabole $f(x)$ avec les points $S$ (sommet) et $A$}."))
+        self.doc.append(NoEscape("\\ \\parbox{ 450pt }{\\textbf{Étape 8 : Représenter l’allure de la courbe avec les deux points demandés.} \\\\ On représente la parabole $f(x)$ avec les points $S$ (sommet) et $A$.}"))
         self.doc.append(NoEscape("\\\\"))
 
         # Ajout du graphique
@@ -471,4 +504,3 @@ class CourbeRepresentation(object):
         """
         func = lambda x: (self.a * x**2) + (self.b * x) + self.c
         self.plot(func)
-        self.doc.append(NoEscape("\\\\"))
