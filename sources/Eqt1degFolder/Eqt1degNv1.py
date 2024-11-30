@@ -1,3 +1,4 @@
+# import settings
 from settings import *
 
 class Eqt1degNv1(object):
