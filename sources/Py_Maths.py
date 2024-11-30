@@ -4,7 +4,7 @@ from Poly2defFolder.GestionPoly2deg import *
 
 # Importation des scripts de mise en age et de gestions autre
 from basePDF import *
-from Module_Gestion import Contenue_Page_1
+from aModule_Gestion import Contenue_Page_1
 
 from settings import *
 
@@ -99,7 +99,7 @@ class Generation(object):
         self.doc.append(NewPage())
 
         # Génération des exercices
-        for i in range(200):
+        for i in range(10):
             liste = []
             a = random.randint(-25,25)
             b = random.randint(-25,25)
@@ -147,16 +147,17 @@ class Generation(object):
             # Equations 2 inconnus
 
             a  = Eqt2Incs(self.doc, i, 1, nb1, nb2, nb3, nb4, nb5, nb6,)
-            # a.GestionAllExoEqt2Incs()
-            a.AddTitreConsigneNv1()
-            a.AddTitreConsigneNv2()
-            self.doc.append(NewPage())
-            a.AddTitreCorrectionNv1()
-            a.AddTitreCorrectionNv2()
-            self.doc.append(NewPage())
+            a.GestionAllExoEqt2Incs()
 
-            # b = Eqt2Incs(self.doc, i, 2, nb7, nb8, nb9, nb10, nb11, nb12)
-            # b.GestionAllExoEqt2Incs()
+            # a.AddTitreConsigneNv1()
+            # a.AddTitreConsigneNv2()
+            # self.doc.append(NewPage())
+            # a.AddTitreCorrectionNv1()
+            # a.AddTitreCorrectionNv2()
+            # self.doc.append(NewPage())
+
+            b = Eqt2Incs(self.doc, i, 2, nb7, nb8, nb9, nb10, nb11, nb12)
+            b.GestionAllExoEqt2Incs()
 
 ###
             # Equation 1 degré
