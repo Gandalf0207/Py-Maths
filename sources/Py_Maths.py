@@ -161,18 +161,18 @@ class Generation(object):
             # b.Gestion()
 
             c = Poly2deg(self.doc,i, a, b, c )
-            # c.GestionAllExoPoly2deg()
-            c.AddPoly2DegTitreConsigne()
-            c.AddConsigneAlpha(1)
-            c.AddConsigneTableauSignes(2)
+            c.GestionAllExoPoly2deg()
+            # c.AddPoly2DegTitreConsigne()
+            # c.AddConsigneAlpha(1)
+            # c.AddConsigneTableauSignes(2)
 
-            self.doc.append(NewPage())
+            # self.doc.append(NewPage())
 
-            c.AddPoly2DegTitreCorrection()
-            c.AddCorrectionAlpha(1)
-            c.AddCorrectionTableauSignes(2)
+            # c.AddPoly2DegTitreCorrection()
+            # c.AddCorrectionAlpha(1)
+            # c.AddCorrectionTableauSignes(2)
             
-            self.doc.append(NewPage())
+            # self.doc.append(NewPage())
 
 
         # Création du fichier PDF
