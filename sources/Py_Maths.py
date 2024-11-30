@@ -152,7 +152,7 @@ class Generation(object):
             # b.Gestion()
 
             c = Poly2deg(self.doc,i, a, b, c )
-            c.Gestion()
+            c.GestionAllExoPoly2deg()
 
 
         # Création du fichier PDF
