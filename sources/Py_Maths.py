@@ -1,9 +1,10 @@
 from Eqt2IncsFolder.GestionEqt2Incs import *
 from Eqt1degFolder.GestionEqt1deg import *
+from Poly2defFolder.GestionPoly2deg import *
 
 # Importation des scripts de mise en age et de gestions autre
 from basePDF import *
-from Module_Gestion import Contenue_Page_1
+from aModule_Gestion import Contenue_Page_1
 
 from settings import *
 
@@ -68,12 +69,16 @@ class Generation(object):
         # Ajout des paquets nécessaires
         self.doc.preamble.append(pylatex.Command('usepackage', 'newunicodechar'))
         self.doc.packages.append(NoEscape("\\usepackage{tkz-tab}"))
+        self.doc.packages.append(NoEscape("\\usepackage{placeins}"))
         self.doc.packages.append(NoEscape("\\usepackage{amsmath}"))
+        self.doc.packages.append(NoEscape("\\usepackage[utf8]{inputenc}"))
+        self.doc.packages.append(NoEscape("\\usepackage{enumitem}"))
 
         self.doc.preamble.append(pylatex.NoEscape(r'\newunicodechar{∞}{\ensuremath{\infty}}'))
         self.doc.preamble.append(pylatex.NoEscape(r'\newunicodechar{Δ}{\ensuremath{\Delta}}'))
         self.doc.preamble.append(pylatex.NoEscape(r'\newunicodechar{α}{\ensuremath{\alpha}}'))
         self.doc.preamble.append(pylatex.NoEscape(r'\newunicodechar{β}{\ensuremath{\beta}}'))
+
 
     def BuildPDF(self):
 
@@ -94,8 +99,11 @@ class Generation(object):
         self.doc.append(NewPage())
 
         # Génération des exercices
-        for i in range(nb_exo):
+        for i in range(10):
             liste = []
+            a = random.randint(-25,25)
+            b = random.randint(-25,25)
+            c = random.randint(-25,25)
             nb1 = random.randint(2,50)
             nb2 = random.randint(2,50)
             nb3 = random.randint(2,50)
@@ -110,10 +118,17 @@ class Generation(object):
             nb11 = random.randint(2,50)
         
             liste = [nb1, nb2, nb3, nb4, nb5, nb6, nb7, nb8, nb9, nb10, nb11, nb12]
+            # liste = [a,b,c]
 
-
-            while not checkUniqueValuesList(liste):
+            while not checkUniqueValuesList(liste) or a ==0 or b == 0 or c==0:
                 liste= []
+
+                a = random.randint(-25,25)
+                b = random.randint(-25,25)
+                c = random.randint(-25,25)
+
+                # liste = [a,b,c]
+
 
                 nb1 = random.randint(2,50)
                 nb2 = random.randint(2,50)
@@ -127,23 +142,55 @@ class Generation(object):
                 nb12 = random.randint(2,50)
                 nb10 = random.randint(2,50)
                 nb11 = random.randint(2,50)
-
                 liste = [nb1, nb2, nb3, nb4, nb5, nb6, nb7, nb8, nb9, nb10, nb11, nb12]
 
             # Equations 2 inconnus
-            # a  = Eqt2Incs(self.doc,nb1, nb2, nb3, nb4, nb5, nb6, i, 1)
-            # a.Gestion()
-            # b = Eqt2Incs(self.doc,nb7, nb8, nb9, nb10, nb11, nb12, i, 2)
-            # b.Gestion()
 
+            a  = Eqt2Incs(self.doc, i, 1, nb1, nb2, nb3, nb4, nb5, nb6,)
+            a.GestionAllExoEqt2Incs()
+
+            # a.AddTitreConsigneNv1()
+            # a.AddTitreConsigneNv2()
+            # self.doc.append(NewPage())
+            # a.AddTitreCorrectionNv1()
+            # a.AddTitreCorrectionNv2()
+            # self.doc.append(NewPage())
+
+            b = Eqt2Incs(self.doc, i, 2, nb7, nb8, nb9, nb10, nb11, nb12)
+            b.GestionAllExoEqt2Incs()
+
+###
             # Equation 1 degré
-            a = Eqt1deg(self.doc, nb1, nb2, nb3, nb4, nb5, nb6, i, 1)
-            a.Gestion()
 
-            b = Eqt1deg(self.doc, nb1, nb2, nb3, nb4, nb5, nb6, i, 2)
-            b.Gestion()
+            # a = Eqt1deg(self.doc, i, 1, nb1, nb2, nb3, nb4, nb5, nb6)
+            # a.GestionAllExoEqt1deg()
 
+            # a.AddTitreConsigneNv1()
+            # a.AddTitreConsigneNv2()
+            # self.doc.append(NewPage())
+            # a.AddTitreCorrectionNv1()
+            # a.AddTitreCorrectionNv2()
+            # self.doc.append(NewPage())
 
+            # b = Eqt1deg(self.doc, i, 2 ,nb1, nb2, nb3, nb4, nb5, nb6)
+            # b.GestionAllExoEqt1deg()
+
+####
+            # Poly 2 degré
+
+            # c = Poly2deg(self.doc,i, a, b, c )
+            # c.GestionAllExoPoly2deg()
+            # c.AddPoly2DegTitreConsigne()
+            # c.AddConsigneAlpha(1)
+            # c.AddConsigneTableauSignes(2)
+
+            # self.doc.append(NewPage())
+
+            # c.AddPoly2DegTitreCorrection()
+            # c.AddCorrectionAlpha(1)
+            # c.AddCorrectionTableauSignes(2)
+            
+            # self.doc.append(NewPage())
 
 
         # Création du fichier PDF
