@@ -46,3 +46,4 @@ class Poly2deg(object):
         self.correction.CorrectionTableauSignes(9)
         self.correction.CorrectionTableauVariations(10)
 
+        self.doc.append(NewPage())

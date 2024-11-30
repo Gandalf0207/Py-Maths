@@ -102,41 +102,50 @@ class Generation(object):
         c = 1
 
         # Génération des exercices
-        for i in range(nb_exo):
+        for i in range(200):
             liste = []
-            nb1 = random.randint(2,50)
-            nb2 = random.randint(2,50)
-            nb3 = random.randint(2,50)
-            nb4 = random.randint(2,50)
-            nb5 = random.randint(2,50)
-            nb6 = random.randint(2,50)
-            nb7 = random.randint(2,50)
-            nb8 = random.randint(2,50)
-            nb9 = random.randint(2,50)
-            nb12 = random.randint(2,50)
-            nb10 = random.randint(2,50)
-            nb11 = random.randint(2,50)
+            a = random.randint(-25,25)
+            b = random.randint(-25,25)
+            c = random.randint(-25,25)
+            # nb1 = random.randint(2,50)
+            # nb2 = random.randint(2,50)
+            # nb3 = random.randint(2,50)
+            # nb4 = random.randint(2,50)
+            # nb5 = random.randint(2,50)
+            # nb6 = random.randint(2,50)
+            # nb7 = random.randint(2,50)
+            # nb8 = random.randint(2,50)
+            # nb9 = random.randint(2,50)
+            # nb12 = random.randint(2,50)
+            # nb10 = random.randint(2,50)
+            # nb11 = random.randint(2,50)
         
-            liste = [nb1, nb2, nb3, nb4, nb5, nb6, nb7, nb8, nb9, nb10, nb11, nb12]
+            # liste = [nb1, nb2, nb3, nb4, nb5, nb6, nb7, nb8, nb9, nb10, nb11, nb12]
+            liste = [a,b,c]
 
-
-            while not checkUniqueValuesList(liste):
+            while not checkUniqueValuesList(liste) or a ==0 or b == 0 or c==0:
                 liste= []
 
-                nb1 = random.randint(2,50)
-                nb2 = random.randint(2,50)
-                nb3 = random.randint(2,50)
-                nb4 = random.randint(2,50)
-                nb5 = random.randint(2,50)
-                nb6 = random.randint(2,50)
-                nb7 = random.randint(2,50)
-                nb8 = random.randint(2,50)
-                nb9 = random.randint(2,50)
-                nb12 = random.randint(2,50)
-                nb10 = random.randint(2,50)
-                nb11 = random.randint(2,50)
+                a = random.randint(-25,25)
+                b = random.randint(-25,25)
+                c = random.randint(-25,25)
 
-                liste = [nb1, nb2, nb3, nb4, nb5, nb6, nb7, nb8, nb9, nb10, nb11, nb12]
+                liste = [a,b,c]
+
+
+                # nb1 = random.randint(2,50)
+                # nb2 = random.randint(2,50)
+                # nb3 = random.randint(2,50)
+                # nb4 = random.randint(2,50)
+                # nb5 = random.randint(2,50)
+                # nb6 = random.randint(2,50)
+                # nb7 = random.randint(2,50)
+                # nb8 = random.randint(2,50)
+                # nb9 = random.randint(2,50)
+                # nb12 = random.randint(2,50)
+                # nb10 = random.randint(2,50)
+                # nb11 = random.randint(2,50)
+                # liste = [nb1, nb2, nb3, nb4, nb5, nb6, nb7, nb8, nb9, nb10, nb11, nb12]
 
             # Equations 2 inconnus
             # a  = Eqt2Incs(self.doc,nb1, nb2, nb3, nb4, nb5, nb6, i, 1)

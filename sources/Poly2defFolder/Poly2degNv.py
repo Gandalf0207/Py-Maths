@@ -194,48 +194,36 @@ class CorrectionsPoly2degNv(Poly2degNv):
 
 
         self.doc.append(NoEscape("\\ \\parbox{ 450 pt}{ \\text{Calculons : }}"))
+        self.doc.append(NoEscape("\\begin{align*}"))
         if self.alpha[1] == 1:
             if self.b < 0 or self.c < 0:
                 if self.b < 0 and self.c < 0:
-                    self.doc.append(NoEscape("\\begin{align*}"))
                     self.doc.append(NoEscape("\\ β =  %s \\cdot (%s)^2  %s \\cdot (%s)  %s \\\\" % (self.a, self.alpha[0], self.b, self.alpha[0], self.c)))
                     self.doc.append(NoEscape("\\\\"))
-                    self.doc.append(NoEscape("\\end{align*}"))
                 elif self.b < 0:
-                    self.doc.append(NoEscape("\\begin{align*}"))
                     self.doc.append(NoEscape("\\ β =  %s \\cdot (%s)^2  %s \\cdot (%s) + %s \\\\" % (self.a, self.alpha[0], self.b, self.alpha[0], self.c)))
                     self.doc.append(NoEscape("\\\\"))
-                    self.doc.append(NoEscape("\\end{align*}"))
                 else:
-                    self.doc.append(NoEscape("\\begin{align*}"))
                     self.doc.append(NoEscape("\\ β =  %s \\cdot (%s)^2 + %s \\cdot (%s)  %s \\\\" % (self.a, self.alpha[0], self.b, self.alpha[0], self.c)))
                     self.doc.append(NoEscape("\\\\"))
-                    self.doc.append(NoEscape("\\end{align*}"))
             else:
-                self.doc.append(NoEscape("\\begin{align*}"))
                 self.doc.append(NoEscape("\\ β =  %s \\cdot (%s)^2 + %s \\cdot (%s) + %s \\\\" % (self.a, self.alpha[0], self.b, self.alpha[0], self.c)))
                 self.doc.append(NoEscape("\\\\"))
         else:
             if self.b < 0 or self.c < 0:
                 if self.b < 0 and self.c < 0:
-                    self.doc.append(NoEscape("\\begin{align*}"))
                     self.doc.append(NoEscape("\\ β =  %s \\cdot (\\frac{%s}{%s})^2  %s \\cdot (\\frac{%s}{%s})  %s \\\\" % (self.a, self.alpha[0], self.alpha[1], self.b, self.alpha[0], self.alpha[1], self.c)))
                     self.doc.append(NoEscape("\\\\"))
-                    self.doc.append(NoEscape("\\end{align*}"))
                 elif self.b < 0:
-                    self.doc.append(NoEscape("\\begin{align*}"))
                     self.doc.append(NoEscape("\\ β =  %s \\cdot (\\frac{%s}{%s})^2  %s \\cdot (\\frac{%s}{%s}) + %s \\\\" % (self.a, self.alpha[0], self.alpha[1], self.b, self.alpha[0], self.alpha[1], self.c)))
                     self.doc.append(NoEscape("\\\\"))
-                    self.doc.append(NoEscape("\\end{align*}"))
                 else:
-                    self.doc.append(NoEscape("\\begin{align*}"))
                     self.doc.append(NoEscape("\\ β =  %s \\cdot (\\frac{%s}{%s})^2 + %s \\cdot (\\frac{%s}{%s})  %s \\\\" % (self.a, self.alpha[0], self.alpha[1], self.b, self.alpha[0], self.alpha[1], self.c)))
                     self.doc.append(NoEscape("\\\\"))
-                    self.doc.append(NoEscape("\\end{align*}"))
             else:
-                self.doc.append(NoEscape("\\begin{align*}"))
                 self.doc.append(NoEscape("\\ β =  %s \\cdot (\\frac{%s}{%s})^2 + %s \\cdot (\\frac{%s}{%s}) + %s \\\\" % (self.a, self.alpha[0], self.alpha[1], self.b, self.alpha[0], self.alpha[1], self.c)))
                 self.doc.append(NoEscape("\\\\"))
+        self.doc.append(NoEscape("\\end{align*}"))       
 
 
         self.doc.append(NoEscape("\\begin{align*}"))
@@ -503,7 +491,7 @@ class CourbeRepresentation(object):
         """
         Création du graphique avec matplotlib.
         """
-
+        plt.clf() # clear figure précédente
         plt.axvline(x=0, color='r')
         plt.axhline(y=0, color='r')
         axes = plt.gca()
