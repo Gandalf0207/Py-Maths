@@ -47,3 +47,72 @@ class Poly2deg(object):
         self.correction.CorrectionTableauVariations(10)
 
         self.doc.append(NewPage())
+
+# exo personnalisé
+    def AddPoly2DegTitreConsigne(self):
+        self.consigne.Poly2DegTitreConsigne()
+
+    def AddConsigneAlpha(self, numEtape):
+        self.consigne.ConsigneAlpha(numEtape) 
+
+    def AddConsigneBeta(self, numEtape):
+        self.consigne.ConsigneBeta(numEtape) 
+
+    def AddConsigneDelta(self, numEtape):
+        self.consigne.ConsigneDelta(numEtape)
+
+    def AddConsigneSolutionsDelta(self, numEtape):
+        self.consigne.ConsigneSolutionsDelta(numEtape)
+
+    def AddConsigneFormeCanonique(self, numEtape):
+        self.consigne.ConsigneFormeCanonique(numEtape)
+
+    def AddConsigneSommetS(self, numEtape):
+        self.consigne.ConsigneSommetS(numEtape)
+
+    def AddConsignePointA(self, numEtape):
+        self.consigne.ConsignePointA(numEtape)
+
+    def AddConsigneAllureCourbe(self, numEtape):
+        self.consigne.ConsigneAllureCourbe(numEtape)
+
+    def AddConsigneTableauSignes(self, numEtape):
+        self.consigne.ConsigneTableauSignes(numEtape)
+
+    def AddConsigneTableauVariations(self, numEtape):
+        self.consigne.ConsigneTableauVariations(numEtape)
+
+
+# correction personnalisé
+    def AddPoly2DegTitreCorrection(self):
+        self.correction.Poly2DegTitreCorrection()
+
+    def AddCorrectionAlpha(self, numEtape):
+        self.correction.CorrectionAlpha(numEtape)
+
+    def AddCorrectionBeta(self, numEtape):
+        self.correction.CorrectionBeta(numEtape)
+
+    def AddCorrectionDelta(self, numEtape):
+        self.correction.CorrectionDelta(numEtape)
+
+    def AddCorrectionSolutionsDelta(self, numEtape):
+        self.correction.CorrectionSolutionsDelta(numEtape)
+
+    def AddCorrectionFormeCanonique(self, numEtape):
+        self.correction.CorrectionFormeCanonique(numEtape)
+
+    def AddCorrectionSommetS(self, numEtape):
+        self.correction.CorrectionSommetS(numEtape)
+
+    def AddCorrectionPointA(self, numEtape):
+        self.correction.CorrectionPointA(numEtape)
+
+    def AddCorrectionAllureCourbe(self, numEtape):
+        self.correction.CorrectionAllureCourbe(numEtape)
+
+    def AddCorrectionTableauSignes(self, numEtape):
+        self.correction.CorrectionTableauSignes(numEtape)
+
+    def AddCorrectionTableauVariations(self, numEtape):
+        self.correction.CorrectionTableauVariations(numEtape)
