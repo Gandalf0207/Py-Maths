@@ -97,9 +97,6 @@ class Generation(object):
 
         Contenue_Page_1.generate_contenue_p1(self.doc)
         self.doc.append(NewPage())
-        a = 20
-        b = -4
-        c = 1
 
         # Génération des exercices
         for i in range(200):
@@ -107,21 +104,21 @@ class Generation(object):
             a = random.randint(-25,25)
             b = random.randint(-25,25)
             c = random.randint(-25,25)
-            # nb1 = random.randint(2,50)
-            # nb2 = random.randint(2,50)
-            # nb3 = random.randint(2,50)
-            # nb4 = random.randint(2,50)
-            # nb5 = random.randint(2,50)
-            # nb6 = random.randint(2,50)
-            # nb7 = random.randint(2,50)
-            # nb8 = random.randint(2,50)
-            # nb9 = random.randint(2,50)
-            # nb12 = random.randint(2,50)
-            # nb10 = random.randint(2,50)
-            # nb11 = random.randint(2,50)
+            nb1 = random.randint(2,50)
+            nb2 = random.randint(2,50)
+            nb3 = random.randint(2,50)
+            nb4 = random.randint(2,50)
+            nb5 = random.randint(2,50)
+            nb6 = random.randint(2,50)
+            nb7 = random.randint(2,50)
+            nb8 = random.randint(2,50)
+            nb9 = random.randint(2,50)
+            nb12 = random.randint(2,50)
+            nb10 = random.randint(2,50)
+            nb11 = random.randint(2,50)
         
-            # liste = [nb1, nb2, nb3, nb4, nb5, nb6, nb7, nb8, nb9, nb10, nb11, nb12]
-            liste = [a,b,c]
+            liste = [nb1, nb2, nb3, nb4, nb5, nb6, nb7, nb8, nb9, nb10, nb11, nb12]
+            # liste = [a,b,c]
 
             while not checkUniqueValuesList(liste) or a ==0 or b == 0 or c==0:
                 liste= []
@@ -130,22 +127,22 @@ class Generation(object):
                 b = random.randint(-25,25)
                 c = random.randint(-25,25)
 
-                liste = [a,b,c]
+                # liste = [a,b,c]
 
 
-                # nb1 = random.randint(2,50)
-                # nb2 = random.randint(2,50)
-                # nb3 = random.randint(2,50)
-                # nb4 = random.randint(2,50)
-                # nb5 = random.randint(2,50)
-                # nb6 = random.randint(2,50)
-                # nb7 = random.randint(2,50)
-                # nb8 = random.randint(2,50)
-                # nb9 = random.randint(2,50)
-                # nb12 = random.randint(2,50)
-                # nb10 = random.randint(2,50)
-                # nb11 = random.randint(2,50)
-                # liste = [nb1, nb2, nb3, nb4, nb5, nb6, nb7, nb8, nb9, nb10, nb11, nb12]
+                nb1 = random.randint(2,50)
+                nb2 = random.randint(2,50)
+                nb3 = random.randint(2,50)
+                nb4 = random.randint(2,50)
+                nb5 = random.randint(2,50)
+                nb6 = random.randint(2,50)
+                nb7 = random.randint(2,50)
+                nb8 = random.randint(2,50)
+                nb9 = random.randint(2,50)
+                nb12 = random.randint(2,50)
+                nb10 = random.randint(2,50)
+                nb11 = random.randint(2,50)
+                liste = [nb1, nb2, nb3, nb4, nb5, nb6, nb7, nb8, nb9, nb10, nb11, nb12]
 
             # Equations 2 inconnus
             # a  = Eqt2Incs(self.doc,nb1, nb2, nb3, nb4, nb5, nb6, i, 1)
@@ -154,14 +151,22 @@ class Generation(object):
             # b.Gestion()
 
             # Equation 1 degré
-            # a = Eqt1deg(self.doc, nb1, nb2, nb3, nb4, nb5, nb6, i, 1)
-            # a.Gestion()
+            a = Eqt1deg(self.doc, i, 1, nb1, nb2, nb3, nb4, nb5, nb6)
+            a.GestionAllExoEqt1deg()
+            # a.AddTitreConsigneNv1()
+            # a.AddTitreConsigneNv2()
+            # self.doc.append(NewPage())
+            # a.AddTitreCorrectionNv1()
+            # a.AddTitreCorrectionNv2()
+            # self.doc.append(NewPage())
 
-            # b = Eqt1deg(self.doc, nb1, nb2, nb3, nb4, nb5, nb6, i, 2)
-            # b.Gestion()
 
-            c = Poly2deg(self.doc,i, a, b, c )
-            c.GestionAllExoPoly2deg()
+            b = Eqt1deg(self.doc, i, 2 ,nb1, nb2, nb3, nb4, nb5, nb6)
+            b.GestionAllExoEqt1deg()
+
+            # Poly 2 degré
+            # c = Poly2deg(self.doc,i, a, b, c )
+            # c.GestionAllExoPoly2deg()
             # c.AddPoly2DegTitreConsigne()
             # c.AddConsigneAlpha(1)
             # c.AddConsigneTableauSignes(2)

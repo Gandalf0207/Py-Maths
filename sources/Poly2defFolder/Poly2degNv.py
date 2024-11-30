@@ -2,8 +2,8 @@
 from settings import *
 
 class Poly2degNv(object):
-    """ Class parent de l'exercice Polynôme du second degré. contient des méthodes utilisées à plusieurs reprises par les deux class enfant. 
-        Permet de gérer plus facilement des appels et la créations des exercices
+    """ Class parent de l'exercice Polynôme du second degré. Contient des méthodes utilisées à plusieurs reprises par les deux class enfant. 
+        Permet de gérer plus facilement des appels et la création des exercices.
 
         Input : 
             doc -> pdf latex
@@ -609,7 +609,7 @@ class CourbeRepresentation(object):
     
     def __init__(self, doc, a, b, c, Scoords, Acoords) -> None:
         """ Initialisation des attributs de la class de génération de courbe, correction, de l'exercice polynômes du second degré. """
-        
+
         self.doc = doc
         self.a = a
         self.b = b
