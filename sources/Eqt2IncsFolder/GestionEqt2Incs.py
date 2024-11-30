@@ -45,7 +45,7 @@ class Eqt2Incs(object):
         self.correctionNv1 = CorrectionEqt2IncsNv1(self.doc, self.i, self.nb1, self.nb2, self.nb3, self.nb4, self.nb5, self.nb6)
         self.correctionNv2 = CorrectionEqt2IncsNv2(self.doc, self.i, self.nb1, self.nb2, self.nb3, self.nb4, self.nb5, self.nb6)
         
-    def GestionAllExoEqt2Incs(self):
+    def GestionAllExoEqt2Incs(self) -> None:
         if self.choixNiveau == 1:
              # appel méthode pour créer toutes les consignes
             self.consigneNv1.Eqt2IncsNv1Consignes()
@@ -69,9 +69,35 @@ class Eqt2Incs(object):
 
              # appel des méthodes pour créer toutes les corrections
             self.correctionNv2.Eqt2IncsNv2Correction()
-            
+
             # ajout nouvelle page pour séparer la fin de la correction de l'exercice suivant
             self.doc.append(NewPage())   
 
+    def AddTitreConsigneNv1(self) -> None:
+        """ Méthode personnalisé, choix de la consigne : titre des consignes. 
+            Input : /
+            Output : / """  
+              
+        self.consigneNv1.Eqt2IncsNv1Consigne()
 
+    def AddTitreCorrectionNv1(self) -> None:
+        """ Méthode personnalisé, choix de la correction : titres et corrections. 
+            Input : /
+            Output : / """
+        
+        self.correctionNv1.Eqt2IncsNv1Correction()
+
+    def AddTitreConsigneNv2(self) -> None:
+        """ Méthode personnalisé, choix de la consigne : titre des consignes. 
+            Input : /
+            Output : / """
+        
+        self.consigneNv2.Eqt2IncsNv2Consigne()
+
+    def AddTitreCorrectionNv2(self) -> None:
+        """ Méthode personnalisé, choix de la correction : titres et corrections. 
+            Input : /
+            Output : / """
+        
+        self.correctionNv2.Eqt2IncsNv2Correction()
 

@@ -27,7 +27,7 @@ class Eqt2IncsNv2(object):
         self.nb5 = nb5  # coef nb
         self.nb6 = nb6  # coef nb
 
-    def __pgcd__(self, a, b):
+    def __pgcd__(self, a, b) -> int:
         """ Méthode pgcd, permet de calculer le plus grand diviseur comment entre deux nombres. Utiliser pour créer des fractions iréductibles.
             Input : 
                 a -> nombre entier 
@@ -59,7 +59,7 @@ class ConsignesEqt2IncsNv2(Eqt2IncsNv2):
         super().__init__(doc, nb1, nb2, nb3, nb4, nb5, nb6)  # initialisation class parent 
         self.i = i # numéro exercice
 
-    def Eqt2IncsNv2Consignes(self):
+    def Eqt2IncsNv2Consigne(self) -> None:
         """ Méthode d'écriture du titres des consignes, avec l'équation. 
         Input : /
         Output : / """
@@ -99,7 +99,7 @@ class CorrectionEqt2IncsNv2(Eqt2IncsNv2):
         super().__init__(doc, nb1, nb2, nb3, nb4, nb5, nb6) # initialisation class parent
         self.i = i  # numéro exercice
 
-    def Eqt2IncsNv2Correction(self):
+    def Eqt2IncsNv2Correction(self) -> None:
         """ Méthode d'écriture du titre des corrections ainsi que toutes les étapes de correction (un seul élément). 
             Input : /
             Output : / """

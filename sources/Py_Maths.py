@@ -145,14 +145,25 @@ class Generation(object):
                 liste = [nb1, nb2, nb3, nb4, nb5, nb6, nb7, nb8, nb9, nb10, nb11, nb12]
 
             # Equations 2 inconnus
-            # a  = Eqt2Incs(self.doc,nb1, nb2, nb3, nb4, nb5, nb6, i, 1)
-            # a.Gestion()
-            # b = Eqt2Incs(self.doc,nb7, nb8, nb9, nb10, nb11, nb12, i, 2)
-            # b.Gestion()
 
+            a  = Eqt2Incs(self.doc, i, 1, nb1, nb2, nb3, nb4, nb5, nb6,)
+            # a.GestionAllExoEqt2Incs()
+            a.AddTitreConsigneNv1()
+            a.AddTitreConsigneNv2()
+            self.doc.append(NewPage())
+            a.AddTitreCorrectionNv1()
+            a.AddTitreCorrectionNv2()
+            self.doc.append(NewPage())
+
+            # b = Eqt2Incs(self.doc, i, 2, nb7, nb8, nb9, nb10, nb11, nb12)
+            # b.GestionAllExoEqt2Incs()
+
+###
             # Equation 1 degré
-            a = Eqt1deg(self.doc, i, 1, nb1, nb2, nb3, nb4, nb5, nb6)
-            a.GestionAllExoEqt1deg()
+
+            # a = Eqt1deg(self.doc, i, 1, nb1, nb2, nb3, nb4, nb5, nb6)
+            # a.GestionAllExoEqt1deg()
+
             # a.AddTitreConsigneNv1()
             # a.AddTitreConsigneNv2()
             # self.doc.append(NewPage())
@@ -160,11 +171,12 @@ class Generation(object):
             # a.AddTitreCorrectionNv2()
             # self.doc.append(NewPage())
 
+            # b = Eqt1deg(self.doc, i, 2 ,nb1, nb2, nb3, nb4, nb5, nb6)
+            # b.GestionAllExoEqt1deg()
 
-            b = Eqt1deg(self.doc, i, 2 ,nb1, nb2, nb3, nb4, nb5, nb6)
-            b.GestionAllExoEqt1deg()
-
+####
             # Poly 2 degré
+
             # c = Poly2deg(self.doc,i, a, b, c )
             # c.GestionAllExoPoly2deg()
             # c.AddPoly2DegTitreConsigne()
