@@ -99,7 +99,7 @@ class Generation(object):
         self.doc.append(NewPage())
 
         # Génération des exercices
-        for i in range(10):
+        for i in range(100):
             liste = []
             a = random.randint(-25,25)
             b = random.randint(-25,25)

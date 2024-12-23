@@ -48,7 +48,7 @@ class Eqt2Incs(object):
     def GestionAllExoEqt2Incs(self) -> None:
         if self.choixNiveau == 1:
              # appel méthode pour créer toutes les consignes
-            self.consigneNv1.Eqt2IncsNv1Consignes()
+            self.consigneNv1.Eqt2IncsNv1Consigne()
 
             # ajout nouvelle page pour séparer la correction de l'exercice    
             self.doc.append(NewPage())
@@ -62,7 +62,7 @@ class Eqt2Incs(object):
 
         elif self.choixNiveau == 2:
             # appel méthode pour créer toutes les consignes
-            self.consigneNv2.Eqt2IncsNv2Consignes()
+            self.consigneNv2.Eqt2IncsNv2Consigne()
 
             # ajout nouvelle page pour séparer la correction de l'exercice    
             self.doc.append(NewPage())
