@@ -99,11 +99,16 @@ class Generation(object):
         self.doc.append(NewPage())
 
         # Génération des exercices
-        for i in range(100):
+        for i in range(10):
             liste = []
-            a = random.randint(-25,25)
-            b = random.randint(-25,25)
-            c = random.randint(-25,25)
+            a = random.randint(5,25 )
+            b = random.randint(25,50) 
+            r = random.randint(4, 12) 
+            d = random.randint(6, 32)
+            L = random.randint(8, 34)
+            l = random.randint(7, 23) 
+            h = random.randint(3, 45)
+
             nb1 = random.randint(2,50)
             nb2 = random.randint(2,50)
             nb3 = random.randint(2,50)
@@ -118,16 +123,9 @@ class Generation(object):
             nb11 = random.randint(2,50)
         
             liste = [nb1, nb2, nb3, nb4, nb5, nb6, nb7, nb8, nb9, nb10, nb11, nb12]
-            # liste = [a,b,c]
 
-            while not checkUniqueValuesList(liste) or a ==0 or b == 0 or c==0:
+            while not checkUniqueValuesList(liste):
                 liste= []
-
-                a = random.randint(-25,25)
-                b = random.randint(-25,25)
-                c = random.randint(-25,25)
-
-                # liste = [a,b,c]
 
 
                 nb1 = random.randint(2,50)
@@ -144,10 +142,15 @@ class Generation(object):
                 nb11 = random.randint(2,50)
                 liste = [nb1, nb2, nb3, nb4, nb5, nb6, nb7, nb8, nb9, nb10, nb11, nb12]
 
+            # Volumes 
+            call = g
+
+####
+
             # Equations 2 inconnus
 
-            a  = Eqt2Incs(self.doc, i, 1, nb1, nb2, nb3, nb4, nb5, nb6,)
-            a.GestionAllExoEqt2Incs()
+            # aa  = Eqt2Incs(self.doc, i, 1, nb1, nb2, nb3, nb4, nb5, nb6,)
+            # aa.GestionAllExoEqt2Incs()
 
             # a.AddTitreConsigneNv1()
             # a.AddTitreConsigneNv2()
@@ -156,8 +159,8 @@ class Generation(object):
             # a.AddTitreCorrectionNv2()
             # self.doc.append(NewPage())
 
-            b = Eqt2Incs(self.doc, i, 2, nb7, nb8, nb9, nb10, nb11, nb12)
-            b.GestionAllExoEqt2Incs()
+            # bb = Eqt2Incs(self.doc, i, 2, nb7, nb8, nb9, nb10, nb11, nb12)
+            # bb.GestionAllExoEqt2Incs()
 
 ###
             # Equation 1 degré
