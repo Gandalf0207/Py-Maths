@@ -172,10 +172,10 @@ class CorrectionVolumesNv1(VolumesNv1):
         self.VSphere = None
         self.VCone = None
         self.VCylindre = None
-        self.PaveDroit = None
-        self.PyramideBaseCarre = None
+        self.VPaveDroit = None
+        self.VPyramideBaseCarre = None
         self.ADisque = None
-        self.TriangleRectangle = None
+        self.ATriangleRectangle = None
         self.ARectangle = None
 
         self.__AllCalculs__()
@@ -186,3 +186,26 @@ class CorrectionVolumesNv1(VolumesNv1):
         Output : / """
 
         
+        self.VCube = self.a**3
+        self.VSphere = 4/3*pi*self.r**3
+        self.VCone = 1/3 * self.h * pi* (self.d/2)**2
+        self.VCylindre = pi * self.h*self.r**2
+        self.VPaveDroit = self.L * self.L * self.h
+        self.VPyramideBaseCarre =  (self.b**2 * self.h )/ 3
+        self.ADisque = pi * (self.d / 2)**2
+        self.ATriangleRectangle = (self.a * self.b) / 2
+        self.ARectangle = self.L * self.L
+
+
+    def VolumesTitreCorrection(self) -> None:
+        """Méthode d'écriture du titre des corrections
+        Input : / 
+        Output : / """
+
+        with self.doc.create(Section(f"Correction Exo Volumes n°{self.i + 1}", numbering=False)) # titre exp correction
+            self.doc.append(NoEscape("\\\\"))
+
+    def CorrectionVCube(self, numEtape) -> None:
+        """Méthode d'écriture de la correction pour : """
+
+        pass
