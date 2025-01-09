@@ -1,6 +1,7 @@
 from Eqt2IncsFolder.GestionEqt2Incs import *
 from Eqt1degFolder.GestionEqt1deg import *
 from Poly2defFolder.GestionPoly2deg import *
+from VolumesFolder.GestionVolumes import *
 
 # Importation des scripts de mise en age et de gestions autre
 from basePDF import *
@@ -99,7 +100,7 @@ class Generation(object):
         self.doc.append(NewPage())
 
         # Génération des exercices
-        for i in range(10):
+        for i in range(1):
             liste = []
             a = random.randint(5,25 )
             b = random.randint(25,50) 
@@ -143,7 +144,8 @@ class Generation(object):
                 liste = [nb1, nb2, nb3, nb4, nb5, nb6, nb7, nb8, nb9, nb10, nb11, nb12]
 
             # Volumes 
-            call = g
+            call = Volumes(self.doc, i, 1, a, b, r, d, L, l, h)
+            call.GestionAllExoVolumes()
 
 ####
 
