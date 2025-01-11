@@ -1,5 +1,4 @@
 # import settings
-
 from settings import *
 
 class VolumesNv1(object):
@@ -51,6 +50,7 @@ class ConsignesVolumesNv1(VolumesNv1):
             a -> int, valeur 5,25 
             b -> int, valeur 25,50 
             r -> int, valeur 4, 12 
+            d -> int, valeur 6, 32
             L -> int, valeur 8, 34
             l -> int, valeur 7, 23 
             h -> int, valrur 3, 45
@@ -64,12 +64,13 @@ class ConsignesVolumesNv1(VolumesNv1):
         super().__init__(doc, a, b, r, d, L, l, h)
         self.i = i # nunméro de l'exercice
 
-    def VolumesTitreConsignes(self) -> None:
+    def VolumesTitreConsigne(self) -> None:
         """Méthode d'écriture du titre des consignes
         Input  : /    
         Output : /"""
 
         with self.doc.create(Section(f"Exo Volumes n°{self.i+1}", numbering=False)): #titre de l'exo
+            self.doc.append(NoEscape("Niveau 1 :\\\\"))
             self.doc.append(NoEscape("\\ \\parbox{ 450pt }{ A l'aide des valeurs données, veuillez calculer l'aire ou le volume demandé. Une valeur exacte et arrondie au millième vous est demandée.}  \\\\")) # consigne générale
             self.doc.append(NoEscape("\\\\"))
 
@@ -211,6 +212,7 @@ class CorrectionVolumesNv1(VolumesNv1):
         Output : / """
 
         with self.doc.create(Section(f"Correction Exo Volumes n°{self.i + 1}", numbering=False)): # titre exp correction
+            self.doc.append(NoEscape("Niveau 1 :\\\\"))
             self.doc.append(NoEscape("\\  \\\\"))
 
     def CorrectionVCube(self, numEtape) -> None:
@@ -300,7 +302,7 @@ class CorrectionVolumesNv1(VolumesNv1):
         self.doc.append(NoEscape("\\ \\parbox{ 450 pt}{ \\text{En remplaçant $h$ par %s; $L$ par %s ; $l$ = %s: }}" % (self.h, self.L, self.l)))
         self.doc.append(NoEscape("\\begin{align*}"))  
         self.doc.append(NoEscape("\\ VPaveDroit &= %s \\cdot  %s \\cdot %s \\\\" % (self.L, self.l, self.h)))
-        self.doc.append(NoEscape("\\ VPaveDroit &\\approx %s m^3 \\\\" % (self.VPaveDroit)))
+        self.doc.append(NoEscape("\\ VPaveDroit &= %s m^3 \\\\" % (self.VPaveDroit)))
         self.doc.append(NoEscape("\\\\"))
         self.doc.append(NoEscape("\\end{align*}")) 
 

@@ -109,6 +109,8 @@ class Generation(object):
             L = random.randint(8, 34)
             l = random.randint(7, 23) 
             h = random.randint(3, 45)
+            e = sqrt((r**2)+(h**2)) # check valeurs correct (nb chiffres après la virgule exo volume nv2)
+
 
             nb1 = random.randint(2,50)
             nb2 = random.randint(2,50)
@@ -125,9 +127,16 @@ class Generation(object):
         
             liste = [nb1, nb2, nb3, nb4, nb5, nb6, nb7, nb8, nb9, nb10, nb11, nb12]
 
-            while not checkUniqueValuesList(liste):
+            while not checkUniqueValuesList(liste) or e != round(e,3):
                 liste= []
-
+                a = random.randint(5,25 )
+                b = random.randint(25,50) 
+                r = random.randint(4, 12) 
+                d = random.randint(6, 32)
+                L = random.randint(8, 34)
+                l = random.randint(7, 23) 
+                h = random.randint(3, 45)
+                e = sqrt((r**2)+(h**2)) # check valeurs correct (nb chiffres après la virgule exo volume nv2)
 
                 nb1 = random.randint(2,50)
                 nb2 = random.randint(2,50)
@@ -146,6 +155,9 @@ class Generation(object):
             # Volumes 
             call = Volumes(self.doc, i, 1, a, b, r, d, L, l, h)
             call.GestionAllExoVolumes()
+
+            call2 = Volumes(self.doc, i, 2, a, b, r, d, L, l, h)
+            call2.GestionAllExoVolumes()
 
 ####
 

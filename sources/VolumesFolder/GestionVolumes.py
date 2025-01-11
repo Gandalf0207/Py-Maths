@@ -3,6 +3,7 @@ from settings import *
 
 # import class exercice volumes
 from VolumesFolder.VolumesNv1 import ConsignesVolumesNv1, CorrectionVolumesNv1
+from VolumesFolder.VolumesNv2 import ConsignesVolumesNv2, CorrectionVolumesNv2
 
 class Volumes(object):
     """ Class gestion pour préparer et corriger l'exercice sur les volumes
@@ -44,11 +45,14 @@ class Volumes(object):
         self.consigneNv1 = ConsignesVolumesNv1(self.doc, self.i, self.a, self.b, self.r, self.d, self.L, self.l, self.h)
         self.correctionNv1 = CorrectionVolumesNv1(self.doc, self.i, self.a, self.b, self.r, self.d, self.L, self.l, self.h)
 
+        self.consigneNv2 = ConsignesVolumesNv2(self.doc, self.i, self.a, self.b, self.r, self.h)
+        self.correctionNv2 = CorrectionVolumesNv2(self.doc, self.i, self.a, self.b, self.r, self.h)
+
 
     def GestionAllExoVolumes(self) ->None:
         if self.choixNiveau == 1:
             # appel méthode pour créer toutes les consignes
-            self.consigneNv1.VolumesTitreConsignes()
+            self.consigneNv1.VolumesTitreConsigne()
             self.consigneNv1.ConsigneVCube(1)
             self.consigneNv1.ConsigneVSphere(2)
             self.consigneNv1.ConsigneVCone(3)
@@ -76,4 +80,164 @@ class Volumes(object):
 
 
             # ajout nouvelle page pour séparer la fin de la correction de l'exercice suivant
-            self.doc.append(NewPage())      
+            self.doc.append(NewPage()) 
+
+        elif self.choixNiveau == 2:
+
+            # appel méthode pour créer toutes les consignes
+            self.consigneNv2.VolumesNv2Consigne()
+
+            # ajout nouvelle page pour séparer la correction de l'exercice    
+            self.doc.append(NewPage())
+
+            # appel des méthodes pour créer toutes les corrections
+            self.correctionNv2.VolumesNv2Correction()
+
+            # ajout nouvelle page pour séparer la fin de la correction de l'exercice suivant
+            self.doc.append(NewPage())           
+
+
+
+# consigne nv1
+
+    def AddVolumesTitreConsigne(self):
+        """Méthode personnalisé, choix de la consigne : titre des consignes
+        Input : /
+        Output : / """
+        
+        self.consigneNv1.VolumesTitreConsigne()
+
+    def AdConsigneVCube(self):
+        """Méthode personnalisé, choix de la consigne : Volume cube
+        Input : /
+        Output : / """
+        
+        self.consigneNv1.ConsigneVCube()
+
+    def AddConsigneVSphere(self):
+        """Méthode personnalisé, choix de la consigne : Volume sphere
+        Input : /
+        Output : / """
+        
+        self.consigneNv1.ConsigneVSphere()
+
+    def AddConsigneVCone(self):
+        """Méthode personnalisé, choix de la consigne : Volume cone
+        Input : /
+        Output : / """
+        
+        self.consigneNv1.ConsigneVCone()
+
+    def AddConsigneVCylindre(self):
+        """Méthode personnalisé, choix de la consigne : Volume cylindre
+        Input : /
+        Output : / """
+        
+        self.consigneNv1.ConsigneVCylindre()
+
+    def AddConsigneVPaveDroit(self):
+        """Méthode personnalisé, choix de la consigne : Volume pavé droit
+        Input : /
+        Output : / """
+        
+        self.consigneNv1.ConsigneVPaveDroit()
+
+    def AddConsigneVPyramideBaseCarre(self):
+        """Méthode personnalisé, choix de la consigne : Volume yramide base carré
+        Input : /
+        Output : / """
+        
+        self.consigneNv1.ConsigneVPyramideBaseCarre()
+
+    def AddConsigneADisque(self):
+        """Méthode personnalisé, choix de la consigne : Aire disque
+        Input : /
+        Output : / """
+        
+        self.consigneNv1.ConsigneADisque()
+
+    def AddConsigneATriangleRectangle(self):
+        """Méthode personnalisé, choix de la consigne : Aire triangle rectangle
+        Input : /
+        Output : / """
+        
+        self.consigneNv1.ConsigneATriangleRectangle()
+
+    def AddConsigneARectangle(self):
+        """Méthode personnalisé, choix de la consigne : Aire rectangle
+        Input : /
+        Output : / """
+        
+        self.consigneNv1.ConsigneARectangle()
+
+# correction nv1
+
+    def AddVolumesTitreCorrection(self):
+        """Méthode personnalisé, choix de la consigne : titre des consignes
+        Input : /
+        Output : / """
+        
+        self.consigneNv1.VolumesTitreConsigne()
+
+    def AddCorrectionCube(self):
+        """Méthode personnalisé, choix de la correction : Volume cube
+        Input : /
+        Output : / """
+        
+        self.correctionNv1.CorrectionVCube()
+
+    def AddCorrectionVSphere(self):
+        """Méthode personnalisé, choix de la correction : Volume sphere
+        Input : /
+        Output : / """
+        
+        self.correctionNv1.CorrectionVSphere()
+
+    def AddCorrectionVCone(self):
+        """Méthode personnalisé, choix de la correction : Volume cone
+        Input : /
+        Output : / """
+        
+        self.correctionNv1.CorrectionVCone()
+
+    def AddCorrectionVCylindre(self):
+        """Méthode personnalisé, choix de la correction : Volume cylindre
+        Input : /
+        Output : / """
+        
+        self.correctionNv1.CorrectionVCylindre()
+
+    def AddCorrectionVPaveDroit(self):
+        """Méthode personnalisé, choix de la correction : Volume pavé droit
+        Input : /
+        Output : / """
+        
+        self.correctionNv1.CorrectionVPaveDroit()
+
+    def AddCorrectionVPyramideBaseCarre(self):
+        """Méthode personnalisé, choix de la correction : Volume yramide base carré
+        Input : /
+        Output : / """
+        
+        self.correctionNv1.CorrectionVPyramideBaseCarre()
+
+    def AddCorrectionADisque(self):
+        """Méthode personnalisé, choix de la correction : Aire disque
+        Input : /
+        Output : / """
+        
+        self.correctionNv1.CorrectionADisque()
+
+    def AddCorrectionATriangleRectangle(self):
+        """Méthode personnalisé, choix de la correction : Aire triangle rectangle
+        Input : /
+        Output : / """
+        
+        self.correctionNv1.CorrectionATriangleRectangle()
+
+    def AddCorrectionARectangle(self):
+        """Méthode personnalisé, choix de la correction : Aire rectangle
+        Input : /
+        Output : / """
+        
+        self.correctionNv1.CorrectionARectangle()
