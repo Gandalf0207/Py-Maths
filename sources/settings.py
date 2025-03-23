@@ -14,6 +14,7 @@ import numpy as np
 # modules calculs
 from math import *
 import random
+from random import sample, choice, choices
 
 # modules gestions fichiers
 import os

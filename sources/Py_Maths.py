@@ -2,6 +2,7 @@ from Eqt2IncsFolder.GestionEqt2Incs import *
 from Eqt1degFolder.GestionEqt1deg import *
 from Poly2defFolder.GestionPoly2deg import *
 from VolumesFolder.GestionVolumes import *
+from DerivesFolder.GestionDerives import *
 
 # Importation des scripts de mise en age et de gestions autre
 from basePDF import *
@@ -74,6 +75,11 @@ class Generation(object):
         self.doc.packages.append(NoEscape("\\usepackage{amsmath}"))
         self.doc.packages.append(NoEscape("\\usepackage[utf8]{inputenc}"))
         self.doc.packages.append(NoEscape("\\usepackage{enumitem}"))
+        self.doc.packages.append(NoEscape("\\usepackage{array}"))
+        self.doc.packages.append(NoEscape("\\usepackage{tabularx}"))
+
+        self.doc.packages.append(NoEscape("\\usepackage{amssymb}"))
+        self.doc.packages.append(NoEscape("\\usepackage{geometry}"))
 
         self.doc.preamble.append(pylatex.NoEscape(r'\newunicodechar{∞}{\ensuremath{\infty}}'))
         self.doc.preamble.append(pylatex.NoEscape(r'\newunicodechar{Δ}{\ensuremath{\Delta}}'))
@@ -87,7 +93,7 @@ class Generation(object):
             return len(liste) == len(set(liste)) # check de si toutes les valeurs sont uniques
         
 
-        typeExo = "tttt"
+        typeExo = "Equation à 2 inconnues"
 
         # Récupération du nombre d'exercices à générer
         nb_exo = int(GUI().getValue())
@@ -152,25 +158,46 @@ class Generation(object):
                 nb11 = random.randint(2,50)
                 liste = [nb1, nb2, nb3, nb4, nb5, nb6, nb7, nb8, nb9, nb10, nb11, nb12]
 
-            # Volumes 
-            call = Volumes(self.doc, i, 1, a, b, r, d, L, l, h)
-            call.GestionAllExoVolumes()
+        for i in range(1):
+            nb_1 = random.randint(3, 8)
+            nb_2 = random.randint(3, 8)
+            nb_3 = random.randint(3, 8)
+            nb_4 = random.randint(3, 8)
+            nb_5 = random.randint(3, 8)
+            nb_6 = random.randint(3, 8)
+            nb_7 = random.randint(3, 8)
+            nb_8 = random.randint(3, 8)
+            nb_9 = random.randint(3, 8)
+            nb_10 = random.randint(3, 8)
 
-            call2 = Volumes(self.doc, i, 2, a, b, r, d, L, l, h)
-            call2.GestionAllExoVolumes()
+####
+            # Dérivés
+            call = Derives(self.doc, i, 1, nb_1, nb_2, nb_3, nb_4, nb_5, nb_6, nb_7, nb_8, nb_9, nb_10)
+            call.GestionAllExoDerives()
+
+            # call2 = Derives(self.doc, i, 2, nb1, nb2, nb3, nb4, nb5, nb6, nb7, nb8, nb9, nb10)
+            # call2.GestionAllExoDerives()
+
+####
+            # Volumes 
+            # call = Volumes(self.doc, i, 1, a, b, r, d, L, l, h)
+            # call.GestionAllExoVolumes()
+
+            # call2 = Volumes(self.doc, i, 2, a, b, r, d, L, l, h)
+            # call2.GestionAllExoVolumes()
 
 ####
 
-            # Equations 2 inconnus
+            #Equations 2 inconnus
 
             # aa  = Eqt2Incs(self.doc, i, 1, nb1, nb2, nb3, nb4, nb5, nb6,)
             # aa.GestionAllExoEqt2Incs()
 
-            # a.AddTitreConsigneNv1()
-            # a.AddTitreConsigneNv2()
+            # aa.AddTitreConsigneNv1()
+            # aa.AddTitreConsigneNv2()
             # self.doc.append(NewPage())
-            # a.AddTitreCorrectionNv1()
-            # a.AddTitreCorrectionNv2()
+            # aa.AddTitreCorrectionNv1()
+            # aa.AddTitreCorrectionNv2()
             # self.doc.append(NewPage())
 
             # bb = Eqt2Incs(self.doc, i, 2, nb7, nb8, nb9, nb10, nb11, nb12)
