@@ -107,68 +107,68 @@ class Volumes(object):
         
         self.consigneNv1.VolumesTitreConsigne()
 
-    def AdConsigneVCube(self):
+    def AdConsigneVCube(self, numEtape):
         """Méthode personnalisé, choix de la consigne : Volume cube
         Input : /
         Output : / """
         
-        self.consigneNv1.ConsigneVCube()
+        self.consigneNv1.ConsigneVCube(numEtape)
 
-    def AddConsigneVSphere(self):
+    def AddConsigneVSphere(self, numEtape):
         """Méthode personnalisé, choix de la consigne : Volume sphere
         Input : /
         Output : / """
         
-        self.consigneNv1.ConsigneVSphere()
+        self.consigneNv1.ConsigneVSphere(numEtape)
 
-    def AddConsigneVCone(self):
+    def AddConsigneVCone(self, numEtape):
         """Méthode personnalisé, choix de la consigne : Volume cone
         Input : /
         Output : / """
         
-        self.consigneNv1.ConsigneVCone()
+        self.consigneNv1.ConsigneVCone(numEtape)
 
-    def AddConsigneVCylindre(self):
+    def AddConsigneVCylindre(self, numEtape):
         """Méthode personnalisé, choix de la consigne : Volume cylindre
         Input : /
         Output : / """
         
-        self.consigneNv1.ConsigneVCylindre()
+        self.consigneNv1.ConsigneVCylindre(numEtape)
 
-    def AddConsigneVPaveDroit(self):
+    def AddConsigneVPaveDroit(self, numEtape):
         """Méthode personnalisé, choix de la consigne : Volume pavé droit
         Input : /
         Output : / """
         
-        self.consigneNv1.ConsigneVPaveDroit()
+        self.consigneNv1.ConsigneVPaveDroit(numEtape)
 
-    def AddConsigneVPyramideBaseCarre(self):
+    def AddConsigneVPyramideBaseCarre(self, numEtape):
         """Méthode personnalisé, choix de la consigne : Volume yramide base carré
         Input : /
         Output : / """
         
-        self.consigneNv1.ConsigneVPyramideBaseCarre()
+        self.consigneNv1.ConsigneVPyramideBaseCarre(numEtape)
 
-    def AddConsigneADisque(self):
+    def AddConsigneADisque(self, numEtape):
         """Méthode personnalisé, choix de la consigne : Aire disque
         Input : /
         Output : / """
         
-        self.consigneNv1.ConsigneADisque()
+        self.consigneNv1.ConsigneADisque(numEtape)
 
-    def AddConsigneATriangleRectangle(self):
+    def AddConsigneATriangleRectangle(self, numEtape):
         """Méthode personnalisé, choix de la consigne : Aire triangle rectangle
         Input : /
         Output : / """
         
-        self.consigneNv1.ConsigneATriangleRectangle()
+        self.consigneNv1.ConsigneATriangleRectangle(numEtape)
 
-    def AddConsigneARectangle(self):
+    def AddConsigneARectangle(self, numEtape):
         """Méthode personnalisé, choix de la consigne : Aire rectangle
         Input : /
         Output : / """
         
-        self.consigneNv1.ConsigneARectangle()
+        self.consigneNv1.ConsigneARectangle(numEtape)
 
 # correction nv1
 
@@ -179,65 +179,65 @@ class Volumes(object):
         
         self.consigneNv1.VolumesTitreConsigne()
 
-    def AddCorrectionCube(self):
+    def AddCorrectionCube(self, numEtape):
         """Méthode personnalisé, choix de la correction : Volume cube
         Input : /
         Output : / """
         
-        self.correctionNv1.CorrectionVCube()
+        self.correctionNv1.CorrectionVCubenumEtape()
 
-    def AddCorrectionVSphere(self):
+    def AddCorrectionVSphere(self, numEtape):
         """Méthode personnalisé, choix de la correction : Volume sphere
         Input : /
         Output : / """
         
-        self.correctionNv1.CorrectionVSphere()
+        self.correctionNv1.CorrectionVSphere(numEtape)
 
-    def AddCorrectionVCone(self):
+    def AddCorrectionVCone(self, numEtape):
         """Méthode personnalisé, choix de la correction : Volume cone
         Input : /
         Output : / """
         
-        self.correctionNv1.CorrectionVCone()
+        self.correctionNv1.CorrectionVCone(numEtape)
 
-    def AddCorrectionVCylindre(self):
+    def AddCorrectionVCylindre(self, numEtape):
         """Méthode personnalisé, choix de la correction : Volume cylindre
         Input : /
         Output : / """
         
-        self.correctionNv1.CorrectionVCylindre()
+        self.correctionNv1.CorrectionVCylindre(numEtape)
 
-    def AddCorrectionVPaveDroit(self):
+    def AddCorrectionVPaveDroit(self, numEtape):
         """Méthode personnalisé, choix de la correction : Volume pavé droit
         Input : /
         Output : / """
         
-        self.correctionNv1.CorrectionVPaveDroit()
+        self.correctionNv1.CorrectionVPaveDroit(numEtape)
 
-    def AddCorrectionVPyramideBaseCarre(self):
+    def AddCorrectionVPyramideBaseCarre(self, numEtape):
         """Méthode personnalisé, choix de la correction : Volume yramide base carré
         Input : /
         Output : / """
         
-        self.correctionNv1.CorrectionVPyramideBaseCarre()
+        self.correctionNv1.CorrectionVPyramideBaseCarre(numEtape)
 
-    def AddCorrectionADisque(self):
+    def AddCorrectionADisque(self, numEtape):
         """Méthode personnalisé, choix de la correction : Aire disque
         Input : /
         Output : / """
         
-        self.correctionNv1.CorrectionADisque()
+        self.correctionNv1.CorrectionADisque(numEtape)
 
-    def AddCorrectionATriangleRectangle(self):
+    def AddCorrectionATriangleRectangle(self, numEtape):
         """Méthode personnalisé, choix de la correction : Aire triangle rectangle
         Input : /
         Output : / """
         
-        self.correctionNv1.CorrectionATriangleRectangle()
+        self.correctionNv1.CorrectionATriangleRectangle(numEtape)
 
-    def AddCorrectionARectangle(self):
+    def AddCorrectionARectangle(self, numEtape):
         """Méthode personnalisé, choix de la correction : Aire rectangle
         Input : /
         Output : / """
         
-        self.correctionNv1.CorrectionARectangle()
+        self.correctionNv1.CorrectionARectangle(numEtape)

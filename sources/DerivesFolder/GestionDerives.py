@@ -117,11 +117,29 @@ class Derives(object):
             Input : /
             Output : / """  
               
-        self.consigneNv1.DerivesNv1Consigne()
+        self.consigneNv1.DerivesTitreConsigne()
+
+    def AddConsigneCalculDerives(self, numEtape):
+        self.consigneNv1.ConsigneCalculDerives(numEtape)
+
+    def AddConsigneTangente(self, numEtape):
+        self.consigneNv1.ConsigneTangente(numEtape)
+
+    def AddConsignesDerives(self):
+        self.consigneNv1.ConsignesDerives()
 
     def AddTitreCorrectionNv1(self) -> None:
         """ Méthode personnalisé, choix de la correction : titres et corrections. 
             Input : /
             Output : / """
         
-        self.correctionNv1.DerivesNv1Correction()
+        self.correctionNv1.DerivesTitreCorrection()
+
+    def AddCorrectionDerives(self):
+        self.correctionNv1.CorrectionDerives()
+
+    def AddCorrectionCalculDerives(self):
+        self.correctionNv1.CorrectionCalculDerives()
+
+    def AddCorrectionTangente(self):
+        self.correctionNv1.CorrectionTangente()
