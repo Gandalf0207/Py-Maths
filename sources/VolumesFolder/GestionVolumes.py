@@ -184,7 +184,7 @@ class Volumes(object):
         Input : /
         Output : / """
         
-        self.correctionNv1.CorrectionVCubenumEtape()
+        self.correctionNv1.CorrectionVCube(numEtape)
 
     def AddCorrectionVSphere(self, numEtape):
         """Méthode personnalisé, choix de la correction : Volume sphere
