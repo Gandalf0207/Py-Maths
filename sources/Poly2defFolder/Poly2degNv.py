@@ -1,5 +1,5 @@
 # import settings 
-from settings import *
+from sources.settingsPyMaths import *
 
 class Poly2degNv(object):
     """ Class parent de l'exercice Polynôme du second degré. Contient des méthodes utilisées à plusieurs reprises par les deux class enfant. 

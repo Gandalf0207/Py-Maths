@@ -1,5 +1,5 @@
 # import settings
-from settings import *
+from sources.settingsPyMaths import *
 
 class VolumesNv1(object):
     """Class parent de l'exercice de calcul de volume. Contient des méthodes utilisés globalement.

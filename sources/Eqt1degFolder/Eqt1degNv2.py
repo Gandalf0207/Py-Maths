@@ -1,4 +1,4 @@
-from settings import *
+from sources.settingsPyMaths import *
 
 class Eqt1degNv2(object):
     """ Class parent de l'exercice équation du premier degré. Contient des méthodes utilisés globalement.

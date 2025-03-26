@@ -1,5 +1,5 @@
 # import settings
-from settings import *
+from sources.settingsPyMaths import *
 
 # import class exercice volumes
 from VolumesFolder.VolumesNv1 import ConsignesVolumesNv1, CorrectionVolumesNv1

@@ -1,5 +1,5 @@
 # import settings 
-from settings import *
+from sources.settingsPyMaths import *
 # import class de l'exercice poly2deg
 from Poly2defFolder.Poly2degNv import ConsignesPoly2degNv, CorrectionsPoly2degNv
 

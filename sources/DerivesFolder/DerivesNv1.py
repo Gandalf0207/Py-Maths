@@ -1,4 +1,4 @@
-from settings import *
+from sources.settingsPyMaths import *
 
 class DerivesNV1(object):
     """ Class parent de l'exercice équation du premier degré. Contient des méthodes utilisés globalement.

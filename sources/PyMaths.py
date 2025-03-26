@@ -8,7 +8,7 @@ from DerivesFolder.GestionDerives import *
 from basePDF import *
 from aModule_Gestion import Contenue_Page_1
 
-from settings import *
+from sources.settingsPyMaths import *
 
 
 class Generation(object):

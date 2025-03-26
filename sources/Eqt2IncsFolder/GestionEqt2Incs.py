@@ -1,5 +1,5 @@
 # import settings
-from settings import *
+from sources.settingsPyMaths import *
 # import class de l'exercice eqt1deg
 from Eqt2IncsFolder.Eqt2IncsNv1 import ConsignesEqt2IncsNv1, CorrectionEqt2IncsNv1
 from Eqt2IncsFolder.Eqt2IncsNv2 import ConsignesEqt2IncsNv2, CorrectionEqt2IncsNv2

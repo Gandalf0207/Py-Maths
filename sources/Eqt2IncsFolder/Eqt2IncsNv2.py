@@ -1,5 +1,5 @@
 # import settings
-from settings import *
+from sources.settingsPyMaths import *
 
 class Eqt2IncsNv2(object):
     """ Class parent de l'exercice équation à deux incs. Contient des méthodes utilisés globalement.

@@ -1,5 +1,5 @@
 # import settings
-from settings import *
+from sources.settingsPyMaths import *
 # import class de l'exercice eqt1deg
 from DerivesFolder.DerivesNv1 import ConsignesDerivesNv1, CorrectionsDerivesNv1
 
