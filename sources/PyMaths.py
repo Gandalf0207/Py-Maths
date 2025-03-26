@@ -35,6 +35,9 @@ class Generation(object):
         self.doc.preamble.append(pylatex.NoEscape(r'\newunicodechar{α}{\ensuremath{\alpha}}'))
         self.doc.preamble.append(pylatex.NoEscape(r'\newunicodechar{β}{\ensuremath{\beta}}'))
 
+    def GetDoc(self):
+        return self.doc
+
     def FirstPage(self, title):
          # Ajout de l'en-tête et du contenu de la première page
         hp = HeaderFooter(self.doc, title)
