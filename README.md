@@ -9,13 +9,11 @@
 Py-Maths est un projet étudiant réalisé par 2 élèves en première NSI : **LUBAN Théo** & **PLADEAU Quentin**. Le but de ce projet est de réaliser un exerciseur de mathématique (inspiré de **PyroMaths**) avec leurs corrections détaillés pas à pas, sur différents niveaux (seconde, première et terminale). Ce projet a été développé avec le langage de programmation python et utilise le langage LaTeX pour pouvoir respecter l'ecriture mathématique. En effet toutes les valeurs présentes dans les exercices sont sélectionnées aléaoirement et les correction sont adpaté pour cela. Chaque exercice est donc unique pour un entrainement optimal !
 
 Le projet propose différents exercices selon diffférents niveaux : 
-- Seconde
   - Polynôme du second degrés
   - Equation à un inconnus
   - Equation à deux inconnus
- 
-- Première
-  - A venir
+  - Calculs de volumes
+  - Dérivés
 
 - Terminale
   - A venir
